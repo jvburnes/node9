@@ -1,0 +1,137 @@
+# the emulator configuration for node9
+# uses a very minimal non-multimedia device set and strips out
+# dis.  if i were enabling multimedia I'd create an devegl2 for graphics
+# and use some highly portable audio library for devaudio.
+#
+# almost all devices will need at least minor patching to accomodate the
+# libuv event model
+#
+# (if I were configuring a machine to run C programs I'd consider using either
+#  raw plan9 or use pure libuv C threads, one for each functioning process and
+#  force each user to have their own pgrp, egrp, fgrp).
+#
+# this is just the configuration model file.  node9 alpha uses a hand-configured 
+# emu.c that reflects these settings and defines the global device table (devtab).
+# (node9 beta will have functioning dynamic driver model loaders that load everything
+# at startup.
+# 
+# note: the 'ndevs' value in emu.c is maximum number of devs,  devtab itself should be
+# one larger than that value.  You should probably double its minimum size to allow for
+# runtime loadable kernel modules for new devices. Make sure unused entries are set to nil
+# and that the last entry is always nil as it marks the end of the devtab.
+#
+dev
+	root	# minimal changes (high pri)
+	cons    # needs to use the libuv tty and thread model (hipri)
+	env	# no changes (hipri)
+	mnt	# probably event model changes to replace rpcs (medium pri)
+	pipe	# minimal changes (medpri)
+	prog    # extensive changes to interface with lua/luv and remote prog load/start (medpri)
+	prof	# extensive changes to interface with lua/luv (med to low pri)
+	srv 	# reimplement for luv to write lua servers (medpri)
+	dup	# few changes - just interface to fids/fgrp and fid cloning (lowpri)
+	ssl     # may need modification (medpri)
+	cap     # may need modification (medpri)
+	fs      # extensive changes to event model and libuv fs interface (med to high)
+	cmd	cmd  # unknown -- probably minimal (med to lopri)
+	indir   # few changes (lopri)
+
+#	draw
+#	pointer
+#	snarf
+
+	ip	ipif6-posix ipaux (med to hipri)
+#	eia
+#	audio	audio
+	mem     # needs reimplementation for lua/luv (med to lowpri)
+
+lib
+#	interp  # dont need this
+#	tk
+#	freetype
+#	math
+#	draw
+
+#	memlayer
+#	memdraw
+#	keyring  # dont need because we're not using dis, maybe lua port later
+	sec
+#	mp       # done need, not using dis
+
+	9
+
+link
+
+# these are limbo modules, but should give thought to lua equivalents
+mod
+	sys
+#	draw
+
+#	tk
+	math
+	srv	srv
+	keyring
+	crypt
+	ipints
+	loader
+#	freetype
+
+port
+	alloc	# kernel memory allocation, should lua use glibcs?
+	cache	# consider some optimizations
+	chan
+	dev
+	dial
+#	dis	# not needed, not using dis
+#	discall # not needed, not using dis
+	env
+#	error	# highly dis dependent
+	errstr	# same
+#	exception # give some thought to mapping to luv
+	exportfs  # probably need event model changes
+	inferno   # these become the VM to sysfile mapping in luv-styx
+	latin1    # not needed
+	main	  # moved and morphed to different dir for node9
+	parse	  # no changes
+	pgrp	  # no changes
+	print	  # no changes
+	proc      # throw away dis trivialities, keep the rest, few changes
+	qio	  # just change event model
+	random    # few changes
+	sysfile   # the plan9 kernel code just above the drivers, keep /w minor changes
+	uqid	  # no changes
+
+code
+#	int dontcompile = 1;
+#	unsigned long strtochan(char *s) {return 0;}
+
+init
+	# this is in our main code
+	#	emuinit
+
+# the root file system configuration
+# do this semi-manually
+root
+	/dev	/
+	/fd	/
+	/prog	/
+	/prof	/
+	/net	/
+	/net.alt	/
+	/chan	/
+	/nvfs	/
+	/env	/
+#	/chan
+#	/dev
+#	/dis
+#	/env
+#	/n
+#	/net
+#	/nvfs /
+#	/prog
+#	/icons
+#	/osinit.dis
+#	/dis/emuinit.dis
+#	/dis/lib/auth.dis
+#	/dis/lib/ssl.dis
+#	/n/local /

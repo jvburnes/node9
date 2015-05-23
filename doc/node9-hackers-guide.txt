@@ -1,0 +1,221 @@
+                                 NODE9 HACKERS GUIDE
+
+CONTENTS
+
+- Introduction and Overview
+- A Simple Example
+- Major Subsystems
+- Theory of Operation
+- Target Applications
+- Current Status (06/01/2015)
+- Source Code Structure
+- Major Changes From Inferno
+- Build, User and Portability Notes
+- Status and Current Focus
+
+INTRODUCTION AND OVERVIEW
+
+Node9 is a hosted 64-bit operating system based on Bell Lab's Inferno OS, but
+uses the Lua scripting language instead of Limbo and the LuaJIT high-peformance
+virtual machine instead of the DIS virtual machine.  It also uses the libuv
+I/O library to maintain maximum portability, efficient event processing and thread
+management.
+
+Node9 embraces a highly interactive programming environment optimized for the
+needs of distributed computing based on the Plan9/Inferno 9p resource sharing
+model, per-process namespace security and application message channels.
+
+While Lua and the underlying Inferno system API enable the rapid development of
+scientific and research software, it's kernel is designed to also suport zero
+copy, high performance event interfaces on the web. Notably the libuv eventing
+library that Node9 uses for portable I/O and event management is the same
+library used in the 'NodeJS' web application system.
+
+Asynchronous events are handled via concurrent Lua tasks (coroutines) that
+communicate via message channels. Combined with the cloud-oriented kernel, most
+tasks can be solved in a standard functional/OO style even when the problem
+domain would normallly require difficult callback style programming.
+
+Node9 applications are mostly developed in Lua.  Node9 network services can be
+prgrammed in Lua or C, depending on needs.  Node9 is compatible at the network
+layer with both Plan9 and Inferno. Inferno's statically-typed application
+channels will need some filtering as Node9's message channels have no such
+limitations.
+
+Since Lua has no built-in threading limitations, Node9 also supports full
+multitheading.  Node9 Lua threads can communicate with Node9 tasks via message
+channels.  In fact Node9's multi-user capabilities implement separate user
+sessions within separate threads which rendezvous through Node9 named services.
+
+Node9 boots into a shell which supports both immediate mode Lua expression
+evaluation as welll as Lua applications and library modules.  Node9 supports
+applications both as simple standalone scripts as well as within  "application
+directories" containing all application code, support libraries, resources and
+configuration settings.  This allows applications to be easily installed and
+removed.
+
+While the primary user console of Node9 is a powerful scripting shell, it also
+comes with a small web-based management GUI for cloud environments.  Node9 also
+has extensive graphics capabilities when installed on a host supporting the
+OpenGL/Vulcan shader interface. 
+
+Node9 distributed networks communiate via 9p resource sharing, optionally using
+SSL/TLS connections.
+
+A SIMPLE EXAMPLE
+
+The following is the command line application that implements the "unmount"
+command:
+
+------
+usage = "unmount [source] target"
+
+function fail(status, msg)
+	sys.fprint(sys.fildes(2), "unmount: %s\n", msg);
+	error("fail:" .. status)
+end
+
+function nomod(mod)
+    fail("load", string.format("can't load %s: %s", mod, sys.errstr()))
+end
+
+function init(argv)
+    sys = import("sys")
+    buffers = import("buffers")    
+    arg = import('arg')
+    
+    -- massage the argument list 
+    
+    if not arg then nomod('arg') end
+    arg.setusage(usage)
+    
+    local opts = arg.getopt(argv,"")
+    
+    local argl = arg.strip()
+    
+    if #argl < 1 or #argl > 2 then arg.usage() end
+    
+    local target = table.remove(argl)
+    
+    local source = argl[1]
+    
+    -- and unmount
+    local rc = sys.unmount(source, target)
+    
+    if rc < 0 then 
+        fail("unmount", string.format("unmount failed because: %s", sys.errstr()))
+    end
+    
+end
+-----
+
+MAJOR CHANGES FROM INFERNO
+
+Node9 required quite extensive modification of the original Inferno source
+distribution to refocus the design towards an interactive Lua virtual machine
+and cloud-optimized kernel.
+
+The primary kernel change was to remove Limbo and the somewhat arcane DIS
+virtual machine structure and replace it with the LuaJIT virtual machine.  This
+required a complete refactor of the VM process architecture in order to
+interface with the original Plan9 kernel components.  Since Lua and LuaJIT run
+much faster when they are calling C code rather than the other way around (and
+because of JIT stability) it was decided to create a hybrid scheduler where Lua
+tasks are scheduled using a Lua scheduler and true kernel threads are handled
+by libuv and the host's native thread scheduler.
+
+This refactor also required a redesign of how systems calls were issued from 
+Lua tasks into the C kernel -- adopting a "shadow" process concept.
+
+In order to create a true 64-bit OS it was necessary to fix various limitations
+within the Inferno/Plan9 memory manager.  Currently the legacy Plan9/Inferno C
+kernel  manages memory and resources for kernel objects and LuaJIT manages
+memory for Lua apps.
+
+Since Node9 is a portable, hosted OS it requires multi-platform support for its
+underlying kernel I/O and eventing functions.  Because of this and our desire
+to create a portable, cloud-optimized kernel we used the hardware abstraction
+layer provided by 'libuv' to obviate the need for Inferno's legacy
+multi-platform support.
+
+SUBSYSTEMS and STRUCTURES
+
+Plan9 Kernel Components 
+Inferno Kernel Components
+Kernel Servers
+LuaJIT Virtual Machine
+System Request Queue
+Backend Request Dispatcher
+Request Handlers
+System Response Queue
+Libuv Event Loop
+
+THEORY OF OPERATION
+
+Configuration
+Bootstrap
+Lua Startup
+Threads, Kernel Procs, Hosting Procs, Virtual Procs and Tasks
+Lua Scheduler Sweep
+Libuv Event Sweep
+Wait Mode
+Support Threads
+Anatomy of A System Call
+Spawning A New Task
+Spawning A New Thread
+Starting A New Application
+Application Environments and Task Segregation
+Waiting For Process PIDs and Process Completion
+Exception Handling
+
+TARGET APPLICATIONS
+
+Scientific and Grid Computing
+Simulation, AI and Gaming
+Network and Application Monitoring
+Cloud Computing and Control
+Big Data
+
+DIRECTORY STRUCTURE
+
+- node9 root directory
+- subsystem library dependencies (./libuv, ./luajit)
+- primary source code ./src
+   o kernel code: styx/svcs
+   o kernel support libraries: styx/libs
+   o build utils: styx/utils
+   o premake and make files (premake.lua)
+   o legacy platform dependendies (remaining) styx/platform
+- build directories (src/build/*)
+- target directories (bin, lib)
+- node9 runtime (./fs)
+- node9 applications (fs/appl, fs/appl/<appname>)
+- node9 loadable  modules and shared C headers (fs/module)
+- node9 lua kernel components (fs/os/lib)
+- node9 lua bootstrap (fs/os/init)
+- system documentation (doc)
+
+
+BUILD, USER AND PORTABILITY NOTES
+
+Premake Makefile Generation
+Pre/Post Build Requirements
+Build Command
+Startup
+Shell Notes
+ - execution envionments
+ - job control
+ - build-in commands
+ - return codes
+Network Configuration
+Shutdown
+
+STATUS AND CURRENT FOCUS
+
+Areas Under Construction
+Demo Apps
+Further Work
+Contributing To Project
+
+
+
