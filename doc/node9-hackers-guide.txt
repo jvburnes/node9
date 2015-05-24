@@ -1,5 +1,8 @@
                                  NODE9 HACKERS GUIDE
 
+(NOTE: This is early documentation release.  All features may not yet be
+implemented.)
+
 CONTENTS
 
 - Introduction and Overview
@@ -15,21 +18,21 @@ CONTENTS
 
 INTRODUCTION AND OVERVIEW
 
-Node9 is a hosted 64-bit operating system based on Bell Lab's Inferno OS, but
+Node9 is a hosted 64-bit operating system based on Bell Lab's Inferno OS that
 uses the Lua scripting language instead of Limbo and the LuaJIT high-peformance
-virtual machine instead of the DIS virtual machine.  It also uses the libuv
+virtual machine instead of the Dis virtual machine.  It also uses the libuv
 I/O library to maintain maximum portability, efficient event processing and thread
-management.
+management on POSIX and Windows platforms.
 
 Node9 embraces a highly interactive programming environment optimized for the
 needs of distributed computing based on the Plan9/Inferno 9p resource sharing
-model, per-process namespace security and application message channels.
+protocol, per-process namespace security and application message channels.
 
 While Lua and the underlying Inferno system API enable the rapid development of
 scientific and research software, it's kernel is designed to also suport zero
-copy, high performance event interfaces on the web. Notably the libuv eventing
-library that Node9 uses for portable I/O and event management is the same
-library used in the 'NodeJS' web application system.
+copy, high-performance IO and event interfaces on the web. Notably the libuv
+eventing library that Node9 uses for portable I/O and event management is the
+same library used in the 'NodeJS' web application system.
 
 Asynchronous events are handled via concurrent Lua tasks (coroutines) that
 communicate via message channels. Combined with the cloud-oriented kernel, most
@@ -44,15 +47,16 @@ limitations.
 
 Since Lua has no built-in threading limitations, Node9 also supports full
 multitheading.  Node9 Lua threads can communicate with Node9 tasks via message
-channels.  In fact Node9's multi-user capabilities implement separate user
-sessions within separate threads which rendezvous through Node9 named services.
+channels.  In fact, in Node9's each user session is allocated it's own 
+OS thread. Node9 threads can communicate via applicaton channels and OS
+pipes.
 
 Node9 boots into a shell which supports both immediate mode Lua expression
-evaluation as welll as Lua applications and library modules.  Node9 supports
-applications both as simple standalone scripts as well as within  "application
-directories" containing all application code, support libraries, resources and
-configuration settings.  This allows applications to be easily installed and
-removed.
+evaluation as welll as Lua applications and library modules.  Node9
+applications are Lua scripts which can be simple standalone command files as
+well as "application directories" containing all application code, support
+libraries, resources and configuration settings.  This allows applications to
+be easily installed and removed.
 
 While the primary user console of Node9 is a powerful scripting shell, it also
 comes with a small web-based management GUI for cloud environments.  Node9 also
@@ -115,7 +119,7 @@ Node9 required quite extensive modification of the original Inferno source
 distribution to refocus the design towards an interactive Lua virtual machine
 and cloud-optimized kernel.
 
-The primary kernel change was to remove Limbo and the somewhat arcane DIS
+The primary kernel change was to remove Limbo and the somewhat arcane Dis
 virtual machine structure and replace it with the LuaJIT virtual machine.  This
 required a complete refactor of the VM process architecture in order to
 interface with the original Plan9 kernel components.  Since Lua and LuaJIT run
@@ -144,6 +148,7 @@ Plan9 Kernel Components
 Inferno Kernel Components
 Kernel Servers
 LuaJIT Virtual Machine
+LuaJIT FFI Interface
 System Request Queue
 Backend Request Dispatcher
 Request Handlers
@@ -198,24 +203,168 @@ DIRECTORY STRUCTURE
 
 BUILD, USER AND PORTABILITY NOTES
 
-Premake Makefile Generation
-Pre/Post Build Requirements
-Build Command
-Startup
-Shell Notes
+- Building Node9 -
+
+Node9 uses the lua-based 'premake' tool to generate the makefiles.  It's open
+source and available for nearly all POSIX and Windows platforms.
+
+Node9 was developed on MacOSX so the current version builds and runs there
+without any modification.  It is designed to be completely portable across
+POSIX and Windows platforms, however the 'libuv' porting modifications aren't
+fully complete.
+
+It may take a few iterations on the source code with the help of other users to
+make it fully portable "out of the box".
+
+To create a copy of Node9 simply execute the following commands from Node9's main
+directory.
+
+premake gmake
+make
+
+After the build is finished The executable 'node9' will be generated in the
+'bin' subdirectory of the Node9 distribution.  The runtime shared library
+'libnode9.dylib' will be generated in the "lib" subdirectory.
+
+Installation scripts will eventually be included in the distribution to 
+place the runtime system in a convenient filesystem location.
+
+- Startup - 
+
+On OSX you can simply execute the 'run.sh' script to set the shared library
+search path and run node9.
+
+- Shell Notes -
+
+In the initial release of Node9 the shell is very basic.  It understands
+how to run lua programs and has several built-in commands to make life 
+easier.  If the first character of the command line is a space it will
+interpret the rest of the line as an immediate mode Lua statement allowing
+you to define functions, evaluate expressions etc.
+
+This initial release has no job control, pipes or background execution although
+"the hooks are in there".  Seriously.  Just check in 'appl/sh'.
+
+ - built in commands 
+
+The commands 'ls', 'cat' and 'cd'  are built into the shell and allow you to
+navigate the current namespace and examine the contents of files.
+
  - execution envionments
+
+Each external lua application has it's own execution environment and contains
+it's own global variable space.  No application can interfere directly with
+another one.  Each task in the application has it's own local variable space,
+but shares the common application global variable space.
+
  - job control
- - build-in commands
+
+(not implemented) 
+
  - return codes
-Network Configuration
-Shutdown
+
+(describe the "fail" return codes vs abort codes)
+
+- network configuration
+
+(explain 'exportfs', 'mount', 'unmount' and SSL operation)
+
+- shutdown
+
+(control-D)
 
 STATUS AND CURRENT FOCUS
 
-Areas Under Construction
-Demo Apps
-Further Work
-Contributing To Project
+- Areas Under Heavy Construction
+
+ - system calls -
+
+As of the initial release almost all of the Inferno system calls have been
+implemented.  The only ones that haven't been implemented are related to the
+service calls that allow you to develop network services directly in Lua or
+depend on these calls..
+
+These are:
+
+sys.file2chan:
+  directs 9p network read and write requests to lua read / write
+channels.
+
+sys.pipe:
+  creates a bidirectional stream for inter-process reading/writing
+
+sys.stream:
+  reads or writes from src to dest until the operation fails
+  (unrelated to lua services, just not done yet)
+
+sys.fversion and fauth
+  used for low-level 9p communications
+  (unrelated to lua services, just not done yet)
+
+The rest of the system calls (fully operational) are:
+
+open, create, dup, filedes, seek, iounit, read, readn, pread, write, pwrite,
+sprint, print, fprint, stat, fstat, wstat, fwstat, dirread, errstr, bind, 
+mount, unmount, remove, chdir, fd2path, dial, announce, listen, export,
+sleep, millisec, pctl, spawn
+
+ - call notes -
+
+The primary I/O calls (read, wrte etc) interact directly with low-level C-based
+read and write calls.  Because of this they require efficient, high performance
+byte buffers.  Whle Lua provides a very useful string buffer, appending to
+these buffers requires a great deal of memory management overhead.  Node9
+provides a very powerful byte buffer mechanism to provide an interface between
+OS buffers and Lua character strings.
+
+Stat calls generally accept a Lua structure to pass stat values to and from the
+kernel.
+
+To see how these functions are used, please read the 'sh' source code as well
+as reading the built-in 'cat' command and mount/unmount applications.
+
+Basic 'pctl' support is implemented to create new namespaces and duplicate
+file streams.  Full implementation will be concurrent with completing multiuser 
+support.
+
+- Remaining Kernel Servers / Drivers
+
+Several kernel services and devices remain to be ported because they require
+fine-grained interaction between the Inferno "process" model and the Lua
+scheduler.   These are:
+
+  - devprog: allows fine-grain interaction with processs
+  - devprof: allows profiling of programs
+  - devmem: allows examination of memory and heap structures
+  - devdynld: allows dynamic loading of libraries
+  - devsrv: allows lua-based services
+  - devpipe: inter-process, inter-application pipes
+
+Of these devprog (/proc), devsrv and devpipe are the highest priority.
+
+- Libuv portability
+
+A number of system and kernel calls still use the old Inferno portability 
+layer for host system read, write etc.  A major focus of near-term development 
+is the full conversion of I/O to libuv which should increase portability and
+performance significantly.  This allow enables the full development of the 
+cloud-oriented aspects of the kernel.
+
+- Cloud Management, Interaction and Apps
+
+When the libuv conversion is complete, a number of ajax-based administration
+and monitoring apps will be included.
+
+- Demo Apps
+
+Demos are currently being developed in a number of areas.  Please feel free to
+suggest any ideas that sound useful.
+
+- Contributing To Project
+
+Contributing developers are more than welcome.   Read/write access to the 
+repository is simply based on a willingness to help out, document the 
+project and have fun.
 
 
 
