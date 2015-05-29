@@ -115,26 +115,23 @@ end
 
 MAJOR CHANGES FROM INFERNO
 
-Node9 required quite extensive modification of the original Inferno source
+Node9 required extensive modification of the original Inferno source
 distribution to refocus the design towards an interactive Lua virtual machine
 and cloud-optimized kernel.
 
-The primary kernel change was to remove Limbo and the somewhat arcane Dis
-virtual machine structure and replace it with the LuaJIT virtual machine.  This
-required a complete refactor of the VM process architecture in order to
-interface with the original Plan9 kernel components.  Since Lua and LuaJIT run
-much faster when they are calling C code rather than the other way around (and
-because of JIT stability) it was decided to create a hybrid scheduler where Lua
-tasks are scheduled using a Lua scheduler and true kernel threads are handled
-by libuv and the host's native thread scheduler.
+The primary kernel change was to remove Limbo and the Dis virtual machine
+structure and replace it with the LuaJIT virtual machine.  This required a
+complete refactor of the VM process architecture in order to interface with the
+original Plan9 kernel components.  To maintain performance and JIT stability
+scheduler duties were segregated between the Lua coroutine system and the 
+hosted kernel C threads.
 
 This refactor also required a redesign of how systems calls were issued from 
 Lua tasks into the C kernel -- adopting a "shadow" process concept.
 
-In order to create a true 64-bit OS it was necessary to fix various limitations
-within the Inferno/Plan9 memory manager.  Currently the legacy Plan9/Inferno C
-kernel  manages memory and resources for kernel objects and LuaJIT manages
-memory for Lua apps.
+Currently the legacy Inferno kernel manages memory and resources for kernel
+objects and LuaJIT manages memory for Lua apps.  The legacy memory manager was
+patched to allow 64-bit operation.
 
 Since Node9 is a portable, hosted OS it requires multi-platform support for its
 underlying kernel I/O and eventing functions.  Because of this and our desire
@@ -144,41 +141,131 @@ multi-platform support.
 
 SUBSYSTEMS and STRUCTURES
 
-Plan9 Kernel Components 
-Inferno Kernel Components
+Legacy Kernel Design and Components 
+
+The Inferno OS consists of the Dis virtual machine which runs compiled Limbo
+code and makes system calls into a slightly modified Plan9 kernel.  The full
+Dis threading and syscall structure is somewhat unconventional and outside the
+scope of this document.
+
+The legacy kernel is small with a round-robin scheduler and includes numerous
+"servers" which are kernel devices that expose their services via mountable
+"namespaces".  Once mounted, you can interact with a device simply by
+opening its control and I/O channels as if you are opening files. Once opened
+you can issue commands to the device through it's control file and read and
+write its I/O channels.  This is a design feature common to Plan9, Inferno
+and Node9.
+
+For further details please refer to the following design, operation and
+programming guides:
+
+Inferno Man Pages:
+    http://www.vitanuova.com/inferno/man/
+
+The Inferno Styx Resource Sharing Protocol:
+    http://www.vitanuova.com/inferno/man/5/0intro.html
+
+Plan9 Kernel Theory of Operations:
+    Plan9 Kernel Notes, 3rd Edition, Francisco Ballosteros
+
+Inferno Installation, Operation and Development:
+    Inferno Distribution Install Notes: ./inferno-os/doc/install.pdf
+    Inferno Programming with Limbo, Phillip Stanley-Marbell
+
 Kernel Servers
+
+Though Plan9 and Inferno are very similar at the kernel level and share a good deal
+of code, Inferno's device names vary slightly.  Node9 uses Inferno's device names
+and default namespace stucture.  Inferno's name services are used where applicable.
+
+This is a short summary of each of the servers, their names and driver details.
+
+server/device name  short name   description               namespace location
+------------------  ----------   -----------               ------------------
+cons                #c           system console            /dev
+env                 #e           environment variables     /e
+dup                 #d           tracks file handles       /fd
+ip                  #I           TCP/IP stack              /net
+prog                #p           process interface         /prog
+root                #/           root file system          /
+fs-posix            #U           host file system          (usually /)
+ssl                 #D           SSL stream filter         (can't be mounted)
+mem                 #%           memory/heap management    /dev/mem
+pipe                #|           interprocess pipes        /dev/pipe
+srv                 #s           lua namespace services    /srv
+cmd                 #C           host OS command execution /dev/cmd
+cap                 #¤           process privileges        /cap
+dynld(x)            #L           shared library loader     /dev/dyn
+indir               #*           device name aliasing      #!<long name>
+ 
 LuaJIT Virtual Machine
+
+... stuff about LuaJIT and how it works ...
+
 LuaJIT FFI Interface
+
+... stuff about the FFI interface and utility calls ...
+
 System Request Queue
+
+... process sys request records and request queue ...
+
 Backend Request Dispatcher
+
+... dispatch priority ...
+
 Request Handlers
+
+.. and how they execute in kernel proces context (shadow) ...
+
 System Response Queue
-Libuv Event Loop
+
+... asynchronous queueing ...
 
 THEORY OF OPERATION
 
 Configuration
+
 Bootstrap
+
 Lua Startup
+
 Threads, Kernel Procs, Hosting Procs, Virtual Procs and Tasks
+
+Libuv Event Loop
+
 Lua Scheduler Sweep
+
 Libuv Event Sweep
+
 Wait Mode
+
 Support Threads
+
 Anatomy of A System Call
+
 Spawning A New Task
+
 Spawning A New Thread
+
 Starting A New Application
+
 Application Environments and Task Segregation
+
 Waiting For Process PIDs and Process Completion
+
 Exception Handling
 
 TARGET APPLICATIONS
 
 Scientific and Grid Computing
+
 Simulation, AI and Gaming
+
 Network and Application Monitoring
+
 Cloud Computing and Control
+
 Big Data
 
 DIRECTORY STRUCTURE
