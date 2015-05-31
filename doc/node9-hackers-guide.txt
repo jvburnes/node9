@@ -190,12 +190,11 @@ prog                #p           process interface         /prog
 root                #/           root file system          /
 fs-posix            #U           host file system          (usually /)
 ssl                 #D           SSL stream filter         (can't be mounted)
-mem                 #%           memory/heap management    /dev/mem
-pipe                #|           interprocess pipes        /dev/pipe
-srv                 #s           lua namespace services    /srv
-cmd                 #C           host OS command execution /dev/cmd
-cap                 #¤           process privileges        /cap
-dynld(x)            #L           shared library loader     /dev/dyn
+pipe                #|           interprocess pipes        arbitrary
+srv                 #s           lua namespace services    doesn't apply
+cmd                 #C           host OS command execution /cmd
+cap                 #¤           process privileges        <dir>/caphash
+dynld(x)            #L           shared library loader     /dev/dynldc
 indir               #*           device name aliasing      #!<long name>
  
 LuaJIT Virtual Machine
@@ -364,7 +363,7 @@ call.  The C kernel call simply places the requeset into the system request
 queue along with a pointer to the C handler "n9.Sys_seek".
 
 Now that the request is queue the current tasks can yield the CPU.  When the
-task is rescheduled by the Lua scheduler (because it received a respone), it
+task is rescheduled by the Lua scheduler (because it received a responce), it
 simply returns the value returned in the "seek" request.
 
 Spawning A New Task
@@ -403,13 +402,13 @@ into the application's private global variable space.
 
 Waiting For Process PIDs and Process Completion
 
-The task which created the new application can wait for it to complete
-either using a custom sync channel or by reading the synchronization channel
-from the "/proc" filesystem.  Initially the shell used a custom sync
-channel to wait for the application's init task to complete, however the
-proper wait to do this is to read the completion message from the /prog/<pid>
-namespace.  (Normally the shared sync channel is used to pass the pid of the
-new application task to the parent task).
+When any process completes the scheduler returns it's PID, name and error 
+status to any process waiting to read a line from /prog/<pid>/wait.  In the
+case of applications, the return value will be the application's root 'pid'.
+
+(Early in Node9's development the shell bypassed this technique and read the
+same values from a sync channel shared between the parent and child
+processes.)
 
 Exception Handling
 
