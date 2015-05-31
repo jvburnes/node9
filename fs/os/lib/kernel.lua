@@ -424,7 +424,7 @@ function sys.new()
         local args = {...} -- optional number of bytes to write
         c_proc.s_write.fd = fd
         c_proc.s_write.buf = writebuf.buf
-        c_proc.s_write.nbytes = args[1] or buf.len
+        c_proc.s_write.nbytes = args[1] or writebuf.len
         n9.sysreq(c_proc.vproc, n9.Sys_write)
         coroutine.yield()
         return c_proc.s_write.ret
@@ -435,7 +435,7 @@ function sys.new()
         c_proc.s_pwrite.fd = fd
         c_proc.s_pwrite.buf = writebuf.buf
         if nbytes == 0 then
-            c_proc.s_pwrite.n = buf.len
+            c_proc.s_pwrite.n = writebuf.len
         else
             c_proc.s_pwrite.n = nbytes
         end

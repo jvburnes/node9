@@ -1,7 +1,7 @@
                                  NODE9 HACKERS GUIDE
 
 (NOTE: This is early documentation release.  All features may not yet be
-implemented.)
+implemented. Features under development are enclosed in parens.)
 
 CONTENTS
 
@@ -58,10 +58,10 @@ well as "application directories" containing all application code, support
 libraries, resources and configuration settings.  This allows applications to
 be easily installed and removed.
 
-While the primary user console of Node9 is a powerful scripting shell, it also
+(While the primary user console of Node9 is a powerful scripting shell, it also
 comes with a small web-based management GUI for cloud environments.  Node9 also
 has extensive graphics capabilities when installed on a host supporting the
-OpenGL/Vulcan shader interface. 
+OpenGL/Vulcan shader interface.)
 
 Node9 distributed networks communiate via 9p resource sharing, optionally using
 SSL/TLS connections.
@@ -176,7 +176,7 @@ Kernel Servers
 
 Though Plan9 and Inferno are very similar at the kernel level and share a good deal
 of code, Inferno's device names vary slightly.  Node9 uses Inferno's device names
-and default namespace stucture.  Inferno's name services are used where applicable.
+and default namespace structure.  Inferno's name services are used where applicable.
 
 This is a short summary of each of the servers, their names and driver details.
 
@@ -224,45 +224,232 @@ System Response Queue
 
 THEORY OF OPERATION
 
-Configuration
-
 Bootstrap
+
+Although the kernel bootstrap code has been restructured somewhat, the
+sequence is very similar to Plan9 and Inferno.  High level initialization
+looks something like this:
+
+   o Initialize the kernel heap
+   o Initialize IO formatting
+   o Save startup args and process options
+   o Initialize host settings and signals
+   o Create kernel base process from start function
+   o Initialize the kernel devices / servers
+   o Initialize the kernel namespace
+   o Initialize host environment variables
+   o Transition the current thread into base process
 
 Lua Startup
 
+As soon as the base process starts it creates a Lua virtual machine state which
+it initializes with the Lua bootstrap module.  It then starts the Lua bootstrap
+module (os/init/nodeinit.lua).  The bootstrap module sythesizes the first Lua
+task (cmd/sh), schedules it and starts the Lua kernel.
+
 Threads, Kernel Procs, Hosting Procs, Virtual Procs and Tasks
 
+Before moving on we need to carefully define some terms which have a very specific
+meaning in Node9.
+
+Thread: In Node9 a thread is a host OS thread.  OS threads are scheduled by the
+host operating system.   Node9 uses libuv to portably support both POSIX threads
+and Windows threads.
+
+Kernel Proc: A kernel proc in Node9 is a C kernel process which lives inside a
+host thread.  Like all processes it has it's own namespace, file handles etc.
+
+Hosting Procs: A hosting proc is a kernel proc that hosts a Lua virtual machine. 
+It starts, manages and services the VM's system calls.  The VM runs inside the
+hosting proc's thread until a system call needs to be executed.
+
+Virtual Procs: A virtual proc is the kernel's shadow image of the Lua task.  It
+contains the process ID, process structures and system request buffers for the
+task.  When VM system calls actually execute, the kernel dispatches the request  
+into an async thread pool.  The "worker" thread allocated to the system 
+request temporarily becomes an actual kernel process and subsumes the thread
+local state of the process for the duration of the request.
+
+Tasks: Tasks are Lua coroutines that perform work and communicate with each
+other via event channels (more on that later).  Multiple tasks make up an
+application.
+ 
 Libuv Event Loop
+
+The libuv eventing system controls the synchronization of incoming events and
+I/O and the dispatching of their respective handlers.  Each kernel proc has
+it's own event loop.
+
+Each iteration of the libuv event loop looks basically like this:
+
+   - gather all completed I/O, timer and other events
+   - execute the callbacks for all current events
+
+In a normal libuv application the event loop runs continously until the
+application finishes.  Node9 is slightly different in that the Lua kernel runs
+each iteration of the libuv event loop. In between event loop  iterations it
+runs all ready Lua tasks.
 
 Lua Scheduler Sweep
 
+After the Lua bootstrap function constructs the first Lua task it starts the
+Lua kernel which calls the Lua task scheduler.  The scheduler examines the
+system call response queue and transfers control to each Lua task that is 
+now ready to run.  After this it runs any other Lua tasks that are ready 
+(possibly because they voluntarily released the CPU).
+
+When all of the ready Lua tasks have run the Lua scheduler calls a single
+iteration of the libuv event loop.  When the libuv event loop is complete
+the process starts again.
+
 Libuv Event Sweep
+
+The libuv event sweep examines all queued system requests and dispatches
+handlers for them.  All completed I/O and events are processed and any
+system request responses constructed. 
 
 Wait Mode
 
+If there are no ready events and no system responses the event loop waits for
+I/O, otherwise it returns to the Lua scheduler.  This is handled by enabling
+a background monitor in the event loop.  This is a somewhat arcane 
+subject area not covered very well even in the libuv documentation. More 
+information is available in the documentatio for 'libev' the predecessor
+to libuv.
+
 Support Threads
+
+Cross-platform event synchronization and maintenance requires the occasional
+background kernel process to run.  The most notable of these in Node9 is the
+background keyboard process. The keyboard process simply monitors the console
+keyboard for new characters and special sequences.  When it detects these it
+generates a keyboard event and sends it to the main console driver as an
+asynchronous interprocess message.
 
 Anatomy of A System Call
 
+Each Lua task can issue any system call specified in the Inferno sys library.
+Each time a task issues a system call it implicitly releases the CPU.  The
+easiest way to illustrate this process is to show the Lua kernel code for a
+simple call.
+
+    function self.seek(fd, offset, start)
+        local c_proc = sched.curproc
+        c_proc.s_seek.fd = fd
+        c_proc.s_seek.off = offset
+        c_proc.s_seek.start = start
+        n9.sysreq(c_proc.vproc, n9.Sys_seek)
+        coroutine.yield()
+        return c_proc.s_seek.ret
+    end
+
+This is the seek call to set the current position within an open file.
+(Here "self" is just the handle to the current module "sys")
+
+The call accepts a file descriptor, the offset and the relative start
+setting.  The first thing the call does is to retrieve the context
+of the callling task.  Each task (here called c_proc), has a sysrequest
+buffer which conforms to the selected call.
+
+The interface between the Lua system call and the C kernel call is handled by a
+feature unique to the LuaJIT VM called the Foreign Function Interface (FFI).
+All kernel calls are described as a set of C structures and handlers passed to
+a common C kernel call interface.  The FFI dynamically constructs an interface
+at kernel startup to marshall and demarshall the arguments from Lua to C and
+back again.
+
+In the case of our 'seek' call, we place the file descriptor, offset and 
+start location into the sys request buffer and issue the 'sysreq' C kernel
+call.  The C kernel call simply places the requeset into the system request
+queue along with a pointer to the C handler "n9.Sys_seek".
+
+Now that the request is queue the current tasks can yield the CPU.  When the
+task is rescheduled by the Lua scheduler (because it received a respone), it
+simply returns the value returned in the "seek" request.
+
 Spawning A New Task
+
+Spawning a new task in Node9 is relatively straightforward.  You call
+sys.spawn with the start function and the arguments you want to pass it and 
+the Lua kernel creates a coroutine and Lua process structure to support it.
+The kernel then sets the start function and schedules the task.
 
 Spawning A New Thread
 
+.. describe initializing a new kernel process, proc caps and libuv support ..
+
 Starting A New Application
+
+Applications are contained in a module similar to library modules.  They 
+start execution in their "init" function.
+
+New applications are normally started by /appl/sh.lua, but here are a few
+details of how this works.  The new application is forked from the current
+process using the sys.spawn function and specifying command line arguments,
+start function and other misc arguments.  
+
+The app start function creates a new stdio environment and imports the 
+application module into the current task environment.  If the application
+module loads successfully, it's "init" method is called along with an 
+argv table.
 
 Application Environments and Task Segregation
 
+Just as each Lua task has it's own local variable space, each Node9 application
+is granted it's own execution environment which contains various runtime
+support values as well as the global application variable name space.  All
+global variable references made by application tasks are dynamically remapped
+into the application's private global variable space.
+
 Waiting For Process PIDs and Process Completion
+
+The task which created the new application can wait for it to complete
+either using a custom sync channel or by reading the synchronization channel
+from the "/proc" filesystem.  Initially the shell used a custom sync
+channel to wait for the application's init task to complete, however the
+proper wait to do this is to read the completion message from the /prog/<pid>
+namespace.  (Normally the shared sync channel is used to pass the pid of the
+new application task to the parent task).
 
 Exception Handling
 
+The way that Lua handles exceptions as well as the fact that Plan9 and Inferno
+return error strings instead of error "codes" creates a rather unique 
+exception handling environment.
+
+Normally lua runtime errors are caught via the pcall mechanism.  This is still
+the case within Node9, although this can get a little bit tricky since the 
+coroutine.resume function that resumes execution of task also acts as a 
+pcall.  If a task performs a pcall and a Lua exception occurs before the task
+yields the the task's pcall recovery takes place.   If an intervening system
+call occurs then the coroutine.resume's pcall handling is initiated.
+
+If there is no pending pcall, then the coroutine.resumes implicit pcall 
+mechanism runs.
+
+This is just how task exceptions are caught, not necessarily reported.
+
+The canonical way to return error status to the shell in Node9 is the following:
+
+(1) If no error has occurred then don't do anything.  An empty error string
+will be returned to the shell on exit.
+
+(2) If an application error has occurred, but it's not a fatal execution error
+then execute error("fail:<messsage>").  This will stop the application and 
+return <message> in the shell's "lasterr" variable.
+
+(3) If the application experiences an unexpected abort, the shell and 
+scheduler will report the cause and "lasterr" will contain "module abort".
+
 TARGET APPLICATIONS
+
+.. discuss various application areas ..
 
 Scientific and Grid Computing
 
 Simulation, AI and Gaming
 
-Network and Application Monitoring
+Network Command and Control
 
 Cloud Computing and Control
 
@@ -350,11 +537,13 @@ but shares the common application global variable space.
 
  - return codes
 
-(describe the "fail" return codes vs abort codes)
+(see the exception handling discussion)
 
 - network configuration
 
 (explain 'exportfs', 'mount', 'unmount' and SSL operation)
+(see the inferno distribution's doc/install.pdf file for 
+more detailed information on this until we update the docs)
 
 - shutdown
 
@@ -434,7 +623,7 @@ Of these devprog (/proc), devsrv and devpipe are the highest priority.
 A number of system and kernel calls still use the old Inferno portability 
 layer for host system read, write etc.  A major focus of near-term development 
 is the full conversion of I/O to libuv which should increase portability and
-performance significantly.  This allow enables the full development of the 
+performance significantly.  This also enables the full development of the
 cloud-oriented aspects of the kernel.
 
 - Cloud Management, Interaction and Apps
@@ -444,8 +633,8 @@ and monitoring apps will be included.
 
 - Demo Apps
 
-Demos are currently being developed in a number of areas.  Please feel free to
-suggest any ideas that sound useful.
+Demos are currently being considered in a number of areas.  Please feel free to
+suggest any ideas that seem useful.
 
 - Contributing To Project
 
@@ -453,5 +642,91 @@ Contributing developers are more than welcome.   Read/write access to the
 repository is simply based on a willingness to help out, document the 
 project and have fun.
 
+- Example Session 
+
+node9 First Edition (20150523), build: 1432340974  main (pid=71743)
+Sun May 31 21:06:28 2015  node9/kernel: initializing terminal
+Sun May 31 21:06:28 2015  node9/kernel: loading
+Sun May 31 21:06:28 2015  node9/kernel: initializing namespace
+Sun May 31 21:06:28 2015  node9/kernel: binding standard streams
+Sun May 31 21:06:28 2015  node9/kernel: initializing host environment
+Sun May 31 21:06:28 2015  node9/kernel: accepting requests
+Sun May 31 21:06:28 2015  node9/kernel: starting luaspace ...
+Sun May 31 21:06:28 2015  signals set
+(/appl/sh): started
+[the time on the console is Sun May 31 15:06:28 2015]
+; ls
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 dev
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 fd
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 prog
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 prof
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 net
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 net.alt
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 chan
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 nvfs
+d-r-xr-xr-x      jburnes      jburnes            0   Sun May 31 15:06:32 2015 env
+--rw-r--r--      jburnes        staff         6148   Thu May 21 15:45:05 2015 .DS_Store
+d-rwxr-xr-x      jburnes        staff            0   Fri May 29 13:26:59 2015 appl
+d-rwxr-xr-x      jburnes        staff            0   Fri May 29 13:25:28 2015 lib
+d-rwxr-xr-x      jburnes        staff            0   Fri May 29 13:25:28 2015 man
+d-rwxr-xr-x      jburnes        staff            0   Fri May 29 13:26:59 2015 module
+d-rwxr-xr-x      jburnes        staff            0   Fri May 29 13:26:59 2015 os
+; ls dev
+--rw-rw-rw-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 cons
+---w--w--w-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 consctl
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 drivers
+--rw-r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 hostowner
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 hoststdin
+---w--w--w-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 hoststdout
+---w--w--w-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 hoststderr
+--rw-rw-rw-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 jit
+--rw-rw-rw-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 keyboard
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 kprint
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 memory
+--r--r--r--      jburnes      jburnes           11   Sun May 31 15:06:37 2015 msec
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 notquiterandom
+--rw-rw-rw-      jburnes      jburnes            0   Sun May 31 15:06:37 2015 null
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 random
+--r--r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 scancode
+--rw-r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 sysctl
+--rw-r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 sysname
+--rw-r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 time
+--rw-r--r--      jburnes      jburnes            0   Sun May 31 15:06:37 2015 user
+; cat /dev/drivers
+#/ root
+#e env
+#c cons
+#M mnt
+#| pipe
+#d dup
+#D ssl
+#U fs
+#I ip
+; cat /dev/sysctl
+First Edition (20150523); 
+; 
+; cat /dev/time
+1433106436972008; 
+; cat /dev/user
+jburnes; 
+; ls env
+--rw-rw-rw-      jburnes      jburnes            3   Sun May 31 15:07:39 2015 cputype
+--rw-rw-rw-      jburnes      jburnes            7   Sun May 31 15:07:39 2015 emuargs
+--rw-rw-rw-      jburnes      jburnes           27   Sun May 31 15:07:39 2015 emuroot
+--rw-rw-rw-      jburnes      jburnes            6   Sun May 31 15:07:39 2015 emuhost
+--rw-rw-rw-      jburnes      jburnes           24   Sun May 31 15:07:39 2015 emuwdir
+; cat env/cputype
+386; 
+; cat env/emuargs
+./node9; 
+; cat env/emuroot
+/Users/jburnes/dev/node9/fs; 
+; cat env/emuhost
+MacOSX; 
+; cat env/emuwdir
+/Users/jburnes/dev/node9; 
+; ^D
+Sun May 31 21:08:15 2015  node9/kernel: restoring terminal
+Sun May 31 21:08:15 2015  node9/kernel: halted
 
 
