@@ -53,10 +53,10 @@ pipes.
 
 Node9 boots into a shell which supports both immediate mode Lua expression
 evaluation as welll as Lua applications and library modules.  Node9
-applications are Lua scripts which can be simple standalone command files as
+applications are Lua scripts which can be simple standalone command files (as
 well as "application directories" containing all application code, support
 libraries, resources and configuration settings.  This allows applications to
-be easily installed and removed.
+be easily installed and removed.)
 
 (While the primary user console of Node9 is a powerful scripting shell, it also
 comes with a small web-based management GUI for cloud environments.  Node9 also
@@ -134,14 +134,14 @@ objects and LuaJIT manages memory for Lua apps.  The legacy memory manager was
 patched to allow 64-bit operation.
 
 Since Node9 is a portable, hosted OS it requires multi-platform support for its
-underlying kernel I/O and eventing functions.  Because of this and our desire
+underlying kernel I/O and eventing functions.  Because of this and the desire
 to create a portable, cloud-optimized kernel we used the hardware abstraction
 layer provided by 'libuv' to obviate the need for Inferno's legacy
 multi-platform support.
 
 SUBSYSTEMS and STRUCTURES
 
-Legacy Kernel Design and Components 
+- Legacy Kernel Design and Components -
 
 The Inferno OS consists of the Dis virtual machine which runs compiled Limbo
 code and makes system calls into a slightly modified Plan9 kernel.  The full
@@ -195,35 +195,43 @@ srv                 #s           lua namespace services    doesn't apply
 cmd                 #C           host OS command execution /cmd
 cap                 #¤           process privileges        <dir>/caphash
 dynld(x)            #L           shared library loader     /dev/dynldc
-indir               #*           device name aliasing      #!<long name>
- 
-LuaJIT Virtual Machine
+indir               #*           device name aliasing      #*<long name>
 
-... stuff about LuaJIT and how it works ...
+- Lua -
 
-LuaJIT FFI Interface
+Lua is a powerful, dynamic and light-weight programming language. It excels 
+at functional and OO tasks without forcing the developer into a paradigm
+straight jacket.  It's syntax is non-whitespace sensitive and similar
+to Python or Pascal.
 
-... stuff about the FFI interface and utility calls ...
+It may be embedded or used as a standalone language.
 
-System Request Queue
+- LuaJIT Virtual Machine and the FFI -
+
+LuaJIT is a Just-In-Time Compiler (JIT) for the Lua programming language.
+
+LuaJIT has a powerful Foreign Funtion Interface which allows developers to 
+dynamically bind into C structures and function calls.
+
+- System Request Queue -
 
 ... process sys request records and request queue ...
 
-Backend Request Dispatcher
+- Backend Request Dispatcher -
 
 ... dispatch priority ...
 
-Request Handlers
+- Request Handlers -
 
 .. and how they execute in kernel proces context (shadow) ...
 
-System Response Queue
+- System Response Queue -
 
 ... asynchronous queueing ...
 
 THEORY OF OPERATION
 
-Bootstrap
+- Bootstrap -
 
 Although the kernel bootstrap code has been restructured somewhat, the
 sequence is very similar to Plan9 and Inferno.  High level initialization
@@ -239,14 +247,14 @@ looks something like this:
    o Initialize host environment variables
    o Transition the current thread into base process
 
-Lua Startup
+- Lua Startup -
 
 As soon as the base process starts it creates a Lua virtual machine state which
 it initializes with the Lua bootstrap module.  It then starts the Lua bootstrap
 module (os/init/nodeinit.lua).  The bootstrap module sythesizes the first Lua
 task (cmd/sh), schedules it and starts the Lua kernel.
 
-Threads, Kernel Procs, Hosting Procs, Virtual Procs and Tasks
+- Threads, Kernel Procs, Hosting Procs, Tasks and Virtual Procs -
 
 Before moving on we need to carefully define some terms which have a very specific
 meaning in Node9.
@@ -262,31 +270,31 @@ Hosting Procs: A hosting proc is a kernel proc that hosts a Lua virtual machine.
 It starts, manages and services the VM's system calls.  The VM runs inside the
 hosting proc's thread until a system call needs to be executed.
 
+Tasks: Tasks are Lua "userspace" coroutines that perform work and communicate
+with each other via event channels (more on that later).  Multiple tasks make
+up an application.
+
 Virtual Procs: A virtual proc is the kernel's shadow image of the Lua task.  It
 contains the process ID, process structures and system request buffers for the
 task.  When VM system calls actually execute, the kernel dispatches the request  
 into an async thread pool.  The "worker" thread allocated to the system 
 request temporarily becomes an actual kernel process and subsumes the thread
 local state of the process for the duration of the request.
-
-Tasks: Tasks are Lua coroutines that perform work and communicate with each
-other via event channels (more on that later).  Multiple tasks make up an
-application.
  
 Libuv Event Loop
 
-The libuv eventing system controls the synchronization of incoming events and
-I/O and the dispatching of their respective handlers.  Each kernel proc has
-it's own event loop.
+The libuv eventing system controls the synchronization of incoming events, I/O
+and the dispatching of their respective handlers.  Each kernel proc has it's
+own event loop.
 
 Each iteration of the libuv event loop looks basically like this:
 
-   - gather all completed I/O, timer and other events
-   - execute the callbacks for all current events
+   - gather all ready I/O, timer and other events
+   - execute the callbacks for all ready events
 
 In a normal libuv application the event loop runs continously until the
 application finishes.  Node9 is slightly different in that the Lua kernel runs
-each iteration of the libuv event loop. In between event loop  iterations it
+each iteration of the libuv event loop. In between event loop iterations it
 runs all ready Lua tasks.
 
 Lua Scheduler Sweep
@@ -313,7 +321,7 @@ If there are no ready events and no system responses the event loop waits for
 I/O, otherwise it returns to the Lua scheduler.  This is handled by enabling
 a background monitor in the event loop.  This is a somewhat arcane 
 subject area not covered very well even in the libuv documentation. More 
-information is available in the documentatio for 'libev' the predecessor
+information is available in the documentation for 'libev', the predecessor
 to libuv.
 
 Support Threads
@@ -362,8 +370,8 @@ start location into the sys request buffer and issue the 'sysreq' C kernel
 call.  The C kernel call simply places the requeset into the system request
 queue along with a pointer to the C handler "n9.Sys_seek".
 
-Now that the request is queue the current tasks can yield the CPU.  When the
-task is rescheduled by the Lua scheduler (because it received a responce), it
+Now that the request is queued the current task yields the CPU.  When the
+task is rescheduled by the Lua scheduler (because it received a response), it
 simply returns the value returned in the "seek" request.
 
 Spawning A New Task
@@ -398,11 +406,12 @@ Just as each Lua task has it's own local variable space, each Node9 application
 is granted it's own execution environment which contains various runtime
 support values as well as the global application variable name space.  All
 global variable references made by application tasks are dynamically remapped
-into the application's private global variable space.
+into the application's private global space.  All tasks within the same
+application share this space.
 
 Waiting For Process PIDs and Process Completion
 
-When any process completes the scheduler returns it's PID, name and error 
+When any process completes, the scheduler returns it's PID, name and error 
 status to any process waiting to read a line from /prog/<pid>/wait.  In the
 case of applications, the return value will be the application's root 'pid'.
 
@@ -495,8 +504,8 @@ directory.
 premake gmake
 make
 
-After the build is finished The executable 'node9' will be generated in the
-'bin' subdirectory of the Node9 distribution.  The runtime shared library
+After the build is finished the 'node9' executable will be in the 'bin'
+subdirectory of the Node9 distribution.  The runtime shared library
 'libnode9.dylib' will be generated in the "lib" subdirectory.
 
 Installation scripts will eventually be included in the distribution to 
@@ -532,7 +541,7 @@ but shares the common application global variable space.
 
  - job control
 
-(not implemented) 
+(not yet implemented) 
 
  - return codes
 
@@ -585,12 +594,13 @@ sleep, millisec, pctl, spawn
 
  - call notes -
 
-The primary I/O calls (read, wrte etc) interact directly with low-level C-based
+The primary I/O calls (read, write etc) interact directly with low-level C-based
 read and write calls.  Because of this they require efficient, high performance
 byte buffers.  Whle Lua provides a very useful string buffer, appending to
 these buffers requires a great deal of memory management overhead.  Node9
 provides a very powerful byte buffer mechanism to provide an interface between
-OS buffers and Lua character strings.
+OS buffers and Lua character strings.  Copying strings in and out of the 
+byte buffers can be done very easily using the LuaJIT FFI utility functions.
 
 Stat calls generally accept a Lua structure to pass stat values to and from the
 kernel.
@@ -599,8 +609,8 @@ To see how these functions are used, please read the 'sh' source code as well
 as reading the built-in 'cat' command and mount/unmount applications.
 
 Basic 'pctl' support is implemented to create new namespaces and duplicate
-file streams.  Full implementation will be concurrent with completing multiuser 
-support.
+file streams.  Full implementation will be concurrent with the release of
+multiuser capabilities.
 
 - Remaining Kernel Servers / Drivers
 
@@ -610,7 +620,6 @@ scheduler.   These are:
 
   - devprog: allows fine-grain interaction with processs
   - devprof: allows profiling of programs
-  - devmem: allows examination of memory and heap structures
   - devdynld: allows dynamic loading of libraries
   - devsrv: allows lua-based services
   - devpipe: inter-process, inter-application pipes
@@ -630,7 +639,13 @@ cloud-oriented aspects of the kernel.
 When the libuv conversion is complete, a number of ajax-based administration
 and monitoring apps will be included.
 
-- Demo Apps
+- Test Subsystem -
+
+Functional and unit tests of Node9 are scattered throughout the author's 
+laptop.  Formal inclusion of these tests will make maintenance and scaling
+much more reliable.
+
+ - Demo Apps
 
 Demos are currently being considered in a number of areas.  Please feel free to
 suggest any ideas that seem useful.
