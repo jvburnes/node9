@@ -13,7 +13,8 @@ solution "node9-hosted"
     
     
     -- GLOBAL BUILD DEFINES
-    defines { "ROOT='\"/Users/jburnes/dev/node9/fs\"'", "SYSHOST=MacOSX", "SYSTARG=MacOSX", "OBJTYPE='\"386\"'" }
+    -- (in the actual install WORKING_DIR will need to become a runtime eval env var)
+    defines { "ROOT='\"" .. _WORKING_DIR .. "/fs\"'", "SYSHOST=MacOSX", "SYSTARG=MacOSX", "OBJTYPE='\"386\"'" }
     
     -- PRODUCTION / TEST BUILD OPTIONS
     configurations { "Debug", "Release" }

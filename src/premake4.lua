@@ -7,7 +7,8 @@ project "node9"
     -- INITIAL BUILD ENVIRONMENT
     -- snapshot the kernel build / time
     -- Build Dependencies First
-    prebuildcommands {"cd ../libuv; make; cd ../luajit; make; cd ../src" }
+    prebuildcommands {"cd ../libuv; sh autogen.sh; ./configure; make"}
+    prebuildcommands {"cd ../luajit; make" }
     
     -- this is a hack because clang build chain doesn't know how to prioritize static libraries in front of dynamics
     prebuildcommands {"cp ../luajit/src/libluajit.a ../luajit/src/libluajit_s.a"}

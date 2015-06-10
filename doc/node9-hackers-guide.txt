@@ -245,7 +245,7 @@ looks something like this:
    o Initialize the kernel devices / servers
    o Initialize the kernel namespace
    o Initialize host environment variables
-   o Transition the current thread into base process
+   o Become the base process
 
 - Lua Startup -
 
@@ -367,10 +367,10 @@ back again.
 
 In the case of our 'seek' call, we place the file descriptor, offset and 
 start location into the sys request buffer and issue the 'sysreq' C kernel
-call.  The C kernel call simply places the requeset into the system request
+call.  The C kernel call simply places the request into the system request
 queue along with a pointer to the C handler "n9.Sys_seek".
 
-Now that the request is queued the current task yields the CPU.  When the
+Now that the request is queued, the current task yields the CPU.  When the
 task is rescheduled by the Lua scheduler (because it received a response), it
 simply returns the value returned in the "seek" request.
 
@@ -429,25 +429,26 @@ Normally lua runtime errors are caught via the pcall mechanism.  This is still
 the case within Node9, although this can get a little bit tricky since the 
 coroutine.resume function that resumes execution of task also acts as a 
 pcall.  If a task performs a pcall and a Lua exception occurs before the task
-yields the the task's pcall recovery takes place.   If an intervening system
+yields, the task's own recovery takes place.   If an intervening system
 call occurs then the coroutine.resume's pcall handling is initiated.
 
 If there is no pending pcall, then the coroutine.resumes implicit pcall 
-mechanism runs.
+mechanism acts as the default exception handler.
 
 This is just how task exceptions are caught, not necessarily reported.
 
 The canonical way to return error status to the shell in Node9 is the following:
 
-(1) If no error has occurred then don't do anything.  An empty error string
-will be returned to the shell on exit.
+(1) If no error has occurred then don't do anything.  The scheduler will return 
+an empty error string to the waiting shell process.
 
 (2) If an application error has occurred, but it's not a fatal execution error
 then execute error("fail:<messsage>").  This will stop the application and 
 return <message> in the shell's "lasterr" variable.
 
-(3) If the application experiences an unexpected abort, the shell and 
-scheduler will report the cause and "lasterr" will contain "module abort".
+(3) If the application experiences an unexpected abort, the scheduler will catch
+it and report the cause to the shell.  The shell's 'lasterr' variable will 
+then contain "module abort".
 
 TARGET APPLICATIONS
 
@@ -487,8 +488,8 @@ BUILD, USER AND PORTABILITY NOTES
 
 - Building Node9 -
 
-Node9 uses the lua-based 'premake' tool to generate the makefiles.  It's open
-source and available for nearly all POSIX and Windows platforms.
+Node9 uses the lua-based 'premake' (version 4) tool to generate the makefiles.
+It's open source and available for nearly all POSIX and Windows platforms.
 
 Node9 was developed on MacOSX so the current version builds and runs there
 without any modification.  It is designed to be completely portable across
@@ -498,10 +499,20 @@ fully complete.
 It may take a few iterations on the source code with the help of other users to
 make it fully portable "out of the box".
 
-To create a copy of Node9 simply execute the following commands from Node9's main
-directory.
+Node9 contains relatively recent copies of it's dependent libraries "libuv" and
+"luajit".   Node9's build process tries to build them before it builds
+itself.  LuaJIT can easily build itself, but libuv requires 'autotools' on 
+POSIX platforms.  Autotools are usually available via various OS package
+managers.  For OSX and Macports the command is:
 
-premake gmake
+port install autoconf
+
+For other package managers on OSX, Linux and Windows "Your Mileage May Vary"
+
+Once 'autoconf' is installed you can build Node9 by executing the following 
+commands from Node9's main directory.
+
+premake4 gmake
 make
 
 After the build is finished the 'node9' executable will be in the 'bin'
@@ -511,10 +522,14 @@ subdirectory of the Node9 distribution.  The runtime shared library
 Installation scripts will eventually be included in the distribution to 
 place the runtime system in a convenient filesystem location.
 
-- Startup - 
+- Startup Notes - 
 
 On OSX you can simply execute the 'run.sh' script to set the shared library
-search path and run node9.
+search path and run node9.  
+
+*** Note: Currently the "root" file system location on the host is compiled
+into the kernel and Node9 requires a recompilation if you move it.  We know
+this is barbaric and it will be fixed early in the release cycle. ***
 
 - Shell Notes -
 
@@ -549,7 +564,8 @@ but shares the common application global variable space.
 
 - network configuration
 
-(explain 'exportfs', 'mount', 'unmount' and SSL operation)
+(explain the 'exportfs', 'mount', 'unmount' CLI apps and how to
+setup SSL operation)
 (see the inferno distribution's doc/install.pdf file for 
 more detailed information on this until we update the docs)
 
@@ -620,7 +636,7 @@ scheduler.   These are:
 
   - devprog: allows fine-grain interaction with processs
   - devprof: allows profiling of programs
-  - devdynld: allows dynamic loading of libraries
+  - devdynld: allows dynamic loading of libraries (external lang support)
   - devsrv: allows lua-based services
   - devpipe: inter-process, inter-application pipes
 
@@ -630,7 +646,7 @@ Of these devprog (/proc), devsrv and devpipe are the highest priority.
 
 A number of system and kernel calls still use the old Inferno portability 
 layer for host system read, write etc.  A major focus of near-term development 
-is the full conversion of I/O to libuv which should increase portability and
+is the conversion of I/O to libuv which should increase portability and
 performance significantly.  This also enables the full development of the
 cloud-oriented aspects of the kernel.
 
@@ -653,8 +669,8 @@ suggest any ideas that seem useful.
 - Contributing To Project
 
 Contributing developers are more than welcome.   Read/write access to the 
-repository is simply based on a willingness to help out, document the 
-project and have fun.
+repository is simply based on an understanding of the fundamentals, a willingness
+to help out, document the project and have fun.
 
 - Example Session 
 
