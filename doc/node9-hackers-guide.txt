@@ -29,7 +29,7 @@ needs of distributed computing based on the Plan9/Inferno 9p resource sharing
 protocol, per-process namespace security and application message channels.
 
 While Lua and the underlying Inferno system API enable the rapid development of
-scientific and research software, it's kernel is designed to also suport zero
+scientific and research software, its kernel is designed to also support zero
 copy, high-performance IO and event interfaces on the web. Notably the libuv
 eventing library that Node9 uses for portable I/O and event management is the
 same library used in the 'NodeJS' web application system.
@@ -37,22 +37,22 @@ same library used in the 'NodeJS' web application system.
 Asynchronous events are handled via concurrent Lua tasks (coroutines) that
 communicate via message channels. Combined with the cloud-oriented kernel, most
 tasks can be solved in a standard functional/OO style even when the problem
-domain would normallly require difficult callback style programming.
+domain would normally require difficult callback style programming.
 
 Node9 applications are mostly developed in Lua.  Node9 network services can be
-prgrammed in Lua or C, depending on needs.  Node9 is compatible at the network
+programmed in Lua or C, depending on needs.  Node9 is compatible at the network
 layer with both Plan9 and Inferno. Inferno's statically-typed application
 channels will need some filtering as Node9's message channels have no such
 limitations.
 
 Since Lua has no built-in threading limitations, Node9 also supports full
-multitheading.  Node9 Lua threads can communicate with Node9 tasks via message
-channels.  In fact, in Node9's each user session is allocated it's own 
+multithreading.  Node9 Lua threads can communicate with Node9 tasks via message
+channels.  In fact, in Node9's each user session is allocated its own 
 OS thread. Node9 threads can communicate via applicaton channels and OS
 pipes.
 
 Node9 boots into a shell which supports both immediate mode Lua expression
-evaluation as welll as Lua applications and library modules.  Node9
+evaluation as well as Lua applications and library modules.  Node9
 applications are Lua scripts which can be simple standalone command files (as
 well as "application directories" containing all application code, support
 libraries, resources and configuration settings.  This allows applications to
@@ -63,7 +63,7 @@ comes with a small web-based management GUI for cloud environments.  Node9 also
 has extensive graphics capabilities when installed on a host supporting the
 OpenGL/Vulcan shader interface.)
 
-Node9 distributed networks communiate via 9p resource sharing, optionally using
+Node9 distributed networks communicate via 9p resource sharing, optionally using
 SSL/TLS connections.
 
 A SIMPLE EXAMPLE
@@ -397,7 +397,7 @@ start function and other misc arguments.
 
 The app start function creates a new stdio environment and imports the 
 application module into the current task environment.  If the application
-module loads successfully, it's "init" method is called along with an 
+module loads successfully, its "init" method is called along with an 
 argv table.
 
 Application Environments and Task Segregation
