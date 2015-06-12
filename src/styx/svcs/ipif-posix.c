@@ -382,7 +382,7 @@ arpadd(char *ipaddr, char *eaddr, int n)
 	if(ioctl(s, SIOCSARP, &a) == -1) {
 		oserrstr(up->env->errstr, ERRMAX);
 		close(s);
-		error(->env->errstr);
+		error(up->env->errstr);
 	}
 	close(s);
 #else
