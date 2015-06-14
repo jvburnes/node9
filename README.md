@@ -4,7 +4,7 @@ performance virtual machine instead of the DIS virtual machine.  It also uses
 the libuv I/O library for maximum portability, efficient event processing and
 thread management.
 
-See the node9-hackers-guide.txt file in ./doc for more information.
+See the [node9-hackers-guide.txt][hackers] file in ./doc for more information.
 
 See Also:
 * [Inferno OS][inferno]
@@ -20,3 +20,4 @@ See Also:
 [lua]: http://www.lua.org/
 [luajit]: http://luajit.org/
 [libuv]: http://docs.libuv.org/en/v1.x/
+[hackers]: https://github.com/jvburnes/node9/blob/master/doc/node9-hackers-guide.txt
