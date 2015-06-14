@@ -4,5 +4,4 @@ peformance virtual machine instead of the DIS virtual machine.  It also uses
 the libuv I/O library for maximum portability, efficient event processing and
 thread management.
 
-See the node9-hackers-guide.txt fil in ./doc for more information
-
+See the node9-hackers-guide.txt file in ./doc for more information
