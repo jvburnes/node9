@@ -6,6 +6,8 @@ thread management.
 
 See the [node9-hackers-guide.txt][hackers] file in ./doc for more information.
 
+For current status and development information, check out the [Wiki][wiki9]
+
 See Also:
 * [Inferno OS][inferno]
 * [Limbo][limbo]
@@ -21,3 +23,4 @@ See Also:
 [luajit]: http://luajit.org/
 [libuv]: http://docs.libuv.org/en/v1.x/
 [hackers]: https://github.com/jvburnes/node9/blob/master/doc/node9-hackers-guide.txt
+[wiki9]: https://github.com/jvburnes/node9/wiki
