@@ -40,8 +40,8 @@ project "node9"
 
         files { "styx/platform/MacOSX/os.c",
                 "styx/platform/MacOSX/cmd.c",
-                "styx/platform/MacOSX/devfs.c"
-                "styx/libs/lib9/getcallerpc-MacOSX-X86_64.s",
+                "styx/platform/MacOSX/devfs.c",
+                "styx/libs/lib9/getcallerpc-MacOSX-X86_64.s"
               }
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework",
                 "luajit_s", "uv_s" }
@@ -51,8 +51,8 @@ project "node9"
     filter "system:linux"
         files { "styx/platform/Linux/os.c",
                 "styx/platform/Linux/cmd.c",
-                "styx/platform/Linux/devfs.c"
-                "styx/libs/lib9/getcallerpc-Linux-X86_64.s",
+                "styx/platform/Linux/devfs.c",
+                "styx/libs/lib9/getcallerpc-Linux-X86_64.s"
               }
 
     filter "system:not macosx"
