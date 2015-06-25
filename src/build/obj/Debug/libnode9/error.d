@@ -1,1 +1,1 @@
-build/obj/Debug/libnode9/error.o: styx/svcs/error.c
+src/build/obj/Debug/libnode9/error.o: src/styx/svcs/error.c

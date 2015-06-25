@@ -1,0 +1,103 @@
+[ANN] Node9: Distributed Lua OS Released (Inferno, LuaJIT, Libuv)
+
+Node9 is a hosted 64-bit operating system based on Bell Lab's Inferno OS that
+uses the Lua scripting language instead of Limbo and the LuaJIT high-peformance
+virtual machine instead of the Dis virtual machine.  It also uses the libuv
+eventing and I/O library to maintain maximum portability, efficient event
+processing and multicore thread management on POSIX and Windows platforms.
+
+It is intended for traditional distributed processing, command and control,
+simulation as well as well as cloud management (or anything else really).
+
+One of the key design concepts was to bring the ease of use of dynamic
+functional/OO programming to the event-based world.  Why program your 
+event loops using callbacks and baton passing when you can leverage 
+Lua tasks with their powerful and high-performance scripting capabilties?
+Why design your own security and event management framework when you can use
+Node9's Inferno-based per-process namespaces and application channels?
+
+Build your distributed applications by linking your compute nodes to 
+each other over the Inferno/Plan9 9p resource sharing system -- over
+SSL encryption if you like.  Connect to other applications that can 
+also use 9p like Go, Java and Chicken Scheme.
+
+Have fun.  Rule the world.  Build your own Skynet (tm).
+
+Currently Node9 is in the late-alpha, early-beta stages of development.
+A number of features need to be finished including the remaining 
+kernel services and completing the switch from the legacy Inferno 
+host abstraction layer to libuv (just to name a few).  
+  
+It boots into it's Lua shell and works though.  After a year of part-time
+development this is starting to get fun.  
+
+Though it was designed to be portable, currently it only builds on OSX.
+It should be simple to tweak for Linux and with a little bit of effort
+Windows.  In theory it should be portable to anything that LuaJIT and
+Libuv have been ported to (POSIX, Windows, x86, ARM, Android etc).
+
+Join in if you like.  There's plenty of room for developers, documenters
+and demo writers.  Read the README and download the code here:
+
+https://github.com/jvburnes/node9
+
+LICENSE
+
+Node9 uses the MIT/X11 license.  The licenses of it's dependent libraries
+appear to be compatible and are as follows:
+
+The Inferno kernel: Lucent Public License, a strange though permissive license.
+(Inferno Limbo apps are under the GPL and are not used)
+
+LuaJIT: Explicitly MIT/X11
+LibUV: Essentially MIT/X11
+
+
+THANKS 
+
+Thanks go out to all of the contributing projects, developers and 
+documenters. Without you this project wouldn't have been possible.
+
+To the original Plan9 and Inferno Developers: Please consider this effort
+as a feeble homage to your excellent design.
+
+Plan9:
+    Rob Pike, Ken Thompson, Dave Presotto and Phil Winterbottom
+
+Inferno:
+    Sean Dorward, Rob Pike, David Leo Presotto, Dennis M. Ritchie
+    Howard Trickey, Phil Winterbottom, Charles Forsyth
+
+Lua:
+    Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes
+
+LuaJIT:
+    Mike Pall
+
+LibUV:
+    See the AUTHORS file in the distribution
+
+LibEV: (libuv predecessor)
+    Marc Lehmann and Emanuele Giaquinta
+
+Plan9 Theory of Operation: 
+    "Plan9 Kernel Notes" by Francisco J Ballesteros
+
+Inferno Internals: 
+     Principles of Operating Systems, Design + Applications, Brian L Stuart
+
+Inferno Development:
+     Inferno Programming with Limbo: Phillip Stanley-Marbell 
+
+LibUV Introduction:
+     Nikhil Marathe
+
+Premake:
+     Jason Perkins
+
+ZeroBraneStudio: The coolest free IDE on planet Earth
+     Paul Kulchenko
+
+... and to my wife Maggi and son Alek who put up with my strange obsessions.
+
+Jim Burnes, June 11, 2015

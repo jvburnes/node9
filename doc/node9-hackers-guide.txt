@@ -472,7 +472,7 @@ DIRECTORY STRUCTURE
    o kernel code: styx/svcs
    o kernel support libraries: styx/libs
    o build utils: styx/utils
-   o premake and make files (premake.lua)
+   o premake and make files (premake5.lua)
    o legacy platform dependendies (remaining) styx/platform
 - build directories (src/build/*)
 - target directories (bin, lib)
@@ -488,7 +488,7 @@ BUILD, USER AND PORTABILITY NOTES
 
 - Building Node9 -
 
-Node9 uses the lua-based 'premake' (version 4) tool to generate the makefiles.
+Node9 uses the lua-based 'premake' (version 5) tool to generate the makefiles.
 It's open source and available for nearly all POSIX and Windows platforms.
 
 Node9 was developed on MacOSX so the current version builds and runs there
@@ -512,7 +512,7 @@ For other package managers on OSX, Linux and Windows "Your Mileage May Vary"
 Once 'autoconf' is installed you can build Node9 by executing the following 
 commands from Node9's main directory.
 
-premake4 gmake
+premake5 gmake
 make
 
 After the build is finished the 'node9' executable will be in the 'bin'
