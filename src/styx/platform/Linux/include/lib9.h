@@ -42,6 +42,8 @@ typedef struct Proc proc_t;
 
 #define	nil		((void*)0)
 
+#include "ninevals.h"
+
 typedef signed char	schar;
 typedef unsigned int Rune;
 typedef unsigned int u32int;
