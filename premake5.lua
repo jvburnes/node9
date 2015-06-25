@@ -53,9 +53,12 @@ solution "node9-hosted"
             "-Wimplicit", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "-pipe",
             "-fno-strict-aliasing", "-no-cpp-precomp"}
 
+        includedirs { "src/styx/platform/MacOSX/include" }
+
     filter "system:linux" 
         defines { "SYSHOST=Linux", "SYSTARG=Linux", "OBJTYPE='\"386\"'" }
-    
+        includedirs { "src/styx/platform/Linux/include" }
+
     --filter { "system:bsd" }
     --    defines { "SYSHOST=NetBSD", "SYSTARG=NetBSD", "OBJTYPE='\"386\"'" }
     

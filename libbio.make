@@ -16,7 +16,7 @@ ifeq ($(config),debug)
   TARGET = $(TARGETDIR)/libbio.a
   OBJDIR = src/build/obj/Debug/libbio
   DEFINES += -DROOT='"/Users/jburnes/dev/node9/fs"' -DSYSHOST=MacOSX -DSYSTARG=MacOSX -DOBJTYPE='"386"'
-  INCLUDES += -Ilibuv/include -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module
+  INCLUDES += -Ilibuv/include -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/MacOSX/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -Wno-deprecated-declarations -Wuninitialized -Wunused -Wreturn-type -Wimplicit -Wno-four-char-constants -Wno-unknown-pragmas -pipe -fno-strict-aliasing -no-cpp-precomp
@@ -43,7 +43,7 @@ ifeq ($(config),release)
   TARGET = $(TARGETDIR)/libbio.a
   OBJDIR = obj/Release/libbio
   DEFINES += -DSYSHOST=MacOSX -DSYSTARG=MacOSX -DOBJTYPE='"386"'
-  INCLUDES +=
+  INCLUDES += -Isrc/styx/platform/MacOSX/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -Wno-deprecated-declarations -Wuninitialized -Wunused -Wreturn-type -Wimplicit -Wno-four-char-constants -Wno-unknown-pragmas -pipe -fno-strict-aliasing -no-cpp-precomp

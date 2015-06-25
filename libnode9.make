@@ -16,7 +16,7 @@ ifeq ($(config),debug)
   TARGET = $(TARGETDIR)/libnode9.dylib
   OBJDIR = src/build/obj/Debug/libnode9
   DEFINES += -DROOT='"/Users/jburnes/dev/node9/fs"' -DSYSHOST=MacOSX -DSYSTARG=MacOSX -DOBJTYPE='"386"' -DEMU
-  INCLUDES += -Ifs/module -Isrc/include -Isrc/styx/include -Isrc/styx/svcs -Ilibuv/include -Ilibuv/src -Iluajit/src -Isrc/styx/hosting/libuv/include
+  INCLUDES += -Isrc/styx/platform/MacOSX/include -Ifs/module -Isrc/include -Isrc/styx/include -Isrc/styx/svcs -Ilibuv/include -Ilibuv/src -Iluajit/src -Isrc/styx/hosting/libuv/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -fPIC -Wno-deprecated-declarations -Wuninitialized -Wunused -Wreturn-type -Wimplicit -Wno-four-char-constants -Wno-unknown-pragmas -pipe -fno-strict-aliasing -no-cpp-precomp
@@ -45,7 +45,7 @@ ifeq ($(config),release)
   TARGET = $(TARGETDIR)/libnode9.dylib
   OBJDIR = obj/Release/libnode9
   DEFINES += -DSYSHOST=MacOSX -DSYSTARG=MacOSX -DOBJTYPE='"386"' -DEMU
-  INCLUDES += -Ifs/module -Isrc/include -Isrc/styx/include -Isrc/styx/svcs -Ilibuv/include -Ilibuv/src -Iluajit/src -Isrc/styx/hosting/libuv/include
+  INCLUDES += -Isrc/styx/platform/MacOSX/include -Ifs/module -Isrc/include -Isrc/styx/include -Isrc/styx/svcs -Ilibuv/include -Ilibuv/src -Iluajit/src -Isrc/styx/hosting/libuv/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -fPIC -Wno-deprecated-declarations -Wuninitialized -Wunused -Wreturn-type -Wimplicit -Wno-four-char-constants -Wno-unknown-pragmas -pipe -fno-strict-aliasing -no-cpp-precomp

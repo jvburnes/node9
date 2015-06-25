@@ -43,10 +43,14 @@ project "node9"
                 "styx/platform/MacOSX/devfs.c",
                 "styx/libs/lib9/getcallerpc-MacOSX-X86_64.s"
               }
+        
+        print "*** setting include dirs ***"
+        
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework",
                 "luajit_s", "uv_s" }
             
         linkoptions { "-pagezero_size 10000", "-image_base 100000000"}
+        
     
     filter "system:linux"
         files { "styx/platform/Linux/os.c",
@@ -55,6 +59,7 @@ project "node9"
                 "styx/libs/lib9/getcallerpc-Linux-X86_64.s"
               }
 
+        
     filter "system:not macosx"
         links { "luajit", "uv" }
         

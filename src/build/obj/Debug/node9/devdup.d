@@ -3,7 +3,7 @@ src/build/obj/Debug/node9/devdup.o: src/styx/svcs/devdup.c \
   libuv/include/uv-version.h libuv/include/uv-unix.h \
   libuv/include/uv-threadpool.h libuv/include/uv-darwin.h \
   libuv/src/queue.h src/styx/svcs/dat.h \
-  src/styx/hosting/libuv/include/lib9.h fs/module/ninevals.h \
+  src/styx/platform/MacOSX/include/lib9.h fs/module/ninevals.h \
   fs/module/kern.h src/styx/hosting/libuv/include/emu.h \
   src/styx/include/interp.h fs/module/node9.h fs/module/syscalls.h \
   fs/module/sysconst.h src/styx/include/fcall.h src/styx/include/pool.h \
@@ -29,7 +29,7 @@ libuv/src/queue.h:
 
 src/styx/svcs/dat.h:
 
-src/styx/hosting/libuv/include/lib9.h:
+src/styx/platform/MacOSX/include/lib9.h:
 
 fs/module/ninevals.h:
 
