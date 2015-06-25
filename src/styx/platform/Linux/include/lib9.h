@@ -30,7 +30,7 @@
 #define	getwd	infgetwd
 
 #ifndef EMU
-typedef struct Proc Proc;
+typedef struct Proc proc_t;
 #endif
 
 /*
@@ -38,13 +38,12 @@ typedef struct Proc Proc;
  * #define __LITTLE_ENDIAN /usr/include/endian.h under linux
  */
 
+#include "uv.h"
+
 #define	nil		((void*)0)
 
-typedef unsigned char	uchar;
 typedef signed char	schar;
 typedef unsigned int Rune;
-typedef long long int	vlong;
-typedef unsigned long long int	uvlong;
 typedef unsigned int u32int;
 typedef uvlong u64int;
 
@@ -283,6 +282,9 @@ extern	int	dec16(uchar*, int, char*, int);
 extern	int	enc16(char*, int, uchar*, int);
 extern	int	encodefmt(Fmt*);
 
+#define ACCESS_ONCE(type, var)                                                \
+   (*(volatile type*) &(var))
+
 /*
  *  synchronization
  */
@@ -302,8 +304,8 @@ typedef struct QLock QLock;
 struct QLock
 {
 	Lock	use;			/* to access Qlock structure */
-	Proc	*head;			/* next process waiting for object */
-	Proc	*tail;			/* last process waiting for object */
+	proc_t	*head;			/* next process waiting for object */
+	proc_t	*tail;			/* last process waiting for object */
 	int	locked;			/* flag */
 };
 
@@ -381,30 +383,7 @@ extern	void	wunlock(RWLock*);
 #define DMWRITE		0x2		/* mode bit for write permission */
 #define DMEXEC		0x1		/* mode bit for execute permission */
 
-typedef
-struct Qid
-{
-	uvlong	path;
-	ulong	vers;
-	uchar	type;
-} Qid;
-
-typedef
-struct Dir {
-	/* system-modified data */
-	ushort	type;	/* server type */
-	uint	dev;	/* server subtype */
-	/* file data */
-	Qid	qid;	/* unique id from server */
-	ulong	mode;	/* permissions */
-	ulong	atime;	/* last read time */
-	ulong	mtime;	/* last write time */
-	vlong	length;	/* file length */
-	char	*name;	/* last element of path */
-	char	*uid;	/* owner name */
-	char	*gid;	/* group name */
-	char	*muid;	/* last modifier name */
-} Dir;
+#include "kern.h"
 
 extern	Dir*	dirstat(char*);
 extern	Dir*	dirfstat(int);
