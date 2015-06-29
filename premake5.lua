@@ -22,8 +22,6 @@ solution "node9-hosted"
         flags { "Symbols" }
 
     -- GLOBAL PLATFORM INDEPENDENT DEFINES --
-    -- (replace with a platform independent getenv call)
-    --defines { "ROOT='\"" .. _WORKING_DIR .. "/fs\"'" }
 
     -- GLOBAL SOURCE AND TARGET OBJECT LOCATIONS --
     -- (probably dont need explicit WORKING_DIR on these) 

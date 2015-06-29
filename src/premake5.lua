@@ -11,12 +11,6 @@ project "node9"
     -- Snapshot the kernel build / time
     prebuildcommands {"src/styx/utils/ndate >src/include/kerndate.h"}
    
-    -- Build Dependencies First
-    -- Make these platform independent.
-    -- This is only for POSIX (do we use mingw on widows?)
-    --prebuildcommands {"cd libuv; sh autogen.sh; ./configure; make"}
-    --prebuildcommands {"cd luajit; make" }
-
     -- primary kernel files --
     files {"main.c", "misc9.c", "styx/svcs/*.c",
       "styx/hosting/libuv/os-uv.c", "styx/hosting/libuv/emu.c"
@@ -30,22 +24,17 @@ project "node9"
                   _WORKING_DIR .. "/libuv/include", _WORKING_DIR .. "/libuv/src", _WORKING_DIR .. "/luajit/src", 
                   "styx/hosting/libuv/include" })
 
-    links {"9", "bio", "sec", "pthread" }
+    links {"9", "bio", "sec", "pthread", "luajit", "uv" }
     
     -- PLATFORM SPECIFICS --
     filter "system:macosx"
-        -- this is a hack because clang build chain doesn't know how to prioritize static libraries in front of dynamics
-        prebuildcommands {"cp luajit/src/libluajit.a luajit/src/libluajit_s.a"}
-        prebuildcommands {"cp libuv/.libs/libuv.a libuv/.libs/libuv_s.a"}
-
         files { "styx/platform/MacOSX/os.c",
                 "styx/platform/MacOSX/cmd.c",
                 "styx/platform/MacOSX/devfs.c",
                 "styx/libs/lib9/getcallerpc-MacOSX-X86_64.s"
               }
         
-        links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework",
-                "luajit_s", "uv_s" }
+        links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework"}
             
         linkoptions { "-pagezero_size 10000", "-image_base 100000000"}
         
@@ -62,13 +51,6 @@ project "node9"
 	links {"dl", "m"}
         linkoptions {"-Wl,--export-dynamic"}
 
-    -- this is not needed if :
-    -- (a) we remove the dynamic versions that get compiled
-    -- (b) we control our library resolution search paths
-    -- (the normal resolution order is to search for dynamics first)
-    filter "system:not macosx"
-        links { "luajit", "uv" }
-        
     -- reset filters
     filter {} 
 
@@ -94,7 +76,6 @@ project "libnode9"
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework" }
         postbuildcommands {"rebase lib/libnode9.dylib"}
         linkoptions {"-undefined dynamic_lookup"}
-
         
     -- reset filters
     filter {}
