@@ -2,7 +2,7 @@ project "libsec"
     -- is this kind of app
     kind "StaticLib"
     targetname "sec"
-
+    buildoptions {"-fPIC"}
     includedirs{ "../../include"}
     -- and is dependent on these files
     files { "des.c", "desmodes.c", "desECB.c", "desCBC.c", "des3ECB.c", "des3CBC.c", "aes.c", "blowfish.c", "idea.c", "hmac.c", "md5.c", "md5block.c",

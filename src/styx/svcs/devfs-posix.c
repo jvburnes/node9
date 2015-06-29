@@ -3,7 +3,6 @@
  */
 #define _LARGEFILE64_SOURCE	1
 #define _FILE_OFFSET_BITS 64
-#include "nine.h"
 
 #include	<sys/types.h>
 #include	<sys/stat.h>
@@ -13,6 +12,7 @@
 #include	<utime.h>
 #include	<dirent.h>
 #include	<stdio.h>
+#include	<stdlib.h>
 #define	__EXTENSIONS__
 #undef	getwd
 #include	<unistd.h>
@@ -58,7 +58,7 @@ struct User
 	User*	next;
 };
 
-char	rootdir[MAXROOT] = ROOT;
+char	rootdir[MAXROOT] = "";
 
 static	User*	uidmap[NID];
 static	User*	gidmap[NID];
@@ -99,6 +99,31 @@ fsfree(Chan *c)
 {
 	cnameclose(FS(c)->name);
 	free(FS(c));
+}
+
+void 
+fsinit(void)
+{
+	char *ROOT;
+
+        /* if rootdir isn't initialized, make it something meaningful */
+
+        if (!strlen(rootdir)) {
+           /* if there's an environment variable, use that */
+
+           ROOT = getenv("NODE9ROOT");
+
+           if (ROOT) {
+              strecpy(rootdir, rootdir+sizeof(rootdir), ROOT);
+           }
+           else {
+              /* else set it to 'fs' in the current directory */
+              if (!getcwd(rootdir,sizeof(rootdir)-3)) {
+		 panic("fsinit: root filesystem name too long");
+              }
+	      strcat(rootdir,"/fs");
+           }
+        }
 }
 
 Chan*
@@ -1077,7 +1102,7 @@ Dev fsdevtab = {
 	'U',
 	"fs",
 
-	devinit,
+	fsinit,
 	fsattach,
 	fswalk,
 	fsstat,

@@ -1,23 +1,9 @@
 src/build/obj/Debug/lib9/getuser-posix.o: \
-  src/styx/libs/lib9/getuser-posix.c \
-  src/styx/platform/MacOSX/include/lib9.h libuv/include/uv.h \
-  libuv/include/uv-errno.h libuv/include/uv-version.h \
-  libuv/include/uv-unix.h libuv/include/uv-threadpool.h \
-  libuv/include/uv-darwin.h fs/module/ninevals.h fs/module/kern.h
+ src/styx/libs/lib9/getuser-posix.c \
+ src/styx/platform/Linux/include/lib9.h fs/module/ninevals.h \
+ fs/module/kern.h
 
-src/styx/platform/MacOSX/include/lib9.h:
-
-libuv/include/uv.h:
-
-libuv/include/uv-errno.h:
-
-libuv/include/uv-version.h:
-
-libuv/include/uv-unix.h:
-
-libuv/include/uv-threadpool.h:
-
-libuv/include/uv-darwin.h:
+src/styx/platform/Linux/include/lib9.h:
 
 fs/module/ninevals.h:
 

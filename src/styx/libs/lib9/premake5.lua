@@ -3,7 +3,7 @@ project "lib9"
     -- is this kind of app
     kind "StaticLib"
     targetname "9"
-
+    buildoptions {"-fPIC"}
     -- is dependent on these files
     files {"convD2M.c", "convM2D.c", "convM2S.c", "convS2M.c", "fcallfmt.c", "runestrchr.c", "runestrlen.c", "runetype.c", "strtoll.c", "strtoull.c",
         "rune.c", "argv0.c", "charstod.c", "cistrcmp.c", "cistrncmp.c", "cistrstr.c", "cleanname.c", "create.c", "dirwstat.c", "dofmt.c", "dorfmt.c",

@@ -136,7 +136,7 @@ modetomask[] =
 };
 
 extern	DWORD	PlatformId;
-	char    rootdir[MAXROOT] = "\\inferno";
+	char    rootdir[MAXROOT] = "";
 	Rune16	rootname[] = L"inferno-server";
 static	Qid	rootqid;
 static	User	*fsnone;
@@ -279,6 +279,7 @@ fsinit(void)
 	char *p, tmp[MAXROOT];
 	wchar_t *wp, *wpath, *last;
 	wchar_t wrootdir[MAXROOT];
+	char *ROOT;
 
 	isntfrog['/'] = 1;
 	isntfrog['\\'] = 1;
@@ -288,6 +289,22 @@ fsinit(void)
 	isntfrog['"'] = 1;
 	isntfrog['<'] = 1;
 	isntfrog['>'] = 1;
+
+        /* if rootdir isn't initialized, make it something meaningful */
+
+	if (!strlen(rootdir)) {
+           /* if there's an environment variable, use that */
+
+           ROOT = getenv("NODE9ROOT");
+
+	   if (ROOT) {
+              strecpy(rootdir, rootdir+sizeof(rootdir), ROOT);
+	   } 
+           {
+              /* else set it to a standard install directory */
+              strcpy(rootdir,"\\node9");
+           }
+        }
 
 	/*
 	 * vet the root

@@ -54,8 +54,9 @@
 #    We're passing 0 back until we're sure
 #
 	.file	"getcallerpc-Linux-X86_64.s"
-    .text
-.globl _getcallerpc
-_getcallerpc:
+        .type   getcallerpc,@function
+        .global getcallerpc
+getcallerpc:
 	movq	$0, %rax
 	ret
+

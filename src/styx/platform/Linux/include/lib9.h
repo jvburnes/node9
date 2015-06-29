@@ -12,7 +12,7 @@
 #endif
 #include <features.h>
 #include <sys/types.h>
-#include <stdlib.h>
+/* #include <stdlib.h> */
 #include <stdarg.h>
 #define sync __os_sync
 #include <unistd.h>
@@ -38,10 +38,9 @@ typedef struct Proc proc_t;
  * #define __LITTLE_ENDIAN /usr/include/endian.h under linux
  */
 
-#include "uv.h"
-
 #define	nil		((void*)0)
 
+#include "stdint.h"
 #include "ninevals.h"
 
 typedef signed char	schar;
@@ -271,10 +270,12 @@ extern	char*	getwd(char*, int);
 extern	double	ipow10(int);
 #define	pow10	infpow10
 extern	double	pow10(int);
+#ifndef EMU
 extern	vlong	strtoll(const char*, char**, int);
 #define	qsort	infqsort
 extern	void	qsort(void*, long, long, int (*)(void*, void*));
 extern	uvlong	strtoull(const char*, char**, int);
+#endif
 extern	void	sysfatal(char*, ...);
 extern	int	dec64(uchar*, int, char*, int);
 extern	int	enc64(char*, int, uchar*, int);

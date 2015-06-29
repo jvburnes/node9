@@ -1,3 +1,5 @@
+#include "nine.h"
+
 #include "devfs-posix.c"
 
 #include	<linux/hdreg.h>

@@ -14,21 +14,21 @@ project "node9"
     -- Build Dependencies First
     -- Make these platform independent.
     -- This is only for POSIX (do we use mingw on widows?)
-    prebuildcommands {"cd libuv; sh autogen.sh; ./configure; make"}
-    prebuildcommands {"cd luajit; make" }
+    --prebuildcommands {"cd libuv; sh autogen.sh; ./configure; make"}
+    --prebuildcommands {"cd luajit; make" }
 
     -- primary kernel files --
     files {"main.c", "misc9.c", "styx/svcs/*.c",
       "styx/hosting/libuv/os-uv.c", "styx/hosting/libuv/emu.c"
     }
-    
+
+    --buildoptions {"-v"}    
     removefiles {"styx/svcs/devprog.c", "styx/svcs/devprof.c", "styx/svcs/devdynld*.c", 
               "styx/svcs/dynld*.c",  "styx/svcs/ipif6-posix.c","styx/svcs/srv.c", 
-              "styx/svcs/devsrv.c" } 
-    
-    includedirs { _WORKING_DIR .. "/fs/module", "include", "styx/include", "styx/svcs", 
+              "styx/svcs/devsrv.c", "styx/svcs/devfs-posix.c" } 
+    includedirs ({ _WORKING_DIR .. "/fs/module", "include", "styx/include", "styx/svcs", 
                   _WORKING_DIR .. "/libuv/include", _WORKING_DIR .. "/libuv/src", _WORKING_DIR .. "/luajit/src", 
-                  "styx/hosting/libuv/include" }
+                  "styx/hosting/libuv/include" })
 
     links {"9", "bio", "sec", "pthread" }
     
@@ -44,8 +44,6 @@ project "node9"
                 "styx/libs/lib9/getcallerpc-MacOSX-X86_64.s"
               }
         
-        print "*** setting include dirs ***"
-        
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework",
                 "luajit_s", "uv_s" }
             
@@ -54,12 +52,20 @@ project "node9"
     
     filter "system:linux"
         files { "styx/platform/Linux/os.c",
+                "styx/platform/Linux/segflush-386.c",
                 "styx/platform/Linux/cmd.c",
                 "styx/platform/Linux/devfs.c",
                 "styx/libs/lib9/getcallerpc-Linux-X86_64.s"
               }
 
-        
+        -- MAKE SURE THIS IS EXECUTED --
+	links {"dl", "m"}
+        linkoptions {"-Wl,--export-dynamic"}
+
+    -- this is not needed if :
+    -- (a) we remove the dynamic versions that get compiled
+    -- (b) we control our library resolution search paths
+    -- (the normal resolution order is to search for dynamics first)
     filter "system:not macosx"
         links { "luajit", "uv" }
         
@@ -78,15 +84,17 @@ project "libnode9"
     files {"styx/svcs/node9.c", "styx/svcs/error.c" }
     links {"9", "bio", "sec", "pthread" }
 
-    includedirs { _WORKING_DIR .. "/fs/module", "include",  "styx/include", "styx/svcs", 
+    includedirs ({ _WORKING_DIR .. "/fs/module", "include",  "styx/include", "styx/svcs", 
          _WORKING_DIR .. "/libuv/include", _WORKING_DIR .. "/libuv/src", _WORKING_DIR .. "/luajit/src",
-         "styx/hosting/libuv/include"}
+         "styx/hosting/libuv/include"})
+
     
     -- PLATFORM SPECIFICS --
     filter "system:macosx"      
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework" }
-        linkoptions {"-undefined dynamic_lookup"}
         postbuildcommands {"rebase lib/libnode9.dylib"}
+        linkoptions {"-undefined dynamic_lookup"}
+
         
     -- reset filters
     filter {}

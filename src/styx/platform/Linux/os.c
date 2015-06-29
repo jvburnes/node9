@@ -10,10 +10,7 @@
 
 #include	<stdint.h>
 
-#include	"dat.h"
-#include	"fns.h"
-#include	"error.h"
-#include <fpuctl.h>
+#include "nine.h"
 
 #include <semaphore.h>
 
@@ -26,81 +23,84 @@
 enum
 {
 	DELETE	= 0x7f,
-	CTRLC	= 'C'-'@',
-	NSTACKSPERALLOC = 16,
-	X11STACK=	256*1024
 };
-char *hosttype = "Linux";
 
-typedef sem_t	Sem;
+char *hosttype = "Linux";
+char *cputype = OBJTYPE;
 
 extern int dflag;
 
 int	gidnobody = -1;
 int	uidnobody = -1;
-static struct 	termios tinit;
 
-static void
-sysfault(char *what, void *addr)
+void
+getnobody()
 {
-	char buf[64];
+        struct passwd *pwd;
 
-	snprint(buf, sizeof(buf), "sys: %s%#p", what, addr);
-	disfault(nil, buf);
+        if((pwd = getpwnam("nobody"))) {
+                uidnobody = pwd->pw_uid;
+                gidnobody = pwd->pw_gid;
+        }
 }
 
-static void
-trapILL(int signo, siginfo_t *si, void *a)
+void
+host_init()
 {
-	USED(signo);
-	USED(a);
-	sysfault("illegal instruction pc=", si->si_addr);
+    char sys[64];
+    struct passwd *pw;
+
+    trace(TRACE_DEBUG, "node9/kernel: becoming host os process leader ");
+
+    /* init system stack */
+    setsid();
+
+    trace(TRACE_DEBUG, "node9/kernel: collecting system info");
+
+    /* setup base system personality and user details */
+        gethostname(sys, sizeof(sys));
+        kstrdup(&ossysname, sys);
+        getnobody();
+
+    /* initialize signals and eventing system */
+
+    /* if not a daemon, initialize the terminal */
+
+    if(dflag == 0) {
+        trace(TRACE_INFO, "node9/kernel: initializing terminal");
+        termset();
+    }
+
+    trace(TRACE_DEBUG, "node9/kernel: initializing signals");
+    setsigs();
+
+    trace(TRACE_DEBUG, "node9/kernel: initializing event and req watchers");
+    setwatchers();
+
+    trace(TRACE_DEBUG, "node9/kernel: establishing host username, uid, pid");
+
+    pw = getpwuid(getuid());
+    if(pw != nil)
+            kstrdup(&eve, pw->pw_name);
+    else
+            print("cannot getpwuid\n");
+
+    /* and record the current host user uid/gid */
+    hostuid = getuid();
+    hostgid = getgid();
+
 }
 
-static int
-isnilref(siginfo_t *si)
+void
+restore()
 {
-	return si != 0 && (si->si_addr == (void*)~(uintptr_t)0 || (uintptr_t)si->si_addr < 512);
-}
 
-static void
-trapmemref(int signo, siginfo_t *si, void *a)
-{
-	USED(a);	/* ucontext_t*, could fetch pc in machine-dependent way */
-	if(isnilref(si))
-		disfault(nil, exNilref);
-	else if(signo == SIGBUS)
-		sysfault("bad address addr=", si->si_addr);	/* eg, misaligned */
-	else
-		sysfault("segmentation violation addr=", si->si_addr);
-}
+    /* restore the terminal */
+    if(dflag == 0) {
+        trace(TRACE_INFO, "node9/kernel: restoring terminal");
+        termrestore();
+    }
 
-static void
-trapFPE(int signo, siginfo_t *si, void *a)
-{
-	char buf[64];
-
-	USED(signo);
-	USED(a);
-	snprint(buf, sizeof(buf), "sys: fp: exception status=%.4lux pc=%#p", getfsr(), si->si_addr);
-	disfault(nil, buf);
-}
-
-static void
-trapUSR1(int signo)
-{
-	int intwait;
-
-	USED(signo);
-
-	intwait = up->intwait;
-	up->intwait = 0;	/* clear it to let proc continue in osleave */
-
-	if(up->type != Interp)		/* Used to unblock pending I/O */
-		return;
-
-	if(intwait == 0)		/* Not posted so it's a sync error */
-		disfault(nil, Eintr);	/* Should never happen */
 }
 
 void
@@ -110,42 +110,6 @@ oslongjmp(void *regs, osjmpbuf env, int val)
 	siglongjmp(env, val);
 }
 
-static void
-termset(void)
-{
-	struct termios t;
-
-	tcgetattr(0, &t);
-	tinit = t;
-	t.c_lflag &= ~(ICANON|ECHO|ISIG);
-	t.c_cc[VMIN] = 1;
-	t.c_cc[VTIME] = 0;
-	tcsetattr(0, TCSANOW, &t);
-}
-
-static void
-termrestore(void)
-{
-	tcsetattr(0, TCSANOW, &tinit);
-}
-
-void
-cleanexit(int x)
-{
-	USED(x);
-
-	if(up->intwait) {
-		up->intwait = 0;
-		return;
-	}
-
-	if(dflag == 0)
-		termrestore();
-
-	kill(0, SIGKILL);
-	exit(0);
-}
-
 void
 osreboot(char *file, char **argv)
 {
@@ -153,32 +117,6 @@ osreboot(char *file, char **argv)
 		termrestore();
 	execvp(file, argv);
 	error("reboot failure");
-}
-
-int
-readkbd(void)
-{
-	int n;
-	char buf[1];
-
-	n = read(0, buf, sizeof(buf));
-	if(n < 0)
-		print("keyboard close (n=%d, %s)\n", n, strerror(errno));
-	if(n <= 0)
-		pexit("keyboard thread", 0);
-
-	switch(buf[0]) {
-	case '\r':
-		buf[0] = '\n';
-		break;
-	case DELETE:
-		buf[0] = 'H' - '@';
-		break;
-	case CTRLC:
-		cleanexit(0);
-		break;
-	}
-	return buf[0];
 }
 
 /*

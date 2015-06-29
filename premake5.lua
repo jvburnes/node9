@@ -23,7 +23,7 @@ solution "node9-hosted"
 
     -- GLOBAL PLATFORM INDEPENDENT DEFINES --
     -- (replace with a platform independent getenv call)
-    defines { "ROOT='\"" .. _WORKING_DIR .. "/fs\"'" }
+    --defines { "ROOT='\"" .. _WORKING_DIR .. "/fs\"'" }
 
     -- GLOBAL SOURCE AND TARGET OBJECT LOCATIONS --
     -- (probably dont need explicit WORKING_DIR on these) 
@@ -35,6 +35,7 @@ solution "node9-hosted"
 
     -- GLOBAL INCLUDE SOURCES --
     includedirs { 
+	"libuv/src",
         "libuv/include",
         "src/styx/hosting/libuv/include",
         "src/styx/include",

@@ -1,7 +1,7 @@
 #include <sys/types.h>
 #include <sys/syscall.h>
 
-#include "dat.h"
+#include "nine.h"
 
 int
 segflush(void *a, ulong n)

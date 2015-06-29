@@ -1,5 +1,5 @@
 make clean
-premake4 clean
-premake4 gmake
+premake5 clean
+premake5 gmake
 make
 

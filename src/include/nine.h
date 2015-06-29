@@ -43,5 +43,4 @@ extern int hostgid;
 extern void setsigs(void);
 void sysinit(void);
 
-
 #endif

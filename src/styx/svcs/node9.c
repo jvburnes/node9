@@ -224,7 +224,7 @@ void sysreq(void *p,void (*scall)(void*))
     hproc_t* hp = (hproc_t*) up;                // get hosting kernel proc
     vproc_t* vp = p;
     
-    trace(TRACE_DEBUG, "issuing sys request")
+    trace(TRACE_DEBUG, "issuing sys request");
     N9SysReq* sreq = &vp->sreq;   // the vprocs sysreq buff
     sreq->req.proc = p;
     sreq->req.scall = scall;

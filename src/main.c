@@ -1,5 +1,6 @@
 /* basic node9, stdio, uv and ixp imports */
 
+#include <stdlib.h>
 #include "nine.h"
 #include "version.h"
 
@@ -15,7 +16,7 @@ char* tstrings[] = { "INFO", "WARN", "ERROR", "DEBUG" };
 int   tlevels[] = {TRACE_INFO, TRACE_WARN, TRACE_ERROR, TRACE_DEBUG };
 
 
-static  char    *imod = ROOT"/os/init/nodeinit.lua";
+static  char    *imod = "/os/init/nodeinit.lua";
 
 void luaL_abort9(lua_State *L, char *msg){
 	trace(TRACE_INFO, "\nFATAL ERROR:\n  %s: %s\n\n", msg, lua_tostring(L, -1));
@@ -48,10 +49,9 @@ void inituser(void *arg)
 {
     lua_State *L;
     int error;
+    char *luainit;
     hproc_t* hp = (hproc_t*) up;        // the hosting proc (kernel)
     
-    char *luainit = arg;
-
     trace(TRACE_INFO, "node9/kernel: starting luaspace ...");
  
     trace(TRACE_INFO, "signals set");
@@ -67,6 +67,14 @@ void inituser(void *arg)
     L = luaL_newstate();
     luaL_openlibs(L);
     trace(TRACE_DEBUG, "node9/init: lua state initialized");
+
+    if (!(luainit = malloc(strlen(rootdir)+strlen(arg)+1))) {
+	trace(TRACE_INFO, "node9/kernel: could not alloc memory for init module");
+        luaL_abort9(L, "node9/init: could not alloc init string");
+    }
+    *luainit = 0;
+    strcat(luainit, rootdir);
+    strcat(luainit, arg);
 
     /* then load the init script */
     if (error = luaL_loadfile(L, luainit)) {
@@ -85,7 +93,7 @@ void inituser(void *arg)
     
     /* and start the init script with fs root */
     lua_getglobal(L, "init");                 /* bootstrap start funtion */
-    lua_pushstring(L, ROOT);                  /* fs root is the basis for all else */
+    lua_pushstring(L, rootdir);                  /* fs root is the basis for all else */
     
     if (error = lua_pcall(L, 1, 0, 0)) {
         trace(TRACE_INFO, "node9: pcall: did not exit cleanly, err = %d",error);
@@ -94,6 +102,12 @@ void inituser(void *arg)
 
     /* Clean up and free the Lua state variables, coroutines, objects -- forces last GCs */
     lua_close(L);
+
+    trace(TRACE_WARN, "node9/inituser: (host thread) / lua start process exited with err %d",error);
+    /* were done, so stop listening to global signals */
+    stopsigs();
+    
+    free(luainit); 
 
     trace(TRACE_WARN, "node9/inituser: (host thread) / lua start process exited with err %d",error);
     /* were done, so stop listening to global signals */
@@ -524,9 +538,11 @@ int main(int argc, char **argv)
     trace(TRACE_DEBUG, "node9/kernel: saving startup args");
     savestartup(argc, argv);
     
-    strecpy(rootdir, rootdir+sizeof(rootdir), ROOT);
-
     option(argc, argv, usage);
+    
+    /* initialize the channel devices */
+    chandevinit();
+
 
     /* init node9 host and user settings, init stack and signals */
     host_init();
@@ -537,9 +553,6 @@ int main(int argc, char **argv)
     /* Now we initialize the base kernel thread and bind it to the event subsystem */
     p = kern_base = kern_baseproc(inituser, imod);
     
-    /* initialize the channel devices */
-    chandevinit();
-
     trace(TRACE_INFO, "node9/kernel: initializing namespace");
     /* configure the basic service namespace for the kernel */
     k_namespace();
@@ -550,7 +563,7 @@ int main(int argc, char **argv)
     putenvqv("emuargs", rebootargv, rebootargc, 1);
     putenvq("emuroot", rootdir, 1);
     ksetenv("emuargs", "./node9", 1);
-    ksetenv("emuroot", ROOT, 1);
+    ksetenv("emuroot", rootdir, 1);
     ksetenv("emuhost", hosttype, 1);
     wdir = malloc(1024);
     if(wdir != nil){
@@ -576,9 +589,10 @@ int main(int argc, char **argv)
      * so clean up what remains and restore the environment 
      */
     trace(TRACE_DEBUG, "node9/kernel: cleanup");
-    
+
     restore();
     trace(TRACE_INFO, "node9/kernel: halted");
     
     return 0;
 }
+
