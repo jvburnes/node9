@@ -491,10 +491,9 @@ BUILD, USER AND PORTABILITY NOTES
 Node9 uses the lua-based 'premake' (version 5) tool to generate the makefiles.
 It's open source and available for nearly all POSIX and Windows platforms.
 
-Node9 was developed on MacOSX so the current version builds and runs there
-without any modification.  It is designed to be completely portable across
-POSIX and Windows platforms, however the 'libuv' porting modifications aren't
-fully complete.
+Node9 currently builds on MacOSX and 64 bit Linux.  It's designed to be
+completely portable across POSIX and Windows platforms, however the 'libuv'
+porting modifications aren't fully complete.
 
 It may take a few iterations on the source code with the help of other users to
 make it fully portable "out of the box".
@@ -510,26 +509,36 @@ port install autoconf
 For other package managers on OSX, Linux and Windows "Your Mileage May Vary"
 
 Once 'autoconf' is installed you can build Node9 by executing the following 
-commands from Node9's main directory.
+command from Node9's main directory.
 
-premake5 gmake
-make
+sh rebuild.sh
 
 After the build is finished the 'node9' executable will be in the 'bin'
 subdirectory of the Node9 distribution.  The runtime shared library
-'libnode9.dylib' will be generated in the "lib" subdirectory.
+will be generated in the "lib" subdirectory.
 
 Installation scripts will eventually be included in the distribution to 
 place the runtime system in a convenient filesystem location.
 
 - Startup Notes - 
 
-On OSX you can simply execute the 'run.sh' script to set the shared library
-search path and run node9.  
+To test Node9 simply edit the 'run.sh' script to reflect your operating
+systems dynamic library load path environment variable and execute it.
 
-*** Note: Currently the "root" file system location on the host is compiled
-into the kernel and Node9 requires a recompilation if you move it.  We know
-this is barbaric and it will be fixed early in the release cycle. ***
+On POSIX platforms the "root" directory of Node9 (the 'fs' directory in
+the source distribution) is set by the following
+rules:
+
+(a) The NODE9ROOT environment variable will be used if set.
+(b) If NODE9ROOT isn't set, the root directory is <currentworkingdir>/fs
+
+On Windows:
+
+(a) The NODE9ROOT environment variable will be used if set.
+(b) If NODE9ROOT isn't set, the root directory is "\Node9"
+
+The Node9 root directory can be manually overridden using the 'r' 
+commandline option.
 
 - Shell Notes -
 
