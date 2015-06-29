@@ -535,7 +535,7 @@ rules:
 On Windows:
 
 (a) The NODE9ROOT environment variable will be used if set.
-(b) If NODE9ROOT isn't set, the root directory is "\Node9"
+(b) If NODE9ROOT isn't set, the root directory is "\node9"
 
 The Node9 root directory can be manually overridden using the 'r' 
 commandline option.
