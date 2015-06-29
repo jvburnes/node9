@@ -300,7 +300,7 @@ fsinit(void)
 	   if (ROOT) {
               strecpy(rootdir, rootdir+sizeof(rootdir), ROOT);
 	   } 
-           {
+           else {
               /* else set it to a standard install directory */
               strcpy(rootdir,"\\node9");
            }
