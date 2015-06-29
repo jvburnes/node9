@@ -1,4 +1,6 @@
 /bin/*
+/lib/*
 /attic/*
 /testing/*
 /src/build/*
+
