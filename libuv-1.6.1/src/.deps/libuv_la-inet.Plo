@@ -1,139 +1,212 @@
-src/libuv_la-inet.lo: src/inet.c /usr/include/stdc-predef.h \
- /usr/include/stdio.h /usr/include/features.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
- /usr/include/x86_64-linux-gnu/bits/wordsize.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h \
- /usr/include/x86_64-linux-gnu/bits/types.h \
- /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \
- /usr/include/_G_config.h /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/string.h \
- /usr/include/xlocale.h /usr/include/x86_64-linux-gnu/bits/string.h \
- /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
- /usr/include/x86_64-linux-gnu/bits/byteswap.h \
- /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h include/uv.h \
- include/uv-errno.h /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- include/uv-version.h include/uv-unix.h \
- /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/sys/select.h \
- /usr/include/x86_64-linux-gnu/bits/select.h \
- /usr/include/x86_64-linux-gnu/bits/sigset.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
- /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
- /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/x86_64-linux-gnu/bits/uio.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/sys/uio.h \
- /usr/include/x86_64-linux-gnu/bits/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket_type.h \
- /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
- /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h \
- /usr/include/x86_64-linux-gnu/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netinet/tcp.h \
- /usr/include/arpa/inet.h /usr/include/netdb.h /usr/include/rpc/netdb.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo.h \
- /usr/include/x86_64-linux-gnu/bits/netdb.h /usr/include/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios.h \
- /usr/include/x86_64-linux-gnu/sys/ttydefaults.h /usr/include/pwd.h \
- /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
- /usr/include/pthread.h /usr/include/sched.h \
- /usr/include/x86_64-linux-gnu/bits/sched.h \
- /usr/include/x86_64-linux-gnu/bits/timex.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp.h /usr/include/signal.h \
- /usr/include/x86_64-linux-gnu/bits/signum.h \
- /usr/include/x86_64-linux-gnu/bits/sigaction.h \
- /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigstack.h \
- /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h include/uv-threadpool.h \
- include/uv-linux.h src/uv-common.h /usr/include/assert.h include/tree.h \
- src/queue.h
-
-/usr/include/stdc-predef.h:
+src/libuv_la-inet.lo: src/inet.c /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/Availability.h \
+  /usr/include/AvailabilityInternal.h /usr/include/_types.h \
+  /usr/include/sys/_types.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h /usr/include/sys/_types/_va_list.h \
+  /usr/include/sys/_types/_size_t.h /usr/include/sys/_types/_null.h \
+  /usr/include/sys/_types/_off_t.h /usr/include/sys/_types/_ssize_t.h \
+  /usr/include/secure/_stdio.h /usr/include/secure/_common.h \
+  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
+  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/secure/_string.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h \
+  /usr/include/stdint.h /usr/include/sys/_types/_int8_t.h \
+  /usr/include/sys/_types/_int16_t.h /usr/include/sys/_types/_int32_t.h \
+  /usr/include/sys/_types/_int64_t.h /usr/include/_types/_uint8_t.h \
+  /usr/include/_types/_uint16_t.h /usr/include/_types/_uint32_t.h \
+  /usr/include/_types/_uint64_t.h /usr/include/sys/_types/_intptr_t.h \
+  /usr/include/sys/_types/_uintptr_t.h /usr/include/_types/_intmax_t.h \
+  /usr/include/_types/_uintmax_t.h include/uv.h include/uv-errno.h \
+  /usr/include/errno.h /usr/include/sys/errno.h include/uv-version.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h \
+  include/uv-unix.h /usr/include/sys/types.h \
+  /usr/include/sys/appleapiopts.h /usr/include/machine/types.h \
+  /usr/include/i386/types.h /usr/include/sys/_types/___offsetof.h \
+  /usr/include/machine/endian.h /usr/include/i386/endian.h \
+  /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h \
+  /usr/include/sys/_types/_dev_t.h /usr/include/sys/_types/_blkcnt_t.h \
+  /usr/include/sys/_types/_blksize_t.h /usr/include/sys/_types/_gid_t.h \
+  /usr/include/sys/_types/_in_addr_t.h \
+  /usr/include/sys/_types/_in_port_t.h /usr/include/sys/_types/_ino_t.h \
+  /usr/include/sys/_types/_ino64_t.h /usr/include/sys/_types/_key_t.h \
+  /usr/include/sys/_types/_mode_t.h /usr/include/sys/_types/_nlink_t.h \
+  /usr/include/sys/_types/_id_t.h /usr/include/sys/_types/_pid_t.h \
+  /usr/include/sys/_types/_uid_t.h /usr/include/sys/_types/_clock_t.h \
+  /usr/include/sys/_types/_time_t.h \
+  /usr/include/sys/_types/_useconds_t.h \
+  /usr/include/sys/_types/_suseconds_t.h \
+  /usr/include/sys/_types/_fd_def.h \
+  /usr/include/sys/_types/_fd_setsize.h \
+  /usr/include/sys/_types/_fd_set.h /usr/include/sys/_types/_fd_clr.h \
+  /usr/include/sys/_types/_fd_zero.h /usr/include/sys/_types/_fd_isset.h \
+  /usr/include/sys/_types/_fd_copy.h \
+  /usr/include/sys/_types/_pthread_attr_t.h \
+  /usr/include/sys/_types/_pthread_cond_t.h \
+  /usr/include/sys/_types/_pthread_condattr_t.h \
+  /usr/include/sys/_types/_pthread_mutex_t.h \
+  /usr/include/sys/_types/_pthread_mutexattr_t.h \
+  /usr/include/sys/_types/_pthread_once_t.h \
+  /usr/include/sys/_types/_pthread_rwlock_t.h \
+  /usr/include/sys/_types/_pthread_rwlockattr_t.h \
+  /usr/include/sys/_types/_pthread_t.h \
+  /usr/include/sys/_types/_pthread_key_t.h \
+  /usr/include/sys/_types/_fsblkcnt_t.h \
+  /usr/include/sys/_types/_fsfilcnt_t.h /usr/include/sys/stat.h \
+  /usr/include/sys/_types/_timespec.h /usr/include/sys/_types/_s_ifmt.h \
+  /usr/include/sys/_types/_filesec_t.h /usr/include/fcntl.h \
+  /usr/include/sys/fcntl.h /usr/include/sys/_types/_o_sync.h \
+  /usr/include/sys/_types/_o_dsync.h /usr/include/sys/_types/_seek_set.h \
+  /usr/include/dirent.h /usr/include/sys/dirent.h \
+  /usr/include/sys/socket.h /usr/include/machine/_param.h \
+  /usr/include/i386/_param.h /usr/include/sys/_types/_sa_family_t.h \
+  /usr/include/sys/_types/_socklen_t.h \
+  /usr/include/sys/_types/_iovec_t.h /usr/include/netinet/in.h \
+  /usr/include/netinet6/in6.h /usr/include/netinet/tcp.h \
+  /usr/include/arpa/inet.h /usr/include/netdb.h /usr/include/termios.h \
+  /usr/include/sys/termios.h /usr/include/sys/_types/_posix_vdisable.h \
+  /usr/include/sys/ttycom.h /usr/include/sys/ioccom.h \
+  /usr/include/sys/ttydefaults.h /usr/include/pwd.h \
+  /usr/include/uuid/uuid.h /usr/include/sys/_types/_uuid_t.h \
+  /usr/include/semaphore.h /usr/include/sys/semaphore.h \
+  /usr/include/pthread.h /usr/include/pthread_impl.h \
+  /usr/include/sched.h /usr/include/time.h /usr/include/_structs.h \
+  /usr/include/sys/_structs.h /usr/include/sys/_types/_mach_port_t.h \
+  /usr/include/sys/_types/_sigset_t.h /usr/include/signal.h \
+  /usr/include/sys/signal.h /usr/include/machine/signal.h \
+  /usr/include/i386/signal.h /usr/include/machine/_mcontext.h \
+  /usr/include/i386/_mcontext.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/_types/_sigaltstack.h \
+  /usr/include/sys/_types/_ucontext.h include/uv-threadpool.h \
+  include/uv-darwin.h /usr/include/mach/mach.h \
+  /usr/include/mach/std_types.h /usr/include/mach/boolean.h \
+  /usr/include/mach/machine/boolean.h /usr/include/mach/i386/boolean.h \
+  /usr/include/mach/kern_return.h \
+  /usr/include/mach/machine/kern_return.h \
+  /usr/include/mach/i386/kern_return.h /usr/include/mach/port.h \
+  /usr/include/mach/machine/vm_types.h /usr/include/mach/i386/vm_types.h \
+  /usr/include/mach/i386/vm_param.h /usr/include/mach/vm_types.h \
+  /usr/include/mach/mach_types.h /usr/include/mach/host_info.h \
+  /usr/include/mach/message.h /usr/include/mach/vm_statistics.h \
+  /usr/include/mach/machine.h /usr/include/mach/time_value.h \
+  /usr/include/mach/host_notify.h /usr/include/mach/host_special_ports.h \
+  /usr/include/mach/memory_object_types.h /usr/include/mach/vm_prot.h \
+  /usr/include/mach/vm_sync.h /usr/include/mach/exception_types.h \
+  /usr/include/mach/machine/exception.h \
+  /usr/include/mach/i386/exception.h /usr/include/mach/thread_status.h \
+  /usr/include/mach/machine/thread_status.h \
+  /usr/include/mach/i386/thread_status.h /usr/include/mach/i386/fp_reg.h \
+  /usr/include/mach/i386/thread_state.h /usr/include/i386/eflags.h \
+  /usr/include/mach/machine/thread_state.h \
+  /usr/include/mach/processor_info.h \
+  /usr/include/mach/machine/processor_info.h \
+  /usr/include/mach/i386/processor_info.h /usr/include/mach/task_info.h \
+  /usr/include/mach/policy.h /usr/include/mach/task_policy.h \
+  /usr/include/mach/task_special_ports.h /usr/include/mach/thread_info.h \
+  /usr/include/mach/thread_policy.h \
+  /usr/include/mach/thread_special_ports.h \
+  /usr/include/mach/clock_types.h /usr/include/mach/vm_attributes.h \
+  /usr/include/mach/vm_inherit.h /usr/include/mach/vm_purgable.h \
+  /usr/include/mach/vm_behavior.h /usr/include/mach/vm_region.h \
+  /usr/include/mach/machine/vm_param.h /usr/include/mach/kmod.h \
+  /usr/include/mach/mach_interface.h /usr/include/mach/clock_priv.h \
+  /usr/include/mach/ndr.h /usr/include/libkern/OSByteOrder.h \
+  /usr/include/libkern/i386/OSByteOrder.h \
+  /usr/include/sys/_types/_os_inline.h /usr/include/mach/notify.h \
+  /usr/include/mach/mig_errors.h /usr/include/mach/mig.h \
+  /usr/include/mach/host_priv.h \
+  /usr/include/mach_debug/mach_debug_types.h \
+  /usr/include/mach_debug/ipc_info.h /usr/include/mach_debug/vm_info.h \
+  /usr/include/mach_debug/zone_info.h \
+  /usr/include/mach_debug/page_info.h \
+  /usr/include/mach_debug/hash_info.h \
+  /usr/include/mach_debug/lockgroup_info.h \
+  /usr/include/mach/host_security.h /usr/include/mach/lock_set.h \
+  /usr/include/mach/processor.h /usr/include/mach/processor_set.h \
+  /usr/include/mach/semaphore.h /usr/include/mach/sync_policy.h \
+  /usr/include/mach/task.h /usr/include/mach/thread_act.h \
+  /usr/include/mach/vm_map.h /usr/include/mach/mach_port.h \
+  /usr/include/mach/mach_init.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h \
+  /usr/include/mach/mach_traps.h /usr/include/mach/mach_host.h \
+  /usr/include/mach/thread_switch.h /usr/include/mach/rpc.h \
+  /usr/include/mach/machine/rpc.h /usr/include/mach/i386/rpc.h \
+  /usr/include/mach/mach_error.h /usr/include/mach/error.h \
+  /usr/include/TargetConditionals.h src/uv-common.h \
+  /usr/include/assert.h include/tree.h src/queue.h
 
 /usr/include/stdio.h:
 
-/usr/include/features.h:
+/usr/include/sys/cdefs.h:
 
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+/usr/include/sys/_symbol_aliasing.h:
 
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+/usr/include/sys/_posix_availability.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+/usr/include/Availability.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+/usr/include/AvailabilityInternal.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h:
+/usr/include/_types.h:
 
-/usr/include/x86_64-linux-gnu/bits/types.h:
+/usr/include/sys/_types.h:
 
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+/usr/include/machine/_types.h:
 
-/usr/include/libio.h:
+/usr/include/i386/_types.h:
 
-/usr/include/_G_config.h:
+/usr/include/sys/_types/_va_list.h:
 
-/usr/include/wchar.h:
+/usr/include/sys/_types/_size_t.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h:
+/usr/include/sys/_types/_null.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+/usr/include/sys/_types/_off_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
+/usr/include/sys/_types/_ssize_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
+/usr/include/secure/_stdio.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+/usr/include/secure/_common.h:
 
 /usr/include/string.h:
 
-/usr/include/xlocale.h:
+/usr/include/sys/_types/_rsize_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/string.h:
+/usr/include/sys/_types/_errno_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/string2.h:
+/usr/include/strings.h:
 
-/usr/include/endian.h:
+/usr/include/secure/_string.h:
 
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/x86_64-linux-gnu/bits/string3.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h:
 
 /usr/include/stdint.h:
 
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
+/usr/include/sys/_types/_int8_t.h:
+
+/usr/include/sys/_types/_int16_t.h:
+
+/usr/include/sys/_types/_int32_t.h:
+
+/usr/include/sys/_types/_int64_t.h:
+
+/usr/include/_types/_uint8_t.h:
+
+/usr/include/_types/_uint16_t.h:
+
+/usr/include/_types/_uint32_t.h:
+
+/usr/include/_types/_uint64_t.h:
+
+/usr/include/sys/_types/_intptr_t.h:
+
+/usr/include/sys/_types/_uintptr_t.h:
+
+/usr/include/_types/_intmax_t.h:
+
+/usr/include/_types/_uintmax_t.h:
 
 include/uv.h:
 
@@ -141,85 +214,145 @@ include/uv-errno.h:
 
 /usr/include/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/asm-generic/errno-base.h:
+/usr/include/sys/errno.h:
 
 include/uv-version.h:
 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h:
+
 include/uv-unix.h:
 
-/usr/include/x86_64-linux-gnu/sys/types.h:
+/usr/include/sys/types.h:
 
-/usr/include/time.h:
+/usr/include/sys/appleapiopts.h:
 
-/usr/include/x86_64-linux-gnu/sys/select.h:
+/usr/include/machine/types.h:
 
-/usr/include/x86_64-linux-gnu/bits/select.h:
+/usr/include/i386/types.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigset.h:
+/usr/include/sys/_types/___offsetof.h:
 
-/usr/include/x86_64-linux-gnu/bits/time.h:
+/usr/include/machine/endian.h:
 
-/usr/include/x86_64-linux-gnu/bits/select2.h:
+/usr/include/i386/endian.h:
 
-/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
+/usr/include/sys/_endian.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+/usr/include/libkern/_OSByteOrder.h:
 
-/usr/include/x86_64-linux-gnu/sys/stat.h:
+/usr/include/libkern/i386/_OSByteOrder.h:
 
-/usr/include/x86_64-linux-gnu/bits/stat.h:
+/usr/include/sys/_types/_dev_t.h:
+
+/usr/include/sys/_types/_blkcnt_t.h:
+
+/usr/include/sys/_types/_blksize_t.h:
+
+/usr/include/sys/_types/_gid_t.h:
+
+/usr/include/sys/_types/_in_addr_t.h:
+
+/usr/include/sys/_types/_in_port_t.h:
+
+/usr/include/sys/_types/_ino_t.h:
+
+/usr/include/sys/_types/_ino64_t.h:
+
+/usr/include/sys/_types/_key_t.h:
+
+/usr/include/sys/_types/_mode_t.h:
+
+/usr/include/sys/_types/_nlink_t.h:
+
+/usr/include/sys/_types/_id_t.h:
+
+/usr/include/sys/_types/_pid_t.h:
+
+/usr/include/sys/_types/_uid_t.h:
+
+/usr/include/sys/_types/_clock_t.h:
+
+/usr/include/sys/_types/_time_t.h:
+
+/usr/include/sys/_types/_useconds_t.h:
+
+/usr/include/sys/_types/_suseconds_t.h:
+
+/usr/include/sys/_types/_fd_def.h:
+
+/usr/include/sys/_types/_fd_setsize.h:
+
+/usr/include/sys/_types/_fd_set.h:
+
+/usr/include/sys/_types/_fd_clr.h:
+
+/usr/include/sys/_types/_fd_zero.h:
+
+/usr/include/sys/_types/_fd_isset.h:
+
+/usr/include/sys/_types/_fd_copy.h:
+
+/usr/include/sys/_types/_pthread_attr_t.h:
+
+/usr/include/sys/_types/_pthread_cond_t.h:
+
+/usr/include/sys/_types/_pthread_condattr_t.h:
+
+/usr/include/sys/_types/_pthread_mutex_t.h:
+
+/usr/include/sys/_types/_pthread_mutexattr_t.h:
+
+/usr/include/sys/_types/_pthread_once_t.h:
+
+/usr/include/sys/_types/_pthread_rwlock_t.h:
+
+/usr/include/sys/_types/_pthread_rwlockattr_t.h:
+
+/usr/include/sys/_types/_pthread_t.h:
+
+/usr/include/sys/_types/_pthread_key_t.h:
+
+/usr/include/sys/_types/_fsblkcnt_t.h:
+
+/usr/include/sys/_types/_fsfilcnt_t.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/sys/_types/_timespec.h:
+
+/usr/include/sys/_types/_s_ifmt.h:
+
+/usr/include/sys/_types/_filesec_t.h:
 
 /usr/include/fcntl.h:
 
-/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+/usr/include/sys/fcntl.h:
 
-/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+/usr/include/sys/_types/_o_sync.h:
 
-/usr/include/x86_64-linux-gnu/bits/uio.h:
+/usr/include/sys/_types/_o_dsync.h:
 
-/usr/include/x86_64-linux-gnu/bits/fcntl2.h:
+/usr/include/sys/_types/_seek_set.h:
 
 /usr/include/dirent.h:
 
-/usr/include/x86_64-linux-gnu/bits/dirent.h:
+/usr/include/sys/dirent.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+/usr/include/sys/socket.h:
 
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+/usr/include/machine/_param.h:
 
-/usr/include/linux/limits.h:
+/usr/include/i386/_param.h:
 
-/usr/include/x86_64-linux-gnu/sys/socket.h:
+/usr/include/sys/_types/_sa_family_t.h:
 
-/usr/include/x86_64-linux-gnu/sys/uio.h:
+/usr/include/sys/_types/_socklen_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/socket.h:
-
-/usr/include/x86_64-linux-gnu/bits/socket_type.h:
-
-/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
-
-/usr/include/x86_64-linux-gnu/asm/socket.h:
-
-/usr/include/asm-generic/socket.h:
-
-/usr/include/x86_64-linux-gnu/asm/sockios.h:
-
-/usr/include/asm-generic/sockios.h:
-
-/usr/include/x86_64-linux-gnu/bits/socket2.h:
+/usr/include/sys/_types/_iovec_t.h:
 
 /usr/include/netinet/in.h:
 
-/usr/include/x86_64-linux-gnu/bits/in.h:
+/usr/include/netinet6/in6.h:
 
 /usr/include/netinet/tcp.h:
 
@@ -227,51 +360,245 @@ include/uv-unix.h:
 
 /usr/include/netdb.h:
 
-/usr/include/rpc/netdb.h:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo.h:
-
-/usr/include/x86_64-linux-gnu/bits/netdb.h:
-
 /usr/include/termios.h:
 
-/usr/include/x86_64-linux-gnu/bits/termios.h:
+/usr/include/sys/termios.h:
 
-/usr/include/x86_64-linux-gnu/sys/ttydefaults.h:
+/usr/include/sys/_types/_posix_vdisable.h:
+
+/usr/include/sys/ttycom.h:
+
+/usr/include/sys/ioccom.h:
+
+/usr/include/sys/ttydefaults.h:
 
 /usr/include/pwd.h:
 
+/usr/include/uuid/uuid.h:
+
+/usr/include/sys/_types/_uuid_t.h:
+
 /usr/include/semaphore.h:
 
-/usr/include/x86_64-linux-gnu/bits/semaphore.h:
+/usr/include/sys/semaphore.h:
 
 /usr/include/pthread.h:
 
+/usr/include/pthread_impl.h:
+
 /usr/include/sched.h:
 
-/usr/include/x86_64-linux-gnu/bits/sched.h:
+/usr/include/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/timex.h:
+/usr/include/_structs.h:
 
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+/usr/include/sys/_structs.h:
+
+/usr/include/sys/_types/_mach_port_t.h:
+
+/usr/include/sys/_types/_sigset_t.h:
 
 /usr/include/signal.h:
 
-/usr/include/x86_64-linux-gnu/bits/signum.h:
+/usr/include/sys/signal.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+/usr/include/machine/signal.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+/usr/include/i386/signal.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigstack.h:
+/usr/include/machine/_mcontext.h:
 
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+/usr/include/i386/_mcontext.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigthread.h:
+/usr/include/mach/i386/_structs.h:
+
+/usr/include/sys/_types/_sigaltstack.h:
+
+/usr/include/sys/_types/_ucontext.h:
 
 include/uv-threadpool.h:
 
-include/uv-linux.h:
+include/uv-darwin.h:
+
+/usr/include/mach/mach.h:
+
+/usr/include/mach/std_types.h:
+
+/usr/include/mach/boolean.h:
+
+/usr/include/mach/machine/boolean.h:
+
+/usr/include/mach/i386/boolean.h:
+
+/usr/include/mach/kern_return.h:
+
+/usr/include/mach/machine/kern_return.h:
+
+/usr/include/mach/i386/kern_return.h:
+
+/usr/include/mach/port.h:
+
+/usr/include/mach/machine/vm_types.h:
+
+/usr/include/mach/i386/vm_types.h:
+
+/usr/include/mach/i386/vm_param.h:
+
+/usr/include/mach/vm_types.h:
+
+/usr/include/mach/mach_types.h:
+
+/usr/include/mach/host_info.h:
+
+/usr/include/mach/message.h:
+
+/usr/include/mach/vm_statistics.h:
+
+/usr/include/mach/machine.h:
+
+/usr/include/mach/time_value.h:
+
+/usr/include/mach/host_notify.h:
+
+/usr/include/mach/host_special_ports.h:
+
+/usr/include/mach/memory_object_types.h:
+
+/usr/include/mach/vm_prot.h:
+
+/usr/include/mach/vm_sync.h:
+
+/usr/include/mach/exception_types.h:
+
+/usr/include/mach/machine/exception.h:
+
+/usr/include/mach/i386/exception.h:
+
+/usr/include/mach/thread_status.h:
+
+/usr/include/mach/machine/thread_status.h:
+
+/usr/include/mach/i386/thread_status.h:
+
+/usr/include/mach/i386/fp_reg.h:
+
+/usr/include/mach/i386/thread_state.h:
+
+/usr/include/i386/eflags.h:
+
+/usr/include/mach/machine/thread_state.h:
+
+/usr/include/mach/processor_info.h:
+
+/usr/include/mach/machine/processor_info.h:
+
+/usr/include/mach/i386/processor_info.h:
+
+/usr/include/mach/task_info.h:
+
+/usr/include/mach/policy.h:
+
+/usr/include/mach/task_policy.h:
+
+/usr/include/mach/task_special_ports.h:
+
+/usr/include/mach/thread_info.h:
+
+/usr/include/mach/thread_policy.h:
+
+/usr/include/mach/thread_special_ports.h:
+
+/usr/include/mach/clock_types.h:
+
+/usr/include/mach/vm_attributes.h:
+
+/usr/include/mach/vm_inherit.h:
+
+/usr/include/mach/vm_purgable.h:
+
+/usr/include/mach/vm_behavior.h:
+
+/usr/include/mach/vm_region.h:
+
+/usr/include/mach/machine/vm_param.h:
+
+/usr/include/mach/kmod.h:
+
+/usr/include/mach/mach_interface.h:
+
+/usr/include/mach/clock_priv.h:
+
+/usr/include/mach/ndr.h:
+
+/usr/include/libkern/OSByteOrder.h:
+
+/usr/include/libkern/i386/OSByteOrder.h:
+
+/usr/include/sys/_types/_os_inline.h:
+
+/usr/include/mach/notify.h:
+
+/usr/include/mach/mig_errors.h:
+
+/usr/include/mach/mig.h:
+
+/usr/include/mach/host_priv.h:
+
+/usr/include/mach_debug/mach_debug_types.h:
+
+/usr/include/mach_debug/ipc_info.h:
+
+/usr/include/mach_debug/vm_info.h:
+
+/usr/include/mach_debug/zone_info.h:
+
+/usr/include/mach_debug/page_info.h:
+
+/usr/include/mach_debug/hash_info.h:
+
+/usr/include/mach_debug/lockgroup_info.h:
+
+/usr/include/mach/host_security.h:
+
+/usr/include/mach/lock_set.h:
+
+/usr/include/mach/processor.h:
+
+/usr/include/mach/processor_set.h:
+
+/usr/include/mach/semaphore.h:
+
+/usr/include/mach/sync_policy.h:
+
+/usr/include/mach/task.h:
+
+/usr/include/mach/thread_act.h:
+
+/usr/include/mach/vm_map.h:
+
+/usr/include/mach/mach_port.h:
+
+/usr/include/mach/mach_init.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
+
+/usr/include/mach/mach_traps.h:
+
+/usr/include/mach/mach_host.h:
+
+/usr/include/mach/thread_switch.h:
+
+/usr/include/mach/rpc.h:
+
+/usr/include/mach/machine/rpc.h:
+
+/usr/include/mach/i386/rpc.h:
+
+/usr/include/mach/mach_error.h:
+
+/usr/include/mach/error.h:
+
+/usr/include/TargetConditionals.h:
 
 src/uv-common.h:
 

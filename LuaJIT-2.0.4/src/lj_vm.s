@@ -1,63 +1,44 @@
 	.file "buildvm_x86.dasc"
 	.text
-	.p2align 4
+	.align 4
 
-	.globl lj_vm_asm_begin
-	.hidden lj_vm_asm_begin
-	.type lj_vm_asm_begin, @object
-	.size lj_vm_asm_begin, 0
-lj_vm_asm_begin:
-.Lbegin:
+	.private_extern _lj_vm_asm_begin
+_lj_vm_asm_begin:
 
-	.globl lj_BC_ISLT
-	.hidden lj_BC_ISLT
-	.type lj_BC_ISLT, @function
-	.size lj_BC_ISLT, 72
-lj_BC_ISLT:
+	.private_extern _lj_BC_ISLT
+_lj_BC_ISLT:
 	.byte 129,124,202,4,255,255,254,255,15,131,11,29,0,0,129,124
 	.byte 194,4,255,255,254,255,15,131,253,28,0,0,242,15,16,4
 	.byte 194,131,195,4,102,15,46,4,202,118,11,15,183,67,254,141
 	.byte 156,131,0,0,254,255,139,3,15,182,204,15,182,232,131,195
 	.byte 4,193,232,16,65,255,36,238
 
-	.globl lj_BC_ISGE
-	.hidden lj_BC_ISGE
-	.type lj_BC_ISGE, @function
-	.size lj_BC_ISGE, 72
-lj_BC_ISGE:
+	.private_extern _lj_BC_ISGE
+_lj_BC_ISGE:
 	.byte 129,124,202,4,255,255,254,255,15,131,195,28,0,0,129,124
 	.byte 194,4,255,255,254,255,15,131,181,28,0,0,242,15,16,4
 	.byte 194,131,195,4,102,15,46,4,202,119,11,15,183,67,254,141
 	.byte 156,131,0,0,254,255,139,3,15,182,204,15,182,232,131,195
 	.byte 4,193,232,16,65,255,36,238
 
-	.globl lj_BC_ISLE
-	.hidden lj_BC_ISLE
-	.type lj_BC_ISLE, @function
-	.size lj_BC_ISLE, 72
-lj_BC_ISLE:
+	.private_extern _lj_BC_ISLE
+_lj_BC_ISLE:
 	.byte 129,124,202,4,255,255,254,255,15,131,123,28,0,0,129,124
 	.byte 194,4,255,255,254,255,15,131,109,28,0,0,242,15,16,4
 	.byte 194,131,195,4,102,15,46,4,202,114,11,15,183,67,254,141
 	.byte 156,131,0,0,254,255,139,3,15,182,204,15,182,232,131,195
 	.byte 4,193,232,16,65,255,36,238
 
-	.globl lj_BC_ISGT
-	.hidden lj_BC_ISGT
-	.type lj_BC_ISGT, @function
-	.size lj_BC_ISGT, 72
-lj_BC_ISGT:
+	.private_extern _lj_BC_ISGT
+_lj_BC_ISGT:
 	.byte 129,124,202,4,255,255,254,255,15,131,51,28,0,0,129,124
 	.byte 194,4,255,255,254,255,15,131,37,28,0,0,242,15,16,4
 	.byte 194,131,195,4,102,15,46,4,202,115,11,15,183,67,254,141
 	.byte 156,131,0,0,254,255,139,3,15,182,204,15,182,232,131,195
 	.byte 4,193,232,16,65,255,36,238
 
-	.globl lj_BC_ISEQV
-	.hidden lj_BC_ISEQV
-	.type lj_BC_ISEQV, @function
-	.size lj_BC_ISEQV, 139
-lj_BC_ISEQV:
+	.private_extern _lj_BC_ISEQV
+_lj_BC_ISEQV:
 	.byte 139,108,194,4,131,195,4,129,253,255,255,254,255,115,53,129
 	.byte 124,202,4,255,255,254,255,115,43,242,15,16,4,202,102,15
 	.byte 46,4,194,122,13,117,11,15,183,67,254,141,156,131,0,0
@@ -68,11 +49,8 @@ lj_BC_ISEQV:
 	.byte 119,192,131,253,243,114,187,139,105,16,133,237,116,180,246,69
 	.byte 6,16,117,174,49,237,233,201,27,0,0
 
-	.globl lj_BC_ISNEV
-	.hidden lj_BC_ISNEV
-	.type lj_BC_ISNEV, @function
-	.size lj_BC_ISNEV, 142
-lj_BC_ISNEV:
+	.private_extern _lj_BC_ISNEV
+_lj_BC_ISNEV:
 	.byte 139,108,194,4,131,195,4,129,253,255,255,254,255,115,53,129
 	.byte 124,202,4,255,255,254,255,115,43,242,15,16,4,202,102,15
 	.byte 46,4,194,122,2,116,11,15,183,67,254,141,156,131,0,0
@@ -83,499 +61,351 @@ lj_BC_ISNEV:
 	.byte 119,181,131,253,243,114,176,139,105,16,133,237,116,169,246,69
 	.byte 6,16,117,163,189,1,0,0,0,233,59,27,0,0
 
-	.globl lj_BC_ISEQS
-	.hidden lj_BC_ISEQS
-	.type lj_BC_ISEQS, @function
-	.size lj_BC_ISEQS, 63
-lj_BC_ISEQS:
+	.private_extern _lj_BC_ISEQS
+_lj_BC_ISEQS:
 	.byte 72,247,208,139,108,202,4,131,195,4,131,253,251,117,38,139
 	.byte 12,202,65,59,12,135,117,11,15,183,67,254,141,156,131,0
 	.byte 0,254,255,139,3,15,182,204,15,182,232,131,195,4,193,232
 	.byte 16,65,255,36,238,131,253,245,117,233,233,25,27,0,0
 
-	.globl lj_BC_ISNES
-	.hidden lj_BC_ISNES
-	.type lj_BC_ISNES, @function
-	.size lj_BC_ISNES, 63
-lj_BC_ISNES:
+	.private_extern _lj_BC_ISNES
+_lj_BC_ISNES:
 	.byte 72,247,208,139,108,202,4,131,195,4,131,253,251,117,38,139
 	.byte 12,202,65,59,12,135,116,11,15,183,67,254,141,156,131,0
 	.byte 0,254,255,139,3,15,182,204,15,182,232,131,195,4,193,232
 	.byte 16,65,255,36,238,131,253,245,117,222,233,218,26,0,0
 
-	.globl lj_BC_ISEQN
-	.hidden lj_BC_ISEQN
-	.type lj_BC_ISEQN, @function
-	.size lj_BC_ISEQN, 69
-lj_BC_ISEQN:
+	.private_extern _lj_BC_ISEQN
+_lj_BC_ISEQN:
 	.byte 139,108,202,4,131,195,4,129,253,255,255,254,255,115,44,242
 	.byte 65,15,16,4,199,102,15,46,4,202,122,13,117,11,15,183
 	.byte 67,254,141,156,131,0,0,254,255,139,3,15,182,204,15,182
 	.byte 232,131,195,4,193,232,16,65,255,36,238,131,253,245,117,233
 	.byte 233,149,26,0,0
 
-	.globl lj_BC_ISNEN
-	.hidden lj_BC_ISNEN
-	.type lj_BC_ISNEN, @function
-	.size lj_BC_ISNEN, 69
-lj_BC_ISNEN:
+	.private_extern _lj_BC_ISNEN
+_lj_BC_ISNEN:
 	.byte 139,108,202,4,131,195,4,129,253,255,255,254,255,115,44,242
 	.byte 65,15,16,4,199,102,15,46,4,202,122,2,116,11,15,183
 	.byte 67,254,141,156,131,0,0,254,255,139,3,15,182,204,15,182
 	.byte 232,131,195,4,193,232,16,65,255,36,238,131,253,245,117,222
 	.byte 233,80,26,0,0
 
-	.globl lj_BC_ISEQP
-	.hidden lj_BC_ISEQP
-	.type lj_BC_ISEQP, @function
-	.size lj_BC_ISEQP, 53
-lj_BC_ISEQP:
+	.private_extern _lj_BC_ISEQP
+_lj_BC_ISEQP:
 	.byte 72,247,208,139,108,202,4,131,195,4,57,197,117,29,15,183
 	.byte 67,254,141,156,131,0,0,254,255,139,3,15,182,204,15,182
 	.byte 232,131,195,4,193,232,16,65,255,36,238,131,253,245,117,233
 	.byte 233,27,26,0,0
 
-	.globl lj_BC_ISNEP
-	.hidden lj_BC_ISNEP
-	.type lj_BC_ISNEP, @function
-	.size lj_BC_ISNEP, 52
-lj_BC_ISNEP:
+	.private_extern _lj_BC_ISNEP
+_lj_BC_ISNEP:
 	.byte 72,247,208,139,108,202,4,131,195,4,57,197,116,20,131,253
 	.byte 245,15,132,4,26,0,0,15,183,67,254,141,156,131,0,0
 	.byte 254,255,139,3,15,182,204,15,182,232,131,195,4,193,232,16
 	.byte 65,255,36,238
 
-	.globl lj_BC_ISTC
-	.hidden lj_BC_ISTC
-	.type lj_BC_ISTC, @function
-	.size lj_BC_ISTC, 51
-lj_BC_ISTC:
+	.private_extern _lj_BC_ISTC
+_lj_BC_ISTC:
 	.byte 139,108,194,4,131,195,4,131,253,254,115,21,137,108,202,4
 	.byte 139,44,194,137,44,202,15,183,67,254,141,156,131,0,0,254
 	.byte 255,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238
 
-	.globl lj_BC_ISFC
-	.hidden lj_BC_ISFC
-	.type lj_BC_ISFC, @function
-	.size lj_BC_ISFC, 51
-lj_BC_ISFC:
+	.private_extern _lj_BC_ISFC
+_lj_BC_ISFC:
 	.byte 139,108,194,4,131,195,4,131,253,254,114,21,137,108,202,4
 	.byte 139,44,194,137,44,202,15,183,67,254,141,156,131,0,0,254
 	.byte 255,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238
 
-	.globl lj_BC_IST
-	.hidden lj_BC_IST
-	.type lj_BC_IST, @function
-	.size lj_BC_IST, 41
-lj_BC_IST:
+	.private_extern _lj_BC_IST
+_lj_BC_IST:
 	.byte 139,108,194,4,131,195,4,131,253,254,115,11,15,183,67,254
 	.byte 141,156,131,0,0,254,255,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_ISF
-	.hidden lj_BC_ISF
-	.type lj_BC_ISF, @function
-	.size lj_BC_ISF, 41
-lj_BC_ISF:
+	.private_extern _lj_BC_ISF
+_lj_BC_ISF:
 	.byte 139,108,194,4,131,195,4,131,253,254,114,11,15,183,67,254
 	.byte 141,156,131,0,0,254,255,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_MOV
-	.hidden lj_BC_MOV
-	.type lj_BC_MOV, @function
-	.size lj_BC_MOV, 26
-lj_BC_MOV:
+	.private_extern _lj_BC_MOV
+_lj_BC_MOV:
 	.byte 72,139,44,194,72,137,44,202,139,3,15,182,204,15,182,232
 	.byte 131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_NOT
-	.hidden lj_BC_NOT
-	.type lj_BC_NOT, @function
-	.size lj_BC_NOT, 32
-lj_BC_NOT:
+	.private_extern _lj_BC_NOT
+_lj_BC_NOT:
 	.byte 49,237,131,124,194,4,254,131,213,253,137,108,202,4,139,3
 	.byte 15,182,204,15,182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_UNM
-	.hidden lj_BC_UNM
-	.type lj_BC_UNM, @function
-	.size lj_BC_UNM, 60
-lj_BC_UNM:
+	.private_extern _lj_BC_UNM
+_lj_BC_UNM:
 	.byte 129,124,194,4,255,255,254,255,15,131,17,25,0,0,242,15
 	.byte 16,4,194,72,184,0,0,0,0,0,0,0,128,102,72,15
 	.byte 110,200,15,87,193,242,15,17,4,202,139,3,15,182,204,15
 	.byte 182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_LEN
-	.hidden lj_BC_LEN
-	.type lj_BC_LEN, @function
-	.size lj_BC_LEN, 74
-lj_BC_LEN:
+	.private_extern _lj_BC_LEN
+_lj_BC_LEN:
 	.byte 131,124,194,4,251,117,34,139,4,194,15,87,192,242,15,42
 	.byte 64,12,242,15,17,4,202,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,65,255,36,238,131,124,194,4,244,15,133
-	.byte 251,24,0,0,139,60,194,137,213,232
-	.long lj_tab_len-.-4
+	.byte 251,24,0,0,139,60,194,137,213
+	call _lj_tab_len
 	.byte 242,15,42,192,137,234,15,182,75,253,235,200
 
-	.globl lj_BC_ADDVN
-	.hidden lj_BC_ADDVN
-	.type lj_BC_ADDVN, @function
-	.size lj_BC_ADDVN, 54
-lj_BC_ADDVN:
+	.private_extern _lj_BC_ADDVN
+_lj_BC_ADDVN:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 117,24,0,0,242,15,16,4,234,242,65,15,88,4,199,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_SUBVN
-	.hidden lj_BC_SUBVN
-	.type lj_BC_SUBVN, @function
-	.size lj_BC_SUBVN, 54
-lj_BC_SUBVN:
+	.private_extern _lj_BC_SUBVN
+_lj_BC_SUBVN:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 63,24,0,0,242,15,16,4,234,242,65,15,92,4,199,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_MULVN
-	.hidden lj_BC_MULVN
-	.type lj_BC_MULVN, @function
-	.size lj_BC_MULVN, 54
-lj_BC_MULVN:
+	.private_extern _lj_BC_MULVN
+_lj_BC_MULVN:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 9,24,0,0,242,15,16,4,234,242,65,15,89,4,199,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_DIVVN
-	.hidden lj_BC_DIVVN
-	.type lj_BC_DIVVN, @function
-	.size lj_BC_DIVVN, 54
-lj_BC_DIVVN:
+	.private_extern _lj_BC_DIVVN
+_lj_BC_DIVVN:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 211,23,0,0,242,15,16,4,234,242,65,15,94,4,199,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_MODVN
-	.hidden lj_BC_MODVN
-	.type lj_BC_MODVN, @function
-	.size lj_BC_MODVN, 59
-lj_BC_MODVN:
+	.private_extern _lj_BC_MODVN
+_lj_BC_MODVN:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 157,23,0,0,242,15,16,4,234,242,65,15,16,12,199,232
 	.byte 185,46,0,0,242,15,17,4,202,139,3,15,182,204,15,182
 	.byte 232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_ADDNV
-	.hidden lj_BC_ADDNV
-	.type lj_BC_ADDNV, @function
-	.size lj_BC_ADDNV, 54
-lj_BC_ADDNV:
+	.private_extern _lj_BC_ADDNV
+_lj_BC_ADDNV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 104,23,0,0,242,65,15,16,4,199,242,15,88,4,234,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_SUBNV
-	.hidden lj_BC_SUBNV
-	.type lj_BC_SUBNV, @function
-	.size lj_BC_SUBNV, 54
-lj_BC_SUBNV:
+	.private_extern _lj_BC_SUBNV
+_lj_BC_SUBNV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 50,23,0,0,242,65,15,16,4,199,242,15,92,4,234,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_MULNV
-	.hidden lj_BC_MULNV
-	.type lj_BC_MULNV, @function
-	.size lj_BC_MULNV, 54
-lj_BC_MULNV:
+	.private_extern _lj_BC_MULNV
+_lj_BC_MULNV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 252,22,0,0,242,65,15,16,4,199,242,15,89,4,234,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_DIVNV
-	.hidden lj_BC_DIVNV
-	.type lj_BC_DIVNV, @function
-	.size lj_BC_DIVNV, 54
-lj_BC_DIVNV:
+	.private_extern _lj_BC_DIVNV
+_lj_BC_DIVNV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 198,22,0,0,242,65,15,16,4,199,242,15,94,4,234,242
 	.byte 15,17,4,202,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_MODNV
-	.hidden lj_BC_MODNV
-	.type lj_BC_MODNV, @function
-	.size lj_BC_MODNV, 36
-lj_BC_MODNV:
+	.private_extern _lj_BC_MODNV
+_lj_BC_MODNV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 144,22,0,0,242,65,15,16,4,199,242,15,16,12,234,233
 	.byte 232,254,255,255
 
-	.globl lj_BC_ADDVV
-	.hidden lj_BC_ADDVV
-	.type lj_BC_ADDVV, @function
-	.size lj_BC_ADDVV, 67
-lj_BC_ADDVV:
+	.private_extern _lj_BC_ADDVV
+_lj_BC_ADDVV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 125,22,0,0,129,124,194,4,255,255,254,255,15,131,111,22
 	.byte 0,0,242,15,16,4,234,242,15,88,4,194,242,15,17,4
 	.byte 202,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238
 
-	.globl lj_BC_SUBVV
-	.hidden lj_BC_SUBVV
-	.type lj_BC_SUBVV, @function
-	.size lj_BC_SUBVV, 67
-lj_BC_SUBVV:
+	.private_extern _lj_BC_SUBVV
+_lj_BC_SUBVV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 58,22,0,0,129,124,194,4,255,255,254,255,15,131,44,22
 	.byte 0,0,242,15,16,4,234,242,15,92,4,194,242,15,17,4
 	.byte 202,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238
 
-	.globl lj_BC_MULVV
-	.hidden lj_BC_MULVV
-	.type lj_BC_MULVV, @function
-	.size lj_BC_MULVV, 67
-lj_BC_MULVV:
+	.private_extern _lj_BC_MULVV
+_lj_BC_MULVV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 247,21,0,0,129,124,194,4,255,255,254,255,15,131,233,21
 	.byte 0,0,242,15,16,4,234,242,15,89,4,194,242,15,17,4
 	.byte 202,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238
 
-	.globl lj_BC_DIVVV
-	.hidden lj_BC_DIVVV
-	.type lj_BC_DIVVV, @function
-	.size lj_BC_DIVVV, 67
-lj_BC_DIVVV:
+	.private_extern _lj_BC_DIVVV
+_lj_BC_DIVVV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 180,21,0,0,129,124,194,4,255,255,254,255,15,131,166,21
 	.byte 0,0,242,15,16,4,234,242,15,94,4,194,242,15,17,4
 	.byte 202,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238
 
-	.globl lj_BC_MODVV
-	.hidden lj_BC_MODVV
-	.type lj_BC_MODVV, @function
-	.size lj_BC_MODVV, 49
-lj_BC_MODVV:
+	.private_extern _lj_BC_MODVV
+_lj_BC_MODVV:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 113,21,0,0,129,124,194,4,255,255,254,255,15,131,99,21
 	.byte 0,0,242,15,16,4,234,242,15,16,12,194,233,171,253,255
 	.byte 255
 
-	.globl lj_BC_POW
-	.hidden lj_BC_POW
-	.type lj_BC_POW, @function
-	.size lj_BC_POW, 72
-lj_BC_POW:
+	.private_extern _lj_BC_POW
+_lj_BC_POW:
 	.byte 15,182,236,15,182,192,129,124,234,4,255,255,254,255,15,131
 	.byte 64,21,0,0,129,124,194,4,255,255,254,255,15,131,50,21
 	.byte 0,0,242,15,16,4,234,242,15,16,12,194,232,251,44,0
 	.byte 0,242,15,17,4,202,139,3,15,182,204,15,182,232,131,195
 	.byte 4,193,232,16,65,255,36,238
 
-	.globl lj_BC_CAT
-	.hidden lj_BC_CAT
-	.type lj_BC_CAT, @function
-	.size lj_BC_CAT, 76
-lj_BC_CAT:
+	.private_extern _lj_BC_CAT
+_lj_BC_CAT:
 	.byte 15,182,236,15,182,192,139,124,36,24,137,87,16,141,52,194
-	.byte 137,194,41,234,137,253,137,92,36,28,232
-	.long lj_meta_cat-.-4
+	.byte 137,194,41,234,137,253,137,92,36,28
+	call _lj_meta_cat
 	.byte 139,85,16,133,192,15,133,19,21,0,0,15,182,107,255,15
 	.byte 182,75,253,72,139,4,234,72,137,4,202,139,3,15,182,204
 	.byte 15,182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_KSTR
-	.hidden lj_BC_KSTR
-	.type lj_BC_KSTR, @function
-	.size lj_BC_KSTR, 36
-lj_BC_KSTR:
+	.private_extern _lj_BC_KSTR
+_lj_BC_KSTR:
 	.byte 72,247,208,65,139,4,135,199,68,202,4,251,255,255,255,137
 	.byte 4,202,139,3,15,182,204,15,182,232,131,195,4,193,232,16
 	.byte 65,255,36,238
 
-	.globl lj_BC_KCDATA
-	.hidden lj_BC_KCDATA
-	.type lj_BC_KCDATA, @function
-	.size lj_BC_KCDATA, 36
-lj_BC_KCDATA:
+	.private_extern _lj_BC_KCDATA
+_lj_BC_KCDATA:
 	.byte 72,247,208,65,139,4,135,199,68,202,4,245,255,255,255,137
 	.byte 4,202,139,3,15,182,204,15,182,232,131,195,4,193,232,16
 	.byte 65,255,36,238
 
-	.globl lj_BC_KSHORT
-	.hidden lj_BC_KSHORT
-	.type lj_BC_KSHORT, @function
-	.size lj_BC_KSHORT, 30
-lj_BC_KSHORT:
+	.private_extern _lj_BC_KSHORT
+_lj_BC_KSHORT:
 	.byte 15,191,192,242,15,42,192,242,15,17,4,202,139,3,15,182
 	.byte 204,15,182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_KNUM
-	.hidden lj_BC_KNUM
-	.type lj_BC_KNUM, @function
-	.size lj_BC_KNUM, 29
-lj_BC_KNUM:
+	.private_extern _lj_BC_KNUM
+_lj_BC_KNUM:
 	.byte 242,65,15,16,4,199,242,15,17,4,202,139,3,15,182,204
 	.byte 15,182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_KPRI
-	.hidden lj_BC_KPRI
-	.type lj_BC_KPRI, @function
-	.size lj_BC_KPRI, 25
-lj_BC_KPRI:
+	.private_extern _lj_BC_KPRI
+_lj_BC_KPRI:
 	.byte 72,247,208,137,68,202,4,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_KNIL
-	.hidden lj_BC_KNIL
-	.type lj_BC_KNIL, @function
-	.size lj_BC_KNIL, 43
-lj_BC_KNIL:
+	.private_extern _lj_BC_KNIL
+_lj_BC_KNIL:
 	.byte 141,76,202,12,141,68,194,4,189,255,255,255,255,137,105,248
 	.byte 137,41,131,193,8,57,193,118,247,139,3,15,182,204,15,182
 	.byte 232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_UGET
-	.hidden lj_BC_UGET
-	.type lj_BC_UGET, @function
-	.size lj_BC_UGET, 36
-lj_BC_UGET:
+	.private_extern _lj_BC_UGET
+_lj_BC_UGET:
 	.byte 139,106,248,139,108,133,20,139,109,16,72,139,69,0,72,137
 	.byte 4,202,139,3,15,182,204,15,182,232,131,195,4,193,232,16
 	.byte 65,255,36,238
 
-	.globl lj_BC_USETV
-	.hidden lj_BC_USETV
-	.type lj_BC_USETV, @function
-	.size lj_BC_USETV, 87
-lj_BC_USETV:
+	.private_extern _lj_BC_USETV
+_lj_BC_USETV:
 	.byte 139,106,248,139,108,141,20,128,125,6,0,139,109,16,139,12
 	.byte 194,139,68,194,4,137,77,0,137,69,4,116,6,246,69,252
 	.byte 4,117,18,139,3,15,182,204,15,182,232,131,195,4,193,232
 	.byte 16,65,255,36,238,131,232,252,131,248,246,118,230,246,65,4
-	.byte 3,116,224,137,238,137,213,65,141,190,72,244,255,255,232
-	.long lj_gc_barrieruv-.-4
+	.byte 3,116,224,137,238,137,213,65,141,190,72,244,255,255
+	call _lj_gc_barrieruv
 	.byte 137,234,235,204
 
-	.globl lj_BC_USETS
-	.hidden lj_BC_USETS
-	.type lj_BC_USETS, @function
-	.size lj_BC_USETS, 82
-lj_BC_USETS:
+	.private_extern _lj_BC_USETS
+_lj_BC_USETS:
 	.byte 72,247,208,139,106,248,139,108,141,20,65,139,12,135,139,69
 	.byte 16,137,8,199,64,4,251,255,255,255,246,69,4,4,117,18
 	.byte 139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,255
 	.byte 36,238,246,65,4,3,116,232,128,125,6,0,116,226,137,213
-	.byte 137,198,65,141,190,72,244,255,255,232
-	.long lj_gc_barrieruv-.-4
+	.byte 137,198,65,141,190,72,244,255,255
+	call _lj_gc_barrieruv
 	.byte 137,234,235,206
 
-	.globl lj_BC_USETN
-	.hidden lj_BC_USETN
-	.type lj_BC_USETN, @function
-	.size lj_BC_USETN, 38
-lj_BC_USETN:
+	.private_extern _lj_BC_USETN
+_lj_BC_USETN:
 	.byte 139,106,248,242,65,15,16,4,199,139,108,141,20,139,77,16
 	.byte 242,15,17,1,139,3,15,182,204,15,182,232,131,195,4,193
 	.byte 232,16,65,255,36,238
 
-	.globl lj_BC_USETP
-	.hidden lj_BC_USETP
-	.type lj_BC_USETP, @function
-	.size lj_BC_USETP, 34
-lj_BC_USETP:
+	.private_extern _lj_BC_USETP
+_lj_BC_USETP:
 	.byte 72,247,208,139,106,248,139,108,141,20,139,77,16,137,65,4
 	.byte 139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,255
 	.byte 36,238
 
-	.globl lj_BC_UCLO
-	.hidden lj_BC_UCLO
-	.type lj_BC_UCLO, @function
-	.size lj_BC_UCLO, 51
-lj_BC_UCLO:
+	.private_extern _lj_BC_UCLO
+_lj_BC_UCLO:
 	.byte 141,156,131,0,0,254,255,139,108,36,24,131,125,40,0,116
-	.byte 16,137,85,16,141,52,202,137,239,232
-	.long lj_func_closeuv-.-4
+	.byte 16,137,85,16,141,52,202,137,239
+	call _lj_func_closeuv
 	.byte 139,85,16,139,3,15,182,204,15,182,232,131,195,4,193,232
 	.byte 16,65,255,36,238
 
-	.globl lj_BC_FNEW
-	.hidden lj_BC_FNEW
-	.type lj_BC_FNEW, @function
-	.size lj_BC_FNEW, 64
-lj_BC_FNEW:
+	.private_extern _lj_BC_FNEW
+_lj_BC_FNEW:
 	.byte 72,247,208,139,108,36,24,137,85,16,139,82,248,65,139,52
-	.byte 135,137,239,137,92,36,28,232
-	.long lj_func_newL_gc-.-4
+	.byte 135,137,239,137,92,36,28
+	call _lj_func_newL_gc
 	.byte 139,85,16,15,182,75,253,137,4,202,199,68,202,4,247,255
 	.byte 255,255,139,3,15,182,204,15,182,232,131,195,4,193,232,16
 	.byte 65,255,36,238
 
-	.globl lj_BC_TNEW
-	.hidden lj_BC_TNEW
-	.type lj_BC_TNEW, @function
-	.size lj_BC_TNEW, 109
-lj_BC_TNEW:
+	.private_extern _lj_BC_TNEW
+_lj_BC_TNEW:
 	.byte 139,108,36,24,137,85,16,65,139,142,104,244,255,255,65,59
 	.byte 142,108,244,255,255,137,92,36,28,115,69,137,194,37,255,7
 	.byte 0,0,193,234,11,61,255,7,0,0,116,45,137,239,137,198
-	.byte 232
-	.long lj_tab_new-.-4
+	call _lj_tab_new
 	.byte 139,85,16,15,182,75,253,137,4,202,199,68,202,4,244,255
 	.byte 255,255,139,3,15,182,204,15,182,232,131,195,4,193,232,16
-	.byte 65,255,36,238,184,1,8,0,0,235,204,137,239,232
-	.long lj_gc_step_fixtop-.-4
+	.byte 65,255,36,238,184,1,8,0,0,235,204,137,239
+	call _lj_gc_step_fixtop
 	.byte 15,183,67,254,235,174
 
-	.globl lj_BC_TDUP
-	.hidden lj_BC_TDUP
-	.type lj_BC_TDUP, @function
-	.size lj_BC_TDUP, 93
-lj_BC_TDUP:
+	.private_extern _lj_BC_TDUP
+_lj_BC_TDUP:
 	.byte 72,247,208,139,108,36,24,65,139,142,104,244,255,255,137,92
 	.byte 36,28,65,59,142,108,244,255,255,137,85,16,115,47,65,139
-	.byte 52,135,137,239,232
-	.long lj_tab_dup-.-4
+	.byte 52,135,137,239
+	call _lj_tab_dup
 	.byte 139,85,16,15,182,75,253,137,4,202,199,68,202,4,244,255
 	.byte 255,255,139,3,15,182,204,15,182,232,131,195,4,193,232,16
-	.byte 65,255,36,238,137,239,232
-	.long lj_gc_step_fixtop-.-4
+	.byte 65,255,36,238,137,239
+	call _lj_gc_step_fixtop
 	.byte 15,183,67,254,72,247,208,235,193
 
-	.globl lj_BC_GGET
-	.hidden lj_BC_GGET
-	.type lj_BC_GGET, @function
-	.size lj_BC_GGET, 18
-lj_BC_GGET:
+	.private_extern _lj_BC_GGET
+_lj_BC_GGET:
 	.byte 72,247,208,139,106,248,139,109,8,65,139,4,135,233,193,0
 	.byte 0,0
 
-	.globl lj_BC_GSET
-	.hidden lj_BC_GSET
-	.type lj_BC_GSET, @function
-	.size lj_BC_GSET, 18
-lj_BC_GSET:
+	.private_extern _lj_BC_GSET
+_lj_BC_GSET:
 	.byte 72,247,208,139,106,248,139,109,8,65,139,4,135,233,59,2
 	.byte 0,0
 
-	.globl lj_BC_TGETV
-	.hidden lj_BC_TGETV
-	.type lj_BC_TGETV, @function
-	.size lj_BC_TGETV, 148
-lj_BC_TGETV:
+	.private_extern _lj_BC_TGETV
+_lj_BC_TGETV:
 	.byte 15,182,236,15,182,192,131,124,234,4,244,15,133,191,15,0
 	.byte 0,139,44,234,129,124,194,4,255,255,254,255,115,102,242,15
 	.byte 16,4,194,242,15,45,192,242,15,42,200,102,15,46,193,15
@@ -587,11 +417,8 @@ lj_BC_TGETV:
 	.byte 255,255,235,205,131,124,194,4,251,15,133,65,15,0,0,139
 	.byte 4,194,235,27
 
-	.globl lj_BC_TGETS
-	.hidden lj_BC_TGETS
-	.type lj_BC_TGETS, @function
-	.size lj_BC_TGETS, 124
-lj_BC_TGETS:
+	.private_extern _lj_BC_TGETS
+_lj_BC_TGETS:
 	.byte 15,182,236,15,182,192,72,247,208,65,139,4,135,131,124,234
 	.byte 4,244,15,133,232,14,0,0,139,44,234,139,77,28,35,72
 	.byte 8,107,201,24,3,77,20,131,121,12,251,117,54,57,65,8
@@ -601,11 +428,8 @@ lj_BC_TGETS:
 	.byte 255,235,224,139,73,16,133,201,117,189,139,77,16,133,201,116
 	.byte 228,246,65,6,1,117,222,233,132,14,0,0
 
-	.globl lj_BC_TGETB
-	.hidden lj_BC_TGETB
-	.type lj_BC_TGETB, @function
-	.size lj_BC_TGETB, 99
-lj_BC_TGETB:
+	.private_extern _lj_BC_TGETB
+_lj_BC_TGETB:
 	.byte 15,182,236,15,182,192,131,124,234,4,244,15,133,156,14,0
 	.byte 0,139,44,234,59,69,24,15,131,144,14,0,0,193,224,3
 	.byte 3,69,8,131,120,4,255,116,25,72,139,40,72,137,44,202
@@ -614,11 +438,8 @@ lj_BC_TGETB:
 	.byte 132,88,14,0,0,15,182,75,253,199,68,202,4,255,255,255
 	.byte 255,235,205
 
-	.globl lj_BC_TSETV
-	.hidden lj_BC_TSETV
-	.type lj_BC_TSETV, @function
-	.size lj_BC_TSETV, 173
-lj_BC_TSETV:
+	.private_extern _lj_BC_TSETV
+_lj_BC_TSETV:
 	.byte 15,182,236,15,182,192,131,124,234,4,244,15,133,233,14,0
 	.byte 0,139,44,234,129,124,194,4,255,255,254,255,115,100,242,15
 	.byte 16,4,194,242,15,45,192,242,15,42,200,102,15,46,193,15
@@ -631,11 +452,8 @@ lj_BC_TSETV:
 	.byte 235,54,128,101,4,251,65,139,142,132,244,255,255,65,137,174
 	.byte 132,244,255,255,137,77,12,15,182,75,253,235,163
 
-	.globl lj_BC_TSETS
-	.hidden lj_BC_TSETS
-	.type lj_BC_TSETS, @function
-	.size lj_BC_TSETS, 229
-lj_BC_TSETS:
+	.private_extern _lj_BC_TSETS
+_lj_BC_TSETS:
 	.byte 15,182,236,15,182,192,72,247,208,65,139,4,135,131,124,234
 	.byte 4,244,15,133,249,13,0,0,139,44,234,139,77,28,35,72
 	.byte 8,107,201,24,198,69,6,0,3,77,20,131,121,12,251,117
@@ -647,17 +465,14 @@ lj_BC_TSETS:
 	.byte 16,133,201,117,166,139,77,16,133,201,116,10,246,65,6,2
 	.byte 15,132,123,13,0,0,137,4,36,199,68,36,4,251,255,255
 	.byte 255,137,108,36,8,139,124,36,24,137,87,16,72,141,20,36
-	.byte 137,238,137,253,137,92,36,28,232
-	.long lj_tab_newkey-.-4
+	.byte 137,238,137,253,137,92,36,28
+	call _lj_tab_newkey
 	.byte 139,85,16,139,108,36,8,137,193,233,113,255,255,255,128,101
 	.byte 4,251,65,139,134,132,244,255,255,65,137,174,132,244,255,255
 	.byte 137,69,12,233,97,255,255,255
 
-	.globl lj_BC_TSETB
-	.hidden lj_BC_TSETB
-	.type lj_BC_TSETB, @function
-	.size lj_BC_TSETB, 124
-lj_BC_TSETB:
+	.private_extern _lj_BC_TSETB
+_lj_BC_TSETB:
 	.byte 15,182,236,15,182,192,131,124,234,4,244,15,133,68,13,0
 	.byte 0,139,44,234,59,69,24,15,131,56,13,0,0,193,224,3
 	.byte 3,69,8,131,120,4,255,116,31,246,69,4,4,117,50,72
@@ -667,52 +482,37 @@ lj_BC_TSETB:
 	.byte 200,128,101,4,251,65,139,142,132,244,255,255,65,137,174,132
 	.byte 244,255,255,137,77,12,15,182,75,253,235,179
 
-	.globl lj_BC_TSETM
-	.hidden lj_BC_TSETM
-	.type lj_BC_TSETM, @function
-	.size lj_BC_TSETM, 142
-lj_BC_TSETM:
+	.private_extern _lj_BC_TSETM
+_lj_BC_TSETM:
 	.byte 68,137,60,36,69,139,60,199,141,12,202,139,105,248,246,69
 	.byte 4,4,117,99,139,68,36,4,131,232,1,116,37,68,1,248
 	.byte 59,69,24,119,51,68,41,248,65,193,231,3,68,3,125,8
 	.byte 72,139,41,131,193,8,73,137,47,65,131,199,8,131,232,1
 	.byte 117,238,68,139,60,36,139,3,15,182,204,15,182,232,131,195
 	.byte 4,193,232,16,65,255,36,238,139,124,36,24,137,87,16,137
-	.byte 238,137,194,137,253,137,92,36,28,232
-	.long lj_tab_reasize-.-4
+	.byte 238,137,194,137,253,137,92,36,28
+	call _lj_tab_reasize
 	.byte 139,85,16,15,182,75,253,235,145,128,101,4,251,65,139,134
 	.byte 132,244,255,255,65,137,174,132,244,255,255,137,69,12,235,134
 
-	.globl lj_BC_CALLM
-	.hidden lj_BC_CALLM
-	.type lj_BC_CALLM, @function
-	.size lj_BC_CALLM, 46
-lj_BC_CALLM:
+	.private_extern _lj_BC_CALLM
+_lj_BC_CALLM:
 	.byte 15,182,192,3,68,36,4,131,124,202,4,247,139,44,202,15
 	.byte 133,190,13,0,0,141,84,202,8,137,90,252,139,93,16,139
 	.byte 11,15,182,233,15,182,205,131,195,4,65,255,36,238
 
-	.globl lj_BC_CALL
-	.hidden lj_BC_CALL
-	.type lj_BC_CALL, @function
-	.size lj_BC_CALL, 42
-lj_BC_CALL:
+	.private_extern _lj_BC_CALL
+_lj_BC_CALL:
 	.byte 15,182,192,131,124,202,4,247,139,44,202,15,133,148,13,0
 	.byte 0,141,84,202,8,137,90,252,139,93,16,139,11,15,182,233
 	.byte 15,182,205,131,195,4,65,255,36,238
 
-	.globl lj_BC_CALLMT
-	.hidden lj_BC_CALLMT
-	.type lj_BC_CALLMT, @function
-	.size lj_BC_CALLMT, 4
-lj_BC_CALLMT:
+	.private_extern _lj_BC_CALLMT
+_lj_BC_CALLMT:
 	.byte 3,68,36,4
 
-	.globl lj_BC_CALLT
-	.hidden lj_BC_CALLT
-	.type lj_BC_CALLT, @function
-	.size lj_BC_CALLT, 148
-lj_BC_CALLT:
+	.private_extern _lj_BC_CALLT
+_lj_BC_CALLT:
 	.byte 141,76,202,8,65,137,215,139,105,248,131,121,252,247,15,133
 	.byte 103,13,0,0,139,90,252,247,195,3,0,0,0,117,91,137
 	.byte 106,248,137,68,36,4,131,232,1,116,21,72,139,41,131,193
@@ -724,22 +524,16 @@ lj_BC_CALLT:
 	.byte 0,0,0,117,10,41,218,65,137,215,139,90,252,235,144,131
 	.byte 195,3,235,139
 
-	.globl lj_BC_ITERC
-	.hidden lj_BC_ITERC
-	.type lj_BC_ITERC, @function
-	.size lj_BC_ITERC, 68
-lj_BC_ITERC:
+	.private_extern _lj_BC_ITERC
+_lj_BC_ITERC:
 	.byte 141,76,202,8,72,139,105,232,72,139,65,240,72,137,41,72
 	.byte 137,65,8,139,105,224,139,65,228,137,105,248,137,65,252,131
 	.byte 248,247,184,3,0,0,0,15,133,186,12,0,0,137,202,137
 	.byte 90,252,139,93,16,139,11,15,182,233,15,182,205,131,195,4
 	.byte 65,255,36,238
 
-	.globl lj_BC_ITERN
-	.hidden lj_BC_ITERN
-	.type lj_BC_ITERN, @function
-	.size lj_BC_ITERN, 165
-lj_BC_ITERN:
+	.private_extern _lj_BC_ITERN
+_lj_BC_ITERN:
 	.byte 68,137,60,36,68,137,116,36,4,139,108,202,240,139,68,202
 	.byte 248,68,139,117,24,131,195,4,68,139,125,8,68,57,240,115
 	.byte 76,65,131,124,199,4,255,116,63,242,15,42,192,73,139,44
@@ -752,11 +546,8 @@ lj_BC_ITERN:
 	.byte 72,137,44,202,72,137,68,202,8,68,137,116,202,248,235,162
 	.byte 131,192,1,235,203
 
-	.globl lj_BC_VARG
-	.hidden lj_BC_VARG
-	.type lj_BC_VARG, @function
-	.size lj_BC_VARG, 191
-lj_BC_VARG:
+	.private_extern _lj_BC_VARG
+_lj_BC_VARG:
 	.byte 15,182,236,15,182,192,68,137,60,36,68,141,124,194,11,141
 	.byte 12,202,68,43,122,252,133,237,116,68,141,108,233,248,65,57
 	.byte 215,115,23,73,139,71,248,65,131,199,8,72,137,1,131,193
@@ -767,15 +558,12 @@ lj_BC_VARG:
 	.byte 237,3,131,197,1,137,108,36,4,139,108,36,24,1,200,59
 	.byte 69,32,119,21,73,139,71,248,65,131,199,8,72,137,1,131
 	.byte 193,8,65,57,215,114,237,235,175,137,85,16,137,77,24,137
-	.byte 92,36,28,65,41,215,139,116,36,4,131,238,1,137,239,232
-	.long lj_state_growstack-.-4
+	.byte 92,36,28,65,41,215,139,116,36,4,131,238,1,137,239
+	call _lj_state_growstack
 	.byte 139,85,16,139,77,24,65,1,215,235,197
 
-	.globl lj_BC_ISNEXT
-	.hidden lj_BC_ISNEXT
-	.type lj_BC_ISNEXT, @function
-	.size lj_BC_ISNEXT, 88
-lj_BC_ISNEXT:
+	.private_extern _lj_BC_ISNEXT
+_lj_BC_ISNEXT:
 	.byte 131,124,202,236,247,117,65,139,108,202,232,131,124,202,244,244
 	.byte 117,54,131,124,202,252,255,117,47,128,125,6,4,117,41,141
 	.byte 156,131,0,0,254,255,199,68,202,248,0,0,0,0,199,68
@@ -783,18 +571,12 @@ lj_BC_ISNEXT:
 	.byte 4,193,232,16,65,255,36,238,198,67,252,84,141,156,131,0
 	.byte 0,254,255,198,3,65,235,222
 
-	.globl lj_BC_RETM
-	.hidden lj_BC_RETM
-	.type lj_BC_RETM, @function
-	.size lj_BC_RETM, 4
-lj_BC_RETM:
+	.private_extern _lj_BC_RETM
+_lj_BC_RETM:
 	.byte 3,68,36,4
 
-	.globl lj_BC_RET
-	.hidden lj_BC_RET
-	.type lj_BC_RET, @function
-	.size lj_BC_RET, 136
-lj_BC_RET:
+	.private_extern _lj_BC_RET
+_lj_BC_RET:
 	.byte 193,225,3,139,90,252,137,68,36,4,247,195,3,0,0,0
 	.byte 117,94,65,137,215,131,232,1,116,17,73,139,44,15,73,137
 	.byte 111,248,65,131,199,8,131,232,1,117,239,139,68,36,4,15
@@ -805,11 +587,8 @@ lj_BC_RET:
 	.byte 141,107,253,247,197,7,0,0,0,15,133,240,4,0,0,41
 	.byte 234,1,233,233,123,255,255,255
 
-	.globl lj_BC_RET0
-	.hidden lj_BC_RET0
-	.type lj_BC_RET0, @function
-	.size lj_BC_RET0, 92
-lj_BC_RET0:
+	.private_extern _lj_BC_RET0
+_lj_BC_RET0:
 	.byte 139,90,252,137,68,36,4,247,195,3,0,0,0,117,58,56
 	.byte 67,255,119,40,15,182,75,253,72,247,209,141,20,202,68,139
 	.byte 122,248,69,139,127,16,69,139,127,208,139,3,15,182,204,15
@@ -817,11 +596,8 @@ lj_BC_RET0:
 	.byte 255,255,255,255,131,192,1,235,198,141,107,253,247,197,7,0
 	.byte 0,0,15,133,143,4,0,0,41,234,235,164
 
-	.globl lj_BC_RET1
-	.hidden lj_BC_RET1
-	.type lj_BC_RET1, @function
-	.size lj_BC_RET1, 105
-lj_BC_RET1:
+	.private_extern _lj_BC_RET1
+_lj_BC_RET1:
 	.byte 193,225,3,139,90,252,137,68,36,4,247,195,3,0,0,0
 	.byte 117,66,72,139,44,10,72,137,106,248,56,67,255,119,40,15
 	.byte 182,75,253,72,247,209,141,20,202,68,139,122,248,69,139,127
@@ -830,11 +606,8 @@ lj_BC_RET1:
 	.byte 192,1,235,198,141,107,253,247,197,7,0,0,0,15,133,40
 	.byte 4,0,0,41,234,1,233,235,154
 
-	.globl lj_BC_FORI
-	.hidden lj_BC_FORI
-	.type lj_BC_FORI, @function
-	.size lj_BC_FORI, 97
-lj_BC_FORI:
+	.private_extern _lj_BC_FORI
+_lj_BC_FORI:
 	.byte 141,12,202,129,121,4,255,255,254,255,15,131,215,9,0,0
 	.byte 129,121,12,255,255,254,255,15,131,202,9,0,0,139,105,20
 	.byte 129,253,255,255,254,255,15,131,187,9,0,0,242,15,16,1
@@ -843,11 +616,8 @@ lj_BC_FORI:
 	.byte 232,131,195,4,193,232,16,65,255,36,238,102,15,46,193,235
 	.byte 218
 
-	.globl lj_BC_JFORI
-	.hidden lj_BC_JFORI
-	.type lj_BC_JFORI, @function
-	.size lj_BC_JFORI, 105
-lj_BC_JFORI:
+	.private_extern _lj_BC_JFORI
+_lj_BC_JFORI:
 	.byte 141,12,202,129,121,4,255,255,254,255,15,131,118,9,0,0
 	.byte 129,121,12,255,255,254,255,15,131,105,9,0,0,139,105,20
 	.byte 129,253,255,255,254,255,15,131,90,9,0,0,242,15,16,1
@@ -856,134 +626,89 @@ lj_BC_JFORI:
 	.byte 0,139,3,15,182,204,15,182,232,131,195,4,193,232,16,65
 	.byte 255,36,238,102,15,46,193,235,210
 
-	.globl lj_BC_FORL
-	.hidden lj_BC_FORL
-	.type lj_BC_FORL, @function
-	.size lj_BC_FORL, 20
-lj_BC_FORL:
+	.private_extern _lj_BC_FORL
+_lj_BC_FORL:
 	.byte 137,221,209,237,131,229,126,102,65,131,108,46,128,2,15,130
 	.byte 135,28,0,0
 
-	.globl lj_BC_IFORL
-	.hidden lj_BC_IFORL
-	.type lj_BC_IFORL, @function
-	.size lj_BC_IFORL, 70
-lj_BC_IFORL:
+	.private_extern _lj_BC_IFORL
+_lj_BC_IFORL:
 	.byte 141,12,202,139,105,20,242,15,16,1,242,15,16,73,8,242
 	.byte 15,88,65,16,242,15,17,1,133,237,120,36,102,15,46,200
 	.byte 242,15,17,65,24,114,7,141,156,131,0,0,254,255,139,3
 	.byte 15,182,204,15,182,232,131,195,4,193,232,16,65,255,36,238
 	.byte 102,15,46,193,235,218
 
-	.globl lj_BC_JFORL
-	.hidden lj_BC_JFORL
-	.type lj_BC_JFORL, @function
-	.size lj_BC_JFORL, 67
-lj_BC_JFORL:
+	.private_extern _lj_BC_JFORL
+_lj_BC_JFORL:
 	.byte 141,12,202,139,105,20,242,15,16,1,242,15,16,73,8,242
 	.byte 15,88,65,16,242,15,17,1,133,237,120,33,102,15,46,200
 	.byte 242,15,17,65,24,15,131,165,0,0,0,139,3,15,182,204
 	.byte 15,182,232,131,195,4,193,232,16,65,255,36,238,102,15,46
 	.byte 193,235,221
 
-	.globl lj_BC_ITERL
-	.hidden lj_BC_ITERL
-	.type lj_BC_ITERL, @function
-	.size lj_BC_ITERL, 20
-lj_BC_ITERL:
+	.private_extern _lj_BC_ITERL
+_lj_BC_ITERL:
 	.byte 137,221,209,237,131,229,126,102,65,131,108,46,128,2,15,130
 	.byte 234,27,0,0
 
-	.globl lj_BC_IITERL
-	.hidden lj_BC_IITERL
-	.type lj_BC_IITERL, @function
-	.size lj_BC_IITERL, 44
-lj_BC_IITERL:
+	.private_extern _lj_BC_IITERL
+_lj_BC_IITERL:
 	.byte 141,12,202,139,105,4,131,253,255,116,15,141,156,131,0,0
 	.byte 254,255,139,1,137,105,252,137,65,248,139,3,15,182,204,15
 	.byte 182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_JITERL
-	.hidden lj_BC_JITERL
-	.type lj_BC_JITERL, @function
-	.size lj_BC_JITERL, 39
-lj_BC_JITERL:
+	.private_extern _lj_BC_JITERL
+_lj_BC_JITERL:
 	.byte 141,12,202,139,105,4,131,253,255,116,10,137,105,252,139,41
 	.byte 137,105,248,235,56,139,3,15,182,204,15,182,232,131,195,4
 	.byte 193,232,16,65,255,36,238
 
-	.globl lj_BC_LOOP
-	.hidden lj_BC_LOOP
-	.type lj_BC_LOOP, @function
-	.size lj_BC_LOOP, 20
-lj_BC_LOOP:
+	.private_extern _lj_BC_LOOP
+_lj_BC_LOOP:
 	.byte 137,221,209,237,131,229,126,102,65,131,108,46,128,2,15,130
 	.byte 131,27,0,0
 
-	.globl lj_BC_ILOOP
-	.hidden lj_BC_ILOOP
-	.type lj_BC_ILOOP, @function
-	.size lj_BC_ILOOP, 18
-lj_BC_ILOOP:
+	.private_extern _lj_BC_ILOOP
+_lj_BC_ILOOP:
 	.byte 139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,255
 	.byte 36,238
 
-	.globl lj_BC_JLOOP
-	.hidden lj_BC_JLOOP
-	.type lj_BC_JLOOP, @function
-	.size lj_BC_JLOOP, 47
-lj_BC_JLOOP:
+	.private_extern _lj_BC_JLOOP
+_lj_BC_JLOOP:
 	.byte 65,139,142,16,247,255,255,139,4,129,72,139,64,64,139,108
 	.byte 36,24,65,137,150,64,245,255,255,65,137,174,60,245,255,255
 	.byte 76,137,36,36,76,137,108,36,8,72,131,236,16,255,224
 
-	.globl lj_BC_JMP
-	.hidden lj_BC_JMP
-	.type lj_BC_JMP, @function
-	.size lj_BC_JMP, 25
-lj_BC_JMP:
+	.private_extern _lj_BC_JMP
+_lj_BC_JMP:
 	.byte 141,156,131,0,0,254,255,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,65,255,36,238
 
-	.globl lj_BC_FUNCF
-	.hidden lj_BC_FUNCF
-	.type lj_BC_FUNCF, @function
-	.size lj_BC_FUNCF, 20
-lj_BC_FUNCF:
+	.private_extern _lj_BC_FUNCF
+_lj_BC_FUNCF:
 	.byte 137,221,209,237,131,229,126,102,65,131,108,46,128,1,15,130
 	.byte 77,27,0,0
 
-	.globl lj_BC_IFUNCF
-	.hidden lj_BC_IFUNCF
-	.type lj_BC_IFUNCF, @function
-	.size lj_BC_IFUNCF, 63
-lj_BC_IFUNCF:
+	.private_extern _lj_BC_IFUNCF
+_lj_BC_IFUNCF:
 	.byte 68,139,123,204,139,108,36,24,141,12,202,59,77,32,15,135
 	.byte 209,2,0,0,15,182,75,194,57,200,118,18,139,3,15,182
 	.byte 204,15,182,232,131,195,4,193,232,16,65,255,36,238,199,68
 	.byte 194,252,255,255,255,255,131,192,1,57,200,118,241,235,221
 
-	.globl lj_BC_JFUNCF
-	.hidden lj_BC_JFUNCF
-	.type lj_BC_JFUNCF, @function
-	.size lj_BC_JFUNCF, 54
-lj_BC_JFUNCF:
+	.private_extern _lj_BC_JFUNCF
+_lj_BC_JFUNCF:
 	.byte 68,139,123,204,139,108,36,24,141,12,202,59,77,32,15,135
 	.byte 146,2,0,0,15,182,75,194,57,200,118,9,15,183,67,254
 	.byte 233,64,255,255,255,199,68,194,252,255,255,255,255,131,192,1
 	.byte 57,200,118,241,235,230
 
-	.globl lj_BC_FUNCV
-	.hidden lj_BC_FUNCV
-	.type lj_BC_FUNCV, @function
-	.size lj_BC_FUNCV, 0
-lj_BC_FUNCV:
+	.private_extern _lj_BC_FUNCV
+_lj_BC_FUNCV:
 
-	.globl lj_BC_IFUNCV
-	.hidden lj_BC_IFUNCV
-	.type lj_BC_IFUNCV, @function
-	.size lj_BC_IFUNCV, 125
-lj_BC_IFUNCV:
+	.private_extern _lj_BC_IFUNCV
+_lj_BC_IFUNCV:
 	.byte 141,44,197,3,0,0,0,141,4,194,68,139,122,248,137,104
 	.byte 252,68,137,120,248,139,108,36,24,141,12,200,59,77,32,15
 	.byte 135,70,2,0,0,137,209,137,194,15,182,107,194,133,237,116
@@ -993,29 +718,20 @@ lj_BC_IFUNCV:
 	.byte 182,232,131,195,4,193,232,16,65,255,36,238,199,64,4,255
 	.byte 255,255,255,131,192,8,131,237,1,117,241,235,217
 
-	.globl lj_BC_JFUNCV
-	.hidden lj_BC_JFUNCV
-	.type lj_BC_JFUNCV, @function
-	.size lj_BC_JFUNCV, 1
-lj_BC_JFUNCV:
+	.private_extern _lj_BC_JFUNCV
+_lj_BC_JFUNCV:
 	.byte 204
 
-	.globl lj_BC_FUNCC
-	.hidden lj_BC_FUNCC
-	.type lj_BC_FUNCC, @function
-	.size lj_BC_FUNCC, 79
-lj_BC_FUNCC:
+	.private_extern _lj_BC_FUNCC
+_lj_BC_FUNCC:
 	.byte 139,106,248,76,139,125,24,139,108,36,24,141,68,194,248,137
 	.byte 85,16,141,136,160,0,0,0,59,77,32,137,69,24,137,239
 	.byte 15,135,192,1,0,0,65,199,134,48,245,255,255,254,255,255
 	.byte 255,65,255,215,65,199,134,48,245,255,255,255,255,255,255,139
 	.byte 85,16,141,12,194,247,217,3,77,24,139,90,252,235,119
 
-	.globl lj_BC_FUNCCW
-	.hidden lj_BC_FUNCCW
-	.type lj_BC_FUNCCW, @function
-	.size lj_BC_FUNCCW, 86
-lj_BC_FUNCCW:
+	.private_extern _lj_BC_FUNCCW
+_lj_BC_FUNCCW:
 	.byte 139,106,248,76,139,125,24,139,108,36,24,141,68,194,248,137
 	.byte 85,16,141,136,160,0,0,0,59,77,32,137,69,24,76,137
 	.byte 254,137,239,15,135,110,1,0,0,65,199,134,48,245,255,255
@@ -1023,132 +739,86 @@ lj_BC_FUNCCW:
 	.byte 255,255,255,255,255,255,139,85,16,141,12,194,247,217,3,77
 	.byte 24,139,90,252,235,33
 
-	.globl lj_vm_returnp
-	.hidden lj_vm_returnp
-	.type lj_vm_returnp, @function
-	.size lj_vm_returnp, 33
-lj_vm_returnp:
+	.private_extern _lj_vm_returnp
+_lj_vm_returnp:
 	.byte 247,195,4,0,0,0,15,132,216,2,0,0,131,227,248,41
 	.byte 218,72,141,76,25,248,139,90,252,199,68,10,4,253,255,255
 	.byte 255
 
-	.globl lj_vm_returnc
-	.hidden lj_vm_returnc
-	.type lj_vm_returnc, @function
-	.size lj_vm_returnc, 25
-lj_vm_returnc:
+	.private_extern _lj_vm_returnc
+_lj_vm_returnc:
 	.byte 131,192,1,15,132,167,0,0,0,137,68,36,4,247,195,3
 	.byte 0,0,0,15,132,163,250,255,255
 
-	.globl lj_vm_return
-	.hidden lj_vm_return
-	.type lj_vm_return, @function
-	.size lj_vm_return, 75
-lj_vm_return:
+	.private_extern _lj_vm_return
+_lj_vm_return:
 	.byte 131,243,1,247,195,3,0,0,0,117,187,65,199,134,48,245
 	.byte 255,255,254,255,255,255,131,227,248,41,211,247,219,131,232,1
 	.byte 116,16,72,139,44,10,72,137,106,248,131,194,8,131,232,1
 	.byte 117,240,139,108,36,24,137,93,16,139,68,36,4,139,76,36
 	.byte 16,57,193,117,28,131,234,8,137,85,24
 
-	.globl lj_vm_leave_cp
-	.hidden lj_vm_leave_cp
-	.type lj_vm_leave_cp, @function
-	.size lj_vm_leave_cp, 11
-lj_vm_leave_cp:
+	.private_extern _lj_vm_leave_cp
+_lj_vm_leave_cp:
 	.byte 72,139,76,36,32,72,137,77,48,49,192
 
-	.globl lj_vm_leave_unw
-	.hidden lj_vm_leave_unw
-	.type lj_vm_leave_unw, @function
-	.size lj_vm_leave_unw, 65
-lj_vm_leave_unw:
+	.private_extern _lj_vm_leave_unw
+_lj_vm_leave_unw:
 	.byte 72,131,196,40,65,94,65,95,91,93,195,114,20,59,85,32
 	.byte 119,26,199,66,252,255,255,255,255,131,194,8,131,192,1,235
 	.byte 202,133,201,116,202,41,193,141,20,202,235,195,137,85,24,137
-	.byte 68,36,4,137,206,137,239,232
-	.long lj_state_growstack-.-4
+	.byte 68,36,4,137,206,137,239
+	call _lj_state_growstack
 	.byte 139,85,24,235,162
 
-	.globl lj_vm_unwind_yield
-	.hidden lj_vm_unwind_yield
-	.type lj_vm_unwind_yield, @function
-	.size lj_vm_unwind_yield, 4
-lj_vm_unwind_yield:
+	.private_extern _lj_vm_unwind_yield
+_lj_vm_unwind_yield:
 	.byte 176,1,235,5
 
-	.globl lj_vm_unwind_c
-	.hidden lj_vm_unwind_c
-	.type lj_vm_unwind_c, @function
-	.size lj_vm_unwind_c, 5
-lj_vm_unwind_c:
+	.private_extern _lj_vm_unwind_c
+_lj_vm_unwind_c:
 	.byte 137,240,72,137,252
 
-	.globl lj_vm_unwind_c_eh
-	.hidden lj_vm_unwind_c_eh
-	.type lj_vm_unwind_c_eh, @function
-	.size lj_vm_unwind_c_eh, 19
-lj_vm_unwind_c_eh:
+	.private_extern _lj_vm_unwind_c_eh
+_lj_vm_unwind_c_eh:
 	.byte 139,108,36,24,139,109,8,199,133,232,0,0,0,254,255,255
 	.byte 255,235,163
 
-	.globl lj_vm_unwind_rethrow
-	.hidden lj_vm_unwind_rethrow
-	.type lj_vm_unwind_rethrow, @function
-	.size lj_vm_unwind_rethrow, 21
-lj_vm_unwind_rethrow:
+	.private_extern _lj_vm_unwind_rethrow
+_lj_vm_unwind_rethrow:
 	.byte 139,124,36,24,137,198,72,131,196,40,65,94,65,95,91,93
-	.byte 233
-	.long lj_err_throw-.-4
+	jmp _lj_err_throw
 
-	.globl lj_vm_unwind_ff
-	.hidden lj_vm_unwind_ff
-	.type lj_vm_unwind_ff, @function
-	.size lj_vm_unwind_ff, 7
-lj_vm_unwind_ff:
+	.private_extern _lj_vm_unwind_ff
+_lj_vm_unwind_ff:
 	.byte 72,131,231,252,72,137,252
 
-	.globl lj_vm_unwind_ff_eh
-	.hidden lj_vm_unwind_ff_eh
-	.type lj_vm_unwind_ff_eh, @function
-	.size lj_vm_unwind_ff_eh, 56
-lj_vm_unwind_ff_eh:
+	.private_extern _lj_vm_unwind_ff_eh
+_lj_vm_unwind_ff_eh:
 	.byte 139,108,36,24,72,199,193,248,255,255,255,184,2,0,0,0
 	.byte 139,85,16,68,139,117,8,65,129,198,184,11,0,0,139,90
 	.byte 252,199,66,252,254,255,255,255,65,199,134,48,245,255,255,255
 	.byte 255,255,255,233,224,254,255,255
 
-	.globl lj_vm_growstack_c
-	.hidden lj_vm_growstack_c
-	.type lj_vm_growstack_c, @function
-	.size lj_vm_growstack_c, 7
-lj_vm_growstack_c:
+	.private_extern _lj_vm_growstack_c
+_lj_vm_growstack_c:
 	.byte 190,20,0,0,0,235,28
 
-	.globl lj_vm_growstack_v
-	.hidden lj_vm_growstack_v
-	.type lj_vm_growstack_v, @function
-	.size lj_vm_growstack_v, 5
-lj_vm_growstack_v:
+	.private_extern _lj_vm_growstack_v
+_lj_vm_growstack_v:
 	.byte 131,232,8,235,4
 
-	.globl lj_vm_growstack_f
-	.hidden lj_vm_growstack_f
-	.type lj_vm_growstack_f, @function
-	.size lj_vm_growstack_f, 65
-lj_vm_growstack_f:
+	.private_extern _lj_vm_growstack_f
+_lj_vm_growstack_f:
 	.byte 141,68,194,248,15,182,75,195,131,195,4,137,85,16,137,69
-	.byte 24,137,92,36,28,137,206,137,239,232
-	.long lj_state_growstack-.-4
+	.byte 24,137,92,36,28,137,206,137,239
+	call _lj_state_growstack
 	.byte 139,85,16,139,69,24,139,106,248,41,208,193,232,3,131,192
 	.byte 1,139,93,16,139,11,15,182,233,15,182,205,131,195,4,65
 	.byte 255,36,238
 
-	.globl lj_vm_resume
-	.hidden lj_vm_resume
-	.type lj_vm_resume, @function
-	.size lj_vm_resume, 125
-lj_vm_resume:
+	.private_extern _lj_vm_resume
+_lj_vm_resume:
 	.byte 85,83,65,87,65,86,72,131,236,40,137,253,137,124,36,24
 	.byte 137,241,187,5,0,0,0,49,192,76,141,124,36,1,68,139
 	.byte 117,8,65,129,198,184,11,0,0,76,137,125,48,137,68,36
@@ -1158,19 +828,13 @@ lj_vm_resume:
 	.byte 131,192,1,41,209,139,90,252,137,68,36,4,247,195,3,0
 	.byte 0,0,15,132,215,248,255,255,233,47,254,255,255
 
-	.globl lj_vm_pcall
-	.hidden lj_vm_pcall
-	.type lj_vm_pcall, @function
-	.size lj_vm_pcall, 21
-lj_vm_pcall:
+	.private_extern _lj_vm_pcall
+_lj_vm_pcall:
 	.byte 85,83,65,87,65,86,72,131,236,40,187,5,0,0,0,137
 	.byte 76,36,20,235,15
 
-	.globl lj_vm_call
-	.hidden lj_vm_call
-	.type lj_vm_call, @function
-	.size lj_vm_call, 84
-lj_vm_call:
+	.private_extern _lj_vm_call
+_lj_vm_call:
 	.byte 85,83,65,87,65,86,72,131,236,40,187,1,0,0,0,137
 	.byte 84,36,16,137,253,137,124,36,24,137,241,76,139,125,48,76
 	.byte 137,124,36,32,137,108,36,28,72,137,101,48,68,139,117,8
@@ -1178,299 +842,197 @@ lj_vm_call:
 	.byte 255,255,139,85,16,1,203,41,211,139,69,24,41,200,193,232
 	.byte 3,131,192,1
 
-	.globl lj_vm_call_dispatch
-	.hidden lj_vm_call_dispatch
-	.type lj_vm_call_dispatch, @function
-	.size lj_vm_call_dispatch, 13
-lj_vm_call_dispatch:
+	.private_extern _lj_vm_call_dispatch
+_lj_vm_call_dispatch:
 	.byte 139,105,248,131,121,252,247,15,133,45,3,0,0
 
-	.globl lj_vm_call_dispatch_f
-	.hidden lj_vm_call_dispatch_f
-	.type lj_vm_call_dispatch_f, @function
-	.size lj_vm_call_dispatch_f, 23
-lj_vm_call_dispatch_f:
+	.private_extern _lj_vm_call_dispatch_f
+_lj_vm_call_dispatch_f:
 	.byte 137,202,137,90,252,139,93,16,139,11,15,182,233,15,182,205
 	.byte 131,195,4,65,255,36,238
 
-	.globl lj_vm_cpcall
-	.hidden lj_vm_cpcall
-	.type lj_vm_cpcall, @function
-	.size lj_vm_cpcall, 76
-lj_vm_cpcall:
+	.private_extern _lj_vm_cpcall
+_lj_vm_cpcall:
 	.byte 85,83,65,87,65,86,72,131,236,40,137,253,137,124,36,24
 	.byte 137,108,36,28,68,139,125,36,68,43,125,24,199,68,36,20
 	.byte 0,0,0,0,68,137,124,36,16,76,139,125,48,76,137,124
 	.byte 36,32,72,137,101,48,255,209,133,192,15,132,173,253,255,255
 	.byte 137,193,187,5,0,0,0,233,104,255,255,255
 
-	.globl lj_cont_dispatch
-	.hidden lj_cont_dispatch
-	.type lj_cont_dispatch, @function
-	.size lj_cont_dispatch, 74
-lj_cont_dispatch:
+	.private_extern _lj_cont_dispatch
+_lj_cont_dispatch:
 	.byte 1,209,131,227,248,137,213,41,218,199,68,193,252,255,255,255
 	.byte 255,137,200,139,93,244,72,99,77,240,131,249,1,118,24,76
 	.byte 141,61,127,228,255,255,76,1,249,68,139,122,248,69,139,127
 	.byte 16,69,139,127,208,255,225,15,132,67,29,0,0,41,213,193
 	.byte 237,3,141,69,255,233,104,21,0,0
 
-	.globl lj_cont_cat
-	.hidden lj_cont_cat
-	.type lj_cont_cat, @function
-	.size lj_cont_cat, 46
-lj_cont_cat:
+	.private_extern _lj_cont_cat
+_lj_cont_cat:
 	.byte 15,182,75,255,131,237,16,141,12,202,41,233,15,132,132,0
 	.byte 0,0,247,217,193,233,3,139,124,36,24,137,87,16,137,202
 	.byte 72,139,8,72,137,77,0,137,238,233,247,236,255,255
 
-	.globl lj_vmeta_tgets
-	.hidden lj_vmeta_tgets
-	.type lj_vmeta_tgets, @function
-	.size lj_vmeta_tgets, 41
-lj_vmeta_tgets:
+	.private_extern _lj_vmeta_tgets
+_lj_vmeta_tgets:
 	.byte 137,4,36,199,68,36,4,251,255,255,255,72,141,4,36,128
 	.byte 123,252,52,117,46,65,141,142,232,244,255,255,137,41,199,65
 	.byte 4,244,255,255,255,137,205,235,33
 
-	.globl lj_vmeta_tgetb
-	.hidden lj_vmeta_tgetb
-	.type lj_vmeta_tgetb, @function
-	.size lj_vmeta_tgetb, 19
-lj_vmeta_tgetb:
+	.private_extern _lj_vmeta_tgetb
+_lj_vmeta_tgetb:
 	.byte 15,182,67,254,242,15,42,192,242,15,17,4,36,72,141,4
 	.byte 36,235,7
 
-	.globl lj_vmeta_tgetv
-	.hidden lj_vmeta_tgetv
-	.type lj_vmeta_tgetv, @function
-	.size lj_vmeta_tgetv, 44
-lj_vmeta_tgetv:
+	.private_extern _lj_vmeta_tgetv
+_lj_vmeta_tgetv:
 	.byte 15,182,67,254,141,4,194,15,182,107,255,141,44,234,139,124
 	.byte 36,24,137,87,16,137,238,72,137,194,137,253,137,92,36,28
-	.byte 232
-	.long lj_meta_tget-.-4
+	call _lj_meta_tget
 	.byte 139,85,16,133,192,116,29
 
-	.globl lj_cont_ra
-	.hidden lj_cont_ra
-	.type lj_cont_ra, @function
-	.size lj_cont_ra, 53
-lj_cont_ra:
+	.private_extern _lj_cont_ra
+_lj_cont_ra:
 	.byte 15,182,75,253,72,139,40,72,137,44,202,139,3,15,182,204
 	.byte 15,182,232,131,195,4,193,232,16,65,255,36,238,139,77,24
 	.byte 137,89,244,141,89,2,41,211,139,105,248,184,3,0,0,0
 	.byte 233,136,254,255,255
 
-	.globl lj_vmeta_tsets
-	.hidden lj_vmeta_tsets
-	.type lj_vmeta_tsets, @function
-	.size lj_vmeta_tsets, 41
-lj_vmeta_tsets:
+	.private_extern _lj_vmeta_tsets
+_lj_vmeta_tsets:
 	.byte 137,4,36,199,68,36,4,251,255,255,255,72,141,4,36,128
 	.byte 123,252,53,117,46,65,141,142,232,244,255,255,137,41,199,65
 	.byte 4,244,255,255,255,137,205,235,33
 
-	.globl lj_vmeta_tsetb
-	.hidden lj_vmeta_tsetb
-	.type lj_vmeta_tsetb, @function
-	.size lj_vmeta_tsetb, 19
-lj_vmeta_tsetb:
+	.private_extern _lj_vmeta_tsetb
+_lj_vmeta_tsetb:
 	.byte 15,182,67,254,242,15,42,192,242,15,17,4,36,72,141,4
 	.byte 36,235,7
 
-	.globl lj_vmeta_tsetv
-	.hidden lj_vmeta_tsetv
-	.type lj_vmeta_tsetv, @function
-	.size lj_vmeta_tsetv, 55
-lj_vmeta_tsetv:
+	.private_extern _lj_vmeta_tsetv
+_lj_vmeta_tsetv:
 	.byte 15,182,67,254,141,4,194,15,182,107,255,141,44,234,139,124
 	.byte 36,24,137,87,16,137,238,72,137,194,137,253,137,92,36,28
-	.byte 232
-	.long lj_meta_tset-.-4
+	call _lj_meta_tset
 	.byte 139,85,16,133,192,116,29,15,182,75,253,72,139,44,202,72
 	.byte 137,40
 
-	.globl lj_cont_nop
-	.hidden lj_cont_nop
-	.type lj_cont_nop, @function
-	.size lj_cont_nop, 54
-lj_cont_nop:
+	.private_extern _lj_cont_nop
+_lj_cont_nop:
 	.byte 139,3,15,182,204,15,182,232,131,195,4,193,232,16,65,255
 	.byte 36,238,139,77,24,137,89,244,15,182,67,253,72,139,44,194
 	.byte 72,137,105,16,141,89,2,41,211,139,105,248,184,4,0,0
 	.byte 0,233,223,253,255,255
 
-	.globl lj_vmeta_comp
-	.hidden lj_vmeta_comp
-	.type lj_vmeta_comp, @function
-	.size lj_vmeta_comp, 74
-lj_vmeta_comp:
+	.private_extern _lj_vmeta_comp
+_lj_vmeta_comp:
 	.byte 139,108,36,24,137,85,16,141,52,202,141,20,194,137,239,15
-	.byte 182,75,252,137,92,36,28,232
-	.long lj_meta_comp-.-4
+	.byte 182,75,252,137,92,36,28
+	call _lj_meta_comp
 	.byte 139,85,16,131,248,1,15,135,178,0,0,0,141,91,4,114
 	.byte 11,15,183,67,254,141,156,131,0,0,254,255,139,3,15,182
 	.byte 204,15,182,232,131,195,4,193,232,16,65,255,36,238
 
-	.globl lj_cont_condt
-	.hidden lj_cont_condt
-	.type lj_cont_condt, @function
-	.size lj_cont_condt, 11
-lj_cont_condt:
+	.private_extern _lj_cont_condt
+_lj_cont_condt:
 	.byte 131,195,4,131,120,4,254,114,218,235,227
 
-	.globl lj_cont_condf
-	.hidden lj_cont_condf
-	.type lj_cont_condf, @function
-	.size lj_cont_condf, 6
-lj_cont_condf:
+	.private_extern _lj_cont_condf
+_lj_cont_condf:
 	.byte 131,120,4,254,235,205
 
-	.globl lj_vmeta_equal
-	.hidden lj_vmeta_equal
-	.type lj_vmeta_equal, @function
-	.size lj_vmeta_equal, 29
-lj_vmeta_equal:
+	.private_extern _lj_vmeta_equal
+_lj_vmeta_equal:
 	.byte 131,235,4,137,206,137,233,139,108,36,24,137,85,16,137,194
-	.byte 137,239,137,92,36,28,232
-	.long lj_meta_equal-.-4
+	.byte 137,239,137,92,36,28
+	call _lj_meta_equal
 	.byte 235,164
 
-	.globl lj_vmeta_equal_cd
-	.hidden lj_vmeta_equal_cd
-	.type lj_vmeta_equal_cd, @function
-	.size lj_vmeta_equal_cd, 26
-lj_vmeta_equal_cd:
+	.private_extern _lj_vmeta_equal_cd
+_lj_vmeta_equal_cd:
 	.byte 131,235,4,139,108,36,24,137,85,16,137,239,139,115,252,137
-	.byte 92,36,28,232
-	.long lj_meta_equal_cd-.-4
+	.byte 92,36,28
+	call _lj_meta_equal_cd
 	.byte 235,138
 
-	.globl lj_vmeta_arith_vno
-	.hidden lj_vmeta_arith_vno
-	.type lj_vmeta_arith_vno, @function
-	.size lj_vmeta_arith_vno, 0
-lj_vmeta_arith_vno:
+	.private_extern _lj_vmeta_arith_vno
+_lj_vmeta_arith_vno:
 
-	.globl lj_vmeta_arith_vn
-	.hidden lj_vmeta_arith_vn
-	.type lj_vmeta_arith_vn, @function
-	.size lj_vmeta_arith_vn, 6
-lj_vmeta_arith_vn:
+	.private_extern _lj_vmeta_arith_vn
+_lj_vmeta_arith_vn:
 	.byte 65,141,4,199,235,20
 
-	.globl lj_vmeta_arith_nvo
-	.hidden lj_vmeta_arith_nvo
-	.type lj_vmeta_arith_nvo, @function
-	.size lj_vmeta_arith_nvo, 0
-lj_vmeta_arith_nvo:
+	.private_extern _lj_vmeta_arith_nvo
+_lj_vmeta_arith_nvo:
 
-	.globl lj_vmeta_arith_nv
-	.hidden lj_vmeta_arith_nv
-	.type lj_vmeta_arith_nv, @function
-	.size lj_vmeta_arith_nv, 10
-lj_vmeta_arith_nv:
+	.private_extern _lj_vmeta_arith_nv
+_lj_vmeta_arith_nv:
 	.byte 65,141,4,199,141,44,234,149,235,13
 
-	.globl lj_vmeta_unm
-	.hidden lj_vmeta_unm
-	.type lj_vmeta_unm, @function
-	.size lj_vmeta_unm, 7
-lj_vmeta_unm:
+	.private_extern _lj_vmeta_unm
+_lj_vmeta_unm:
 	.byte 141,4,194,137,197,235,6
 
-	.globl lj_vmeta_arith_vvo
-	.hidden lj_vmeta_arith_vvo
-	.type lj_vmeta_arith_vvo, @function
-	.size lj_vmeta_arith_vvo, 0
-lj_vmeta_arith_vvo:
+	.private_extern _lj_vmeta_arith_vvo
+_lj_vmeta_arith_vvo:
 
-	.globl lj_vmeta_arith_vv
-	.hidden lj_vmeta_arith_vv
-	.type lj_vmeta_arith_vv, @function
-	.size lj_vmeta_arith_vv, 49
-lj_vmeta_arith_vv:
+	.private_extern _lj_vmeta_arith_vv
+_lj_vmeta_arith_vv:
 	.byte 141,4,194,141,44,234,141,12,202,68,15,182,67,252,137,206
 	.byte 137,193,139,124,36,24,137,87,16,137,234,137,253,137,92,36
-	.byte 28,232
-	.long lj_meta_arith-.-4
+	.byte 28
+	call _lj_meta_arith
 	.byte 139,85,16,133,192,15,132,240,254,255,255
 
-	.globl lj_vmeta_binop
-	.hidden lj_vmeta_binop
-	.type lj_vmeta_binop, @function
-	.size lj_vmeta_binop, 20
-lj_vmeta_binop:
+	.private_extern _lj_vmeta_binop
+_lj_vmeta_binop:
 	.byte 137,193,41,208,137,89,244,141,88,2,184,3,0,0,0,233
 	.byte 228,252,255,255
 
-	.globl lj_vmeta_len
-	.hidden lj_vmeta_len
-	.type lj_vmeta_len, @function
-	.size lj_vmeta_len, 26
-lj_vmeta_len:
+	.private_extern _lj_vmeta_len
+_lj_vmeta_len:
 	.byte 139,108,36,24,137,85,16,141,52,194,137,239,137,92,36,28
-	.byte 232
-	.long lj_meta_len-.-4
+	call _lj_meta_len
 	.byte 139,85,16,235,210
 
-	.globl lj_vmeta_call_ra
-	.hidden lj_vmeta_call_ra
-	.type lj_vmeta_call_ra, @function
-	.size lj_vmeta_call_ra, 4
-lj_vmeta_call_ra:
+	.private_extern _lj_vmeta_call_ra
+_lj_vmeta_call_ra:
 	.byte 141,76,202,8
 
-	.globl lj_vmeta_call
-	.hidden lj_vmeta_call
-	.type lj_vmeta_call, @function
-	.size lj_vmeta_call, 81
-lj_vmeta_call:
+	.private_extern _lj_vmeta_call
+_lj_vmeta_call:
 	.byte 137,76,36,4,137,4,36,131,233,8,139,108,36,24,137,85
-	.byte 16,137,206,141,20,193,137,239,137,92,36,28,232
-	.long lj_meta_call-.-4
+	.byte 16,137,206,141,20,193,137,239,137,92,36,28
+	call _lj_meta_call
 	.byte 139,85,16,139,76,36,4,139,4,36,139,105,248,131,192,1
 	.byte 65,57,215,15,132,95,242,255,255,137,202,137,90,252,139,93
 	.byte 16,139,11,15,182,233,15,182,205,131,195,4,65,255,36,238
 
-	.globl lj_vmeta_for
-	.hidden lj_vmeta_for
-	.type lj_vmeta_for, @function
-	.size lj_vmeta_for, 43
-lj_vmeta_for:
-	.byte 139,108,36,24,137,85,16,137,206,137,239,137,92,36,28,232
-	.long lj_meta_for-.-4
+	.private_extern _lj_vmeta_for
+_lj_vmeta_for:
+	.byte 139,108,36,24,137,85,16,137,206,137,239,137,92,36,28
+	call _lj_meta_for
 	.byte 139,85,16,139,67,252,15,182,204,15,182,232,193,232,16,65
 	.byte 255,164,238,216,4,0,0
 
-	.globl lj_ff_assert
-	.hidden lj_ff_assert
-	.type lj_ff_assert, @function
-	.size lj_ff_assert, 67
-lj_ff_assert:
+	.private_extern _lj_ff_assert
+_lj_ff_assert:
 	.byte 131,248,2,15,130,12,18,0,0,139,106,4,131,253,254,15
 	.byte 131,0,18,0,0,139,90,252,137,68,36,4,137,106,252,139
 	.byte 42,137,106,248,131,232,2,116,17,137,209,131,193,8,72,139
 	.byte 41,72,137,105,248,131,232,1,117,241,139,68,36,4,233,86
 	.byte 6,0,0
 
-	.globl lj_ff_type
-	.hidden lj_ff_type
-	.type lj_ff_type, @function
-	.size lj_ff_type, 66
-lj_ff_type:
+	.private_extern _lj_ff_type
+_lj_ff_type:
 	.byte 131,248,2,15,130,201,17,0,0,139,106,4,137,233,193,249
 	.byte 15,131,249,254,116,37,184,13,0,0,0,247,213,57,232,15
 	.byte 71,197,139,106,248,139,68,197,32,139,90,252,199,66,252,251
 	.byte 255,255,255,137,66,248,233,18,6,0,0,184,3,0,0,0
 	.byte 235,224
 
-	.globl lj_ff_getmetatable
-	.hidden lj_ff_getmetatable
-	.type lj_ff_getmetatable, @function
-	.size lj_ff_getmetatable, 162
-lj_ff_getmetatable:
+	.private_extern _lj_ff_getmetatable
+_lj_ff_getmetatable:
 	.byte 131,248,2,15,130,135,17,0,0,139,106,4,139,90,252,131
 	.byte 253,244,117,97,139,42,139,109,16,133,237,199,66,252,255,255
 	.byte 255,255,15,132,227,5,0,0,65,139,134,140,245,255,255,199
@@ -1483,11 +1045,8 @@ lj_ff_getmetatable:
 	.byte 255,255,255,247,213,65,139,172,174,160,245,255,255,233,119,255
 	.byte 255,255
 
-	.globl lj_ff_setmetatable
-	.hidden lj_ff_setmetatable
-	.type lj_ff_setmetatable, @function
-	.size lj_ff_setmetatable, 92
-lj_ff_setmetatable:
+	.private_extern _lj_ff_setmetatable
+_lj_ff_setmetatable:
 	.byte 131,248,3,15,130,229,16,0,0,131,122,4,244,15,133,219
 	.byte 16,0,0,139,42,131,125,16,0,15,133,207,16,0,0,131
 	.byte 122,12,244,15,133,197,16,0,0,139,66,8,137,69,16,139
@@ -1495,126 +1054,90 @@ lj_ff_setmetatable:
 	.byte 116,21,128,101,4,251,65,139,134,132,244,255,255,65,137,174
 	.byte 132,244,255,255,137,69,12,233,13,5,0,0
 
-	.globl lj_ff_rawget
-	.hidden lj_ff_rawget
-	.type lj_ff_rawget, @function
-	.size lj_ff_rawget, 52
-lj_ff_rawget:
+	.private_extern _lj_ff_rawget
+_lj_ff_rawget:
 	.byte 131,248,3,15,130,137,16,0,0,131,122,4,244,15,133,127
-	.byte 16,0,0,137,213,139,50,141,82,8,139,124,36,24,232
-	.long lj_tab_get-.-4
+	.byte 16,0,0,137,213,139,50,141,82,8,139,124,36,24
+	call _lj_tab_get
 	.byte 137,234,72,139,40,139,90,252,72,137,106,248,233,217,4,0
 	.byte 0
 
-	.globl lj_ff_tonumber
-	.hidden lj_ff_tonumber
-	.type lj_ff_tonumber, @function
-	.size lj_ff_tonumber, 31
-lj_ff_tonumber:
+	.private_extern _lj_ff_tonumber
+_lj_ff_tonumber:
 	.byte 131,248,2,15,133,85,16,0,0,129,122,4,255,255,254,255
 	.byte 15,131,72,16,0,0,242,15,16,2,233,178,4,0,0
 
-	.globl lj_ff_tostring
-	.hidden lj_ff_tostring
-	.type lj_ff_tostring, @function
-	.size lj_ff_tostring, 108
-lj_ff_tostring:
+	.private_extern _lj_ff_tostring
+_lj_ff_tostring:
 	.byte 131,248,2,15,130,54,16,0,0,139,90,252,131,122,4,251
 	.byte 117,17,139,2,199,66,252,251,255,255,255,137,66,248,233,151
 	.byte 4,0,0,129,122,4,255,255,254,255,15,135,15,16,0,0
 	.byte 65,131,190,212,245,255,255,0,15,133,1,16,0,0,65,139
 	.byte 174,104,244,255,255,65,59,174,108,244,255,255,114,5,232,123
 	.byte 16,0,0,139,108,36,24,137,85,16,137,92,36,28,137,214
-	.byte 137,239,232
-	.long lj_str_fromnum-.-4
+	.byte 137,239
+	call _lj_str_fromnum
 	.byte 139,85,16,235,168
 
-	.globl lj_ff_next
-	.hidden lj_ff_next
-	.type lj_ff_next, @function
-	.size lj_ff_next, 72
-lj_ff_next:
+	.private_extern _lj_ff_next
+_lj_ff_next:
 	.byte 131,248,2,15,130,202,15,0,0,116,71,131,122,4,244,15
 	.byte 133,190,15,0,0,139,108,36,24,137,85,16,137,85,24,139
-	.byte 90,252,139,50,141,82,8,137,239,137,92,36,28,232
-	.long lj_tab_next-.-4
+	.byte 90,252,139,50,141,82,8,137,239,137,92,36,28
+	call _lj_tab_next
 	.byte 139,85,16,133,192,116,34,72,139,106,8,72,139,66,16,72
 	.byte 137,106,248,72,137,2
 
-	.globl lj_fff_res2
-	.hidden lj_fff_res2
-	.type lj_fff_res2, @function
-	.size lj_fff_res2, 31
-lj_fff_res2:
+	.private_extern _lj_fff_res2
+_lj_fff_res2:
 	.byte 184,3,0,0,0,233,1,4,0,0,199,66,12,255,255,255
 	.byte 255,235,176,199,66,252,255,255,255,255,233,231,3,0,0
 
-	.globl lj_ff_pairs
-	.hidden lj_ff_pairs
-	.type lj_ff_pairs, @function
-	.size lj_ff_pairs, 57
-lj_ff_pairs:
+	.private_extern _lj_ff_pairs
+_lj_ff_pairs:
 	.byte 131,248,2,15,130,99,15,0,0,139,42,131,122,4,244,15
 	.byte 133,87,15,0,0,139,106,248,139,69,32,139,90,252,199,66
 	.byte 252,247,255,255,255,137,66,248,199,66,12,255,255,255,255,184
 	.byte 4,0,0,0,233,179,3,0,0
 
-	.globl lj_ff_ipairs_aux
-	.hidden lj_ff_ipairs_aux
-	.type lj_ff_ipairs_aux, @function
-	.size lj_ff_ipairs_aux, 121
-lj_ff_ipairs_aux:
+	.private_extern _lj_ff_ipairs_aux
+_lj_ff_ipairs_aux:
 	.byte 131,248,3,15,130,42,15,0,0,131,122,4,244,15,133,32
 	.byte 15,0,0,129,122,12,255,255,254,255,15,131,19,15,0,0
 	.byte 139,90,252,242,15,16,66,8,72,189,0,0,0,0,0,0
 	.byte 240,63,102,72,15,110,205,242,15,88,193,242,15,45,192,242
 	.byte 15,17,66,248,139,42,59,69,24,115,23,193,224,3,3,69
 	.byte 8,131,120,4,255,116,34,72,139,40,72,137,42,233,70,255
-	.byte 255,255,131,125,28,0,116,17,137,239,137,213,137,198,232
-	.long lj_tab_getinth-.-4
+	.byte 255,255,131,125,28,0,116,17,137,239,137,213,137,198
+	call _lj_tab_getinth
 	.byte 137,234,133,192,117,216
 
-	.globl lj_fff_res0
-	.hidden lj_fff_res0
-	.type lj_fff_res0, @function
-	.size lj_fff_res0, 10
-lj_fff_res0:
+	.private_extern _lj_fff_res0
+_lj_fff_res0:
 	.byte 184,1,0,0,0,233,48,3,0,0
 
-	.globl lj_ff_ipairs
-	.hidden lj_ff_ipairs
-	.type lj_ff_ipairs, @function
-	.size lj_ff_ipairs, 58
-lj_ff_ipairs:
+	.private_extern _lj_ff_ipairs
+_lj_ff_ipairs:
 	.byte 131,248,2,15,130,167,14,0,0,139,42,131,122,4,244,15
 	.byte 133,155,14,0,0,139,106,248,139,69,32,139,90,252,199,66
 	.byte 252,247,255,255,255,137,66,248,15,87,192,242,15,17,66,8
 	.byte 184,4,0,0,0,233,246,2,0,0
 
-	.globl lj_ff_pcall
-	.hidden lj_ff_pcall
-	.type lj_ff_pcall, @function
-	.size lj_ff_pcall, 41
-lj_ff_pcall:
+	.private_extern _lj_ff_pcall
+_lj_ff_pcall:
 	.byte 131,248,2,15,130,109,14,0,0,141,74,8,131,232,1,187
 	.byte 14,0,0,0,65,15,182,174,217,244,255,255,193,237,4,131
 	.byte 229,1,1,235,233,130,248,255,255
 
-	.globl lj_ff_xpcall
-	.hidden lj_ff_xpcall
-	.type lj_ff_xpcall, @function
-	.size lj_ff_xpcall, 55
-lj_ff_xpcall:
+	.private_extern _lj_ff_xpcall
+_lj_ff_xpcall:
 	.byte 131,248,3,15,130,68,14,0,0,131,122,12,247,15,133,58
 	.byte 14,0,0,139,106,4,137,106,12,199,66,4,247,255,255,255
 	.byte 139,42,139,90,8,137,106,8,137,26,141,74,16,131,232,2
 	.byte 187,22,0,0,0,235,180
 
-	.globl lj_ff_coroutine_resume
-	.hidden lj_ff_coroutine_resume
-	.type lj_ff_coroutine_resume, @function
-	.size lj_ff_coroutine_resume, 303
-lj_ff_coroutine_resume:
+	.private_extern _lj_ff_coroutine_resume
+_lj_ff_coroutine_resume:
 	.byte 131,248,2,15,130,13,14,0,0,139,42,139,90,252,137,92
 	.byte 36,28,137,44,36,131,122,4,249,15,133,247,13,0,0,72
 	.byte 131,125,48,0,15,133,236,13,0,0,128,125,7,1,15,135
@@ -1632,15 +1155,12 @@ lj_ff_coroutine_resume:
 	.byte 199,193,248,255,255,255,247,195,3,0,0,0,15,132,194,239
 	.byte 255,255,233,26,245,255,255,199,66,252,254,255,255,255,139,75
 	.byte 24,131,233,8,137,75,24,72,139,1,72,137,2,184,3,0
-	.byte 0,0,235,195,139,12,36,68,137,121,24,137,222,137,239,232
-	.long lj_state_growstack-.-4
+	.byte 0,0,235,195,139,12,36,68,137,121,24,137,222,137,239
+	call _lj_state_growstack
 	.byte 139,28,36,139,85,16,233,110,255,255,255
 
-	.globl lj_ff_coroutine_wrap_aux
-	.hidden lj_ff_coroutine_wrap_aux
-	.type lj_ff_coroutine_wrap_aux, @function
-	.size lj_ff_coroutine_wrap_aux, 250
-lj_ff_coroutine_wrap_aux:
+	.private_extern _lj_ff_coroutine_wrap_aux
+_lj_ff_coroutine_wrap_aux:
 	.byte 139,106,248,139,109,32,139,90,252,137,92,36,28,137,44,36
 	.byte 72,131,125,48,0,15,133,204,12,0,0,128,125,7,1,15
 	.byte 135,194,12,0,0,139,77,24,116,9,59,77,16,15,132,180
@@ -1654,247 +1174,163 @@ lj_ff_coroutine_wrap_aux:
 	.byte 235,3,59,69,32,119,59,137,213,72,41,205,72,139,1,72
 	.byte 137,4,41,131,193,8,68,57,249,117,241,141,67,1,139,92
 	.byte 36,28,137,68,36,4,49,201,247,195,3,0,0,0,15,132
-	.byte 177,238,255,255,233,9,244,255,255,137,222,137,239,232
-	.long lj_ffh_coroutine_wrap_err-.-4
-	.byte 139,12,36,68,137,121,24,137,222,137,239,232
-	.long lj_state_growstack-.-4
+	.byte 177,238,255,255,233,9,244,255,255,137,222,137,239
+	call _lj_ffh_coroutine_wrap_err
+	.byte 139,12,36,68,137,121,24,137,222,137,239
+	call _lj_state_growstack
 	.byte 139,28,36,139,85,16,235,145
 
-	.globl lj_ff_coroutine_yield
-	.hidden lj_ff_coroutine_yield
-	.type lj_ff_coroutine_yield, @function
-	.size lj_ff_coroutine_yield, 44
-lj_ff_coroutine_yield:
+	.private_extern _lj_ff_coroutine_yield
+_lj_ff_coroutine_yield:
 	.byte 139,108,36,24,72,247,69,48,1,0,0,0,15,132,219,11
 	.byte 0,0,137,85,16,141,68,194,248,137,69,24,49,192,72,137
 	.byte 69,48,176,1,136,69,7,233,18,244,255,255
 
-	.globl lj_fff_resi
-	.hidden lj_fff_resi
-	.type lj_fff_resi, @function
-	.size lj_fff_resi, 0
-lj_fff_resi:
+	.private_extern _lj_fff_resi
+_lj_fff_resi:
 
-	.globl lj_fff_resn
-	.hidden lj_fff_resn
-	.type lj_fff_resn, @function
-	.size lj_fff_resn, 8
-lj_fff_resn:
+	.private_extern _lj_fff_resn
+_lj_fff_resn:
 	.byte 139,90,252,221,90,248,235,52
 
-	.globl lj_ff_math_abs
-	.hidden lj_ff_math_abs
-	.type lj_ff_math_abs, @function
-	.size lj_ff_math_abs, 44
-lj_ff_math_abs:
+	.private_extern _lj_ff_math_abs
+_lj_ff_math_abs:
 	.byte 131,248,2,15,130,176,11,0,0,129,122,4,255,255,254,255
 	.byte 15,131,163,11,0,0,242,15,16,2,72,184,255,255,255,255
 	.byte 255,255,255,127,102,72,15,110,200,15,84,193
 
-	.globl lj_fff_resxmm0
-	.hidden lj_fff_resxmm0
-	.type lj_fff_resxmm0, @function
-	.size lj_fff_resxmm0, 8
-lj_fff_resxmm0:
+	.private_extern _lj_fff_resxmm0
+_lj_fff_resxmm0:
 	.byte 139,90,252,242,15,17,66,248
 
-	.globl lj_fff_res1
-	.hidden lj_fff_res1
-	.type lj_fff_res1, @function
-	.size lj_fff_res1, 5
-lj_fff_res1:
+	.private_extern _lj_fff_res1
+_lj_fff_res1:
 	.byte 184,2,0,0,0
 
-	.globl lj_fff_res
-	.hidden lj_fff_res
-	.type lj_fff_res, @function
-	.size lj_fff_res, 4
-lj_fff_res:
+	.private_extern _lj_fff_res
+_lj_fff_res:
 	.byte 137,68,36,4
 
-	.globl lj_fff_res_
-	.hidden lj_fff_res_
-	.type lj_fff_res_, @function
-	.size lj_fff_res_, 66
-lj_fff_res_:
+	.private_extern _lj_fff_res_
+_lj_fff_res_:
 	.byte 247,195,3,0,0,0,117,46,56,67,255,119,28,15,182,75
 	.byte 253,72,247,209,141,20,202,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,65,255,36,238,199,68,194,244,255,255,255
 	.byte 255,131,192,1,235,210,72,199,193,248,255,255,255,233,53,243
 	.byte 255,255
 
-	.globl lj_ff_math_floor
-	.hidden lj_ff_math_floor
-	.type lj_ff_math_floor, @function
-	.size lj_ff_math_floor, 24
-lj_ff_math_floor:
+	.private_extern _lj_ff_math_floor
+_lj_ff_math_floor:
 	.byte 129,122,4,255,255,254,255,15,131,45,11,0,0,242,15,16
 	.byte 2,232,49,14,0,0,235,149
 
-	.globl lj_ff_math_ceil
-	.hidden lj_ff_math_ceil
-	.type lj_ff_math_ceil, @function
-	.size lj_ff_math_ceil, 27
-lj_ff_math_ceil:
+	.private_extern _lj_ff_math_ceil
+_lj_ff_math_ceil:
 	.byte 129,122,4,255,255,254,255,15,131,21,11,0,0,242,15,16
 	.byte 2,232,116,14,0,0,233,122,255,255,255
 
-	.globl lj_ff_math_sqrt
-	.hidden lj_ff_math_sqrt
-	.type lj_ff_math_sqrt, @function
-	.size lj_ff_math_sqrt, 31
-lj_ff_math_sqrt:
+	.private_extern _lj_ff_math_sqrt
+_lj_ff_math_sqrt:
 	.byte 131,248,2,15,130,254,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,241,10,0,0,242,15,81,2,233,91,255,255,255
 
-	.globl lj_ff_math_log
-	.hidden lj_ff_math_log
-	.type lj_ff_math_log, @function
-	.size lj_ff_math_log, 33
-lj_ff_math_log:
+	.private_extern _lj_ff_math_log
+_lj_ff_math_log:
 	.byte 131,248,2,15,133,223,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,210,10,0,0,217,237,221,2,217,241,233,6,255,255
 	.byte 255
 
-	.globl lj_ff_math_log10
-	.hidden lj_ff_math_log10
-	.type lj_ff_math_log10, @function
-	.size lj_ff_math_log10, 33
-lj_ff_math_log10:
+	.private_extern _lj_ff_math_log10
+_lj_ff_math_log10:
 	.byte 131,248,2,15,130,190,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,177,10,0,0,217,236,221,2,217,241,233,229,254,255
 	.byte 255
 
-	.globl lj_ff_math_exp
-	.hidden lj_ff_math_exp
-	.type lj_ff_math_exp, @function
-	.size lj_ff_math_exp, 34
-lj_ff_math_exp:
+	.private_extern _lj_ff_math_exp
+_lj_ff_math_exp:
 	.byte 131,248,2,15,130,157,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,144,10,0,0,221,2,232,57,15,0,0,233,195,254
 	.byte 255,255
 
-	.globl lj_ff_math_sin
-	.hidden lj_ff_math_sin
-	.type lj_ff_math_sin, @function
-	.size lj_ff_math_sin, 31
-lj_ff_math_sin:
+	.private_extern _lj_ff_math_sin
+_lj_ff_math_sin:
 	.byte 131,248,2,15,130,123,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,110,10,0,0,221,2,217,254,233,164,254,255,255
 
-	.globl lj_ff_math_cos
-	.hidden lj_ff_math_cos
-	.type lj_ff_math_cos, @function
-	.size lj_ff_math_cos, 31
-lj_ff_math_cos:
+	.private_extern _lj_ff_math_cos
+_lj_ff_math_cos:
 	.byte 131,248,2,15,130,92,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,79,10,0,0,221,2,217,255,233,133,254,255,255
 
-	.globl lj_ff_math_tan
-	.hidden lj_ff_math_tan
-	.type lj_ff_math_tan, @function
-	.size lj_ff_math_tan, 33
-lj_ff_math_tan:
+	.private_extern _lj_ff_math_tan
+_lj_ff_math_tan:
 	.byte 131,248,2,15,130,61,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,48,10,0,0,221,2,217,242,221,216,233,100,254,255
 	.byte 255
 
-	.globl lj_ff_math_asin
-	.hidden lj_ff_math_asin
-	.type lj_ff_math_asin, @function
-	.size lj_ff_math_asin, 41
-lj_ff_math_asin:
+	.private_extern _lj_ff_math_asin
+_lj_ff_math_asin:
 	.byte 131,248,2,15,130,28,10,0,0,129,122,4,255,255,254,255
 	.byte 15,131,15,10,0,0,221,2,217,192,216,200,217,232,222,225
 	.byte 217,250,217,243,233,59,254,255,255
 
-	.globl lj_ff_math_acos
-	.hidden lj_ff_math_acos
-	.type lj_ff_math_acos, @function
-	.size lj_ff_math_acos, 43
-lj_ff_math_acos:
+	.private_extern _lj_ff_math_acos
+_lj_ff_math_acos:
 	.byte 131,248,2,15,130,243,9,0,0,129,122,4,255,255,254,255
 	.byte 15,131,230,9,0,0,221,2,217,192,216,200,217,232,222,225
 	.byte 217,250,217,201,217,243,233,16,254,255,255
 
-	.globl lj_ff_math_atan
-	.hidden lj_ff_math_atan
-	.type lj_ff_math_atan, @function
-	.size lj_ff_math_atan, 33
-lj_ff_math_atan:
+	.private_extern _lj_ff_math_atan
+_lj_ff_math_atan:
 	.byte 131,248,2,15,130,200,9,0,0,129,122,4,255,255,254,255
 	.byte 15,131,187,9,0,0,221,2,217,232,217,243,233,239,253,255
 	.byte 255
 
-	.globl lj_ff_math_sinh
-	.hidden lj_ff_math_sinh
-	.type lj_ff_math_sinh, @function
-	.size lj_ff_math_sinh, 40
-lj_ff_math_sinh:
+	.private_extern _lj_ff_math_sinh
+_lj_ff_math_sinh:
 	.byte 131,248,2,15,130,167,9,0,0,129,122,4,255,255,254,255
-	.byte 15,131,154,9,0,0,242,15,16,2,137,213,232
-	.long lj_vm_sinh-.-4
+	.byte 15,131,154,9,0,0,242,15,16,2,137,213
+	call _lj_vm_sinh
 	.byte 137,234,233,251,253,255,255
 
-	.globl lj_ff_math_cosh
-	.hidden lj_ff_math_cosh
-	.type lj_ff_math_cosh, @function
-	.size lj_ff_math_cosh, 40
-lj_ff_math_cosh:
+	.private_extern _lj_ff_math_cosh
+_lj_ff_math_cosh:
 	.byte 131,248,2,15,130,127,9,0,0,129,122,4,255,255,254,255
-	.byte 15,131,114,9,0,0,242,15,16,2,137,213,232
-	.long lj_vm_cosh-.-4
+	.byte 15,131,114,9,0,0,242,15,16,2,137,213
+	call _lj_vm_cosh
 	.byte 137,234,233,211,253,255,255
 
-	.globl lj_ff_math_tanh
-	.hidden lj_ff_math_tanh
-	.type lj_ff_math_tanh, @function
-	.size lj_ff_math_tanh, 40
-lj_ff_math_tanh:
+	.private_extern _lj_ff_math_tanh
+_lj_ff_math_tanh:
 	.byte 131,248,2,15,130,87,9,0,0,129,122,4,255,255,254,255
-	.byte 15,131,74,9,0,0,242,15,16,2,137,213,232
-	.long lj_vm_tanh-.-4
+	.byte 15,131,74,9,0,0,242,15,16,2,137,213
+	call _lj_vm_tanh
 	.byte 137,234,233,171,253,255,255
 
-	.globl lj_ff_math_deg
-	.hidden lj_ff_math_deg
-	.type lj_ff_math_deg, @function
-	.size lj_ff_math_deg, 0
-lj_ff_math_deg:
+	.private_extern _lj_ff_math_deg
+_lj_ff_math_deg:
 
-	.globl lj_ff_math_rad
-	.hidden lj_ff_math_rad
-	.type lj_ff_math_rad, @function
-	.size lj_ff_math_rad, 39
-lj_ff_math_rad:
+	.private_extern _lj_ff_math_rad
+_lj_ff_math_rad:
 	.byte 131,248,2,15,130,47,9,0,0,129,122,4,255,255,254,255
 	.byte 15,131,34,9,0,0,242,15,16,2,139,106,248,242,15,89
 	.byte 69,32,233,132,253,255,255
 
-	.globl lj_ff_math_atan2
-	.hidden lj_ff_math_atan2
-	.type lj_ff_math_atan2, @function
-	.size lj_ff_math_atan2, 47
-lj_ff_math_atan2:
+	.private_extern _lj_ff_math_atan2
+_lj_ff_math_atan2:
 	.byte 131,248,3,15,130,8,9,0,0,129,122,4,255,255,254,255
 	.byte 15,131,251,8,0,0,129,122,12,255,255,254,255,15,131,238
 	.byte 8,0,0,221,2,221,66,8,217,243,233,33,253,255,255
 
-	.globl lj_ff_math_ldexp
-	.hidden lj_ff_math_ldexp
-	.type lj_ff_math_ldexp, @function
-	.size lj_ff_math_ldexp, 49
-lj_ff_math_ldexp:
+	.private_extern _lj_ff_math_ldexp
+_lj_ff_math_ldexp:
 	.byte 131,248,3,15,130,217,8,0,0,129,122,4,255,255,254,255
 	.byte 15,131,204,8,0,0,129,122,12,255,255,254,255,15,131,191
 	.byte 8,0,0,221,66,8,221,2,217,253,221,217,233,240,252,255
 	.byte 255
 
-	.globl lj_ff_math_frexp
-	.hidden lj_ff_math_frexp
-	.type lj_ff_math_frexp, @function
-	.size lj_ff_math_frexp, 148
-lj_ff_math_frexp:
+	.private_extern _lj_ff_math_frexp
+_lj_ff_math_frexp:
 	.byte 131,248,2,15,130,168,8,0,0,139,106,4,129,253,255,255
 	.byte 254,255,15,131,153,8,0,0,139,90,252,139,2,137,106,252
 	.byte 137,66,248,209,229,129,253,0,0,224,255,115,58,9,232,116
@@ -1906,11 +1342,8 @@ lj_ff_math_frexp:
 	.byte 15,89,193,242,15,17,66,248,139,106,252,184,52,4,0,0
 	.byte 209,229,235,170
 
-	.globl lj_ff_math_modf
-	.hidden lj_ff_math_modf
-	.type lj_ff_math_modf, @function
-	.size lj_ff_math_modf, 99
-lj_ff_math_modf:
+	.private_extern _lj_ff_math_modf
+_lj_ff_math_modf:
 	.byte 131,248,2,15,130,20,8,0,0,129,122,4,255,255,254,255
 	.byte 15,131,7,8,0,0,242,15,16,2,139,106,4,139,90,252
 	.byte 209,229,129,253,0,0,224,255,116,52,15,40,224,232,174,11
@@ -1919,90 +1352,63 @@ lj_ff_math_modf:
 	.byte 252,255,255,129,245,0,0,0,128,137,106,4,235,235,15,87
 	.byte 228,235,211
 
-	.globl lj_ff_math_fmod
-	.hidden lj_ff_math_fmod
-	.type lj_ff_math_fmod, @function
-	.size lj_ff_math_fmod, 57
-lj_ff_math_fmod:
+	.private_extern _lj_ff_math_fmod
+_lj_ff_math_fmod:
 	.byte 131,248,3,15,130,177,7,0,0,129,122,4,255,255,254,255
 	.byte 15,131,164,7,0,0,129,122,12,255,255,254,255,15,131,151
 	.byte 7,0,0,221,66,8,221,2,217,248,223,224,102,37,0,4
 	.byte 117,246,221,217,233,192,251,255,255
 
-	.globl lj_ff_math_pow
-	.hidden lj_ff_math_pow
-	.type lj_ff_math_pow, @function
-	.size lj_ff_math_pow, 54
-lj_ff_math_pow:
+	.private_extern _lj_ff_math_pow
+_lj_ff_math_pow:
 	.byte 131,248,3,15,130,120,7,0,0,129,122,4,255,255,254,255
 	.byte 15,131,107,7,0,0,129,122,12,255,255,254,255,15,131,94
 	.byte 7,0,0,242,15,16,2,242,15,16,74,8,232,52,12,0
 	.byte 0,233,190,251,255,255
 
-	.globl lj_ff_math_min
-	.hidden lj_ff_math_min
-	.type lj_ff_math_min, @function
-	.size lj_ff_math_min, 59
-lj_ff_math_min:
+	.private_extern _lj_ff_math_min
+_lj_ff_math_min:
 	.byte 185,2,0,0,0,129,122,4,255,255,254,255,15,131,57,7
 	.byte 0,0,242,15,16,2,57,193,15,131,160,251,255,255,129,124
 	.byte 202,252,255,255,254,255,15,131,31,7,0,0,242,15,16,76
 	.byte 202,248,242,15,93,193,131,193,1,235,219
 
-	.globl lj_ff_math_max
-	.hidden lj_ff_math_max
-	.type lj_ff_math_max, @function
-	.size lj_ff_math_max, 59
-lj_ff_math_max:
+	.private_extern _lj_ff_math_max
+_lj_ff_math_max:
 	.byte 185,2,0,0,0,129,122,4,255,255,254,255,15,131,254,6
 	.byte 0,0,242,15,16,2,57,193,15,131,101,251,255,255,129,124
 	.byte 202,252,255,255,254,255,15,131,228,6,0,0,242,15,16,76
 	.byte 202,248,242,15,95,193,131,193,1,235,219
 
-	.globl lj_ff_string_len
-	.hidden lj_ff_string_len
-	.type lj_ff_string_len, @function
-	.size lj_ff_string_len, 31
-lj_ff_string_len:
+	.private_extern _lj_ff_string_len
+_lj_ff_string_len:
 	.byte 131,248,2,15,130,204,6,0,0,131,122,4,251,15,133,194
 	.byte 6,0,0,139,42,242,15,42,69,12,233,41,251,255,255
 
-	.globl lj_ff_string_byte
-	.hidden lj_ff_string_byte
-	.type lj_ff_string_byte, @function
-	.size lj_ff_string_byte, 47
-lj_ff_string_byte:
+	.private_extern _lj_ff_string_byte
+_lj_ff_string_byte:
 	.byte 131,248,2,15,133,173,6,0,0,131,122,4,251,15,133,163
 	.byte 6,0,0,139,42,139,90,252,131,125,12,1,15,130,218,247
 	.byte 255,255,15,182,109,16,242,15,42,197,233,250,250,255,255
 
-	.globl lj_ff_string_char
-	.hidden lj_ff_string_char
-	.type lj_ff_string_char, @function
-	.size lj_ff_string_char, 76
-lj_ff_string_char:
+	.private_extern _lj_ff_string_char
+_lj_ff_string_char:
 	.byte 65,139,174,104,244,255,255,65,59,174,108,244,255,255,114,5
 	.byte 232,1,7,0,0,131,248,2,15,133,105,6,0,0,129,122
 	.byte 4,255,255,254,255,15,131,92,6,0,0,242,15,44,42,129
 	.byte 253,255,0,0,0,15,135,76,6,0,0,137,108,36,4,199
 	.byte 68,36,8,1,0,0,0,72,141,68,36,4
 
-	.globl lj_fff_newstr
-	.hidden lj_fff_newstr
-	.type lj_fff_newstr, @function
-	.size lj_fff_newstr, 46
-lj_fff_newstr:
+	.private_extern _lj_fff_newstr
+_lj_fff_newstr:
 	.byte 139,108,36,24,137,85,16,139,84,36,8,72,137,198,137,239
-	.byte 137,92,36,28,232
-	.long lj_str_new-.-4
+	.byte 137,92,36,28
+	call _lj_str_new
 	.byte 139,85,16,139,90,252,199,66,252,251,255,255,255,137,66,248
 	.byte 233,136,250,255,255
 
-	.globl lj_ff_string_sub
-	.hidden lj_ff_string_sub
-	.type lj_ff_string_sub, @function
-	.size lj_ff_string_sub, 165
-lj_ff_string_sub:
+	.private_extern _lj_ff_string_sub
+_lj_ff_string_sub:
 	.byte 65,139,174,104,244,255,255,65,59,174,108,244,255,255,114,5
 	.byte 232,135,6,0,0,199,68,36,4,255,255,255,255,131,248,3
 	.byte 15,130,231,5,0,0,118,22,129,122,20,255,255,254,255,15
@@ -2015,18 +1421,12 @@ lj_ff_string_sub:
 	.byte 218,137,232,235,214,116,7,1,233,131,193,1,127,209,185,1
 	.byte 0,0,0,235,202
 
-	.globl lj_fff_emptystr
-	.hidden lj_fff_emptystr
-	.type lj_fff_emptystr, @function
-	.size lj_fff_emptystr, 4
-lj_fff_emptystr:
+	.private_extern _lj_fff_emptystr
+_lj_fff_emptystr:
 	.byte 49,192,235,213
 
-	.globl lj_ff_string_rep
-	.hidden lj_ff_string_rep
-	.type lj_ff_string_rep, @function
-	.size lj_ff_string_rep, 127
-lj_ff_string_rep:
+	.private_extern _lj_ff_string_rep
+_lj_ff_string_rep:
 	.byte 65,139,174,104,244,255,255,65,59,174,108,244,255,255,114,5
 	.byte 232,222,5,0,0,131,248,3,15,133,70,5,0,0,131,122
 	.byte 4,251,15,133,60,5,0,0,129,122,12,255,255,254,255,139
@@ -2036,11 +1436,8 @@ lj_ff_string_rep:
 	.byte 160,244,255,255,137,68,36,8,136,77,0,131,197,1,131,232
 	.byte 1,117,245,65,139,134,160,244,255,255,233,170,254,255,255
 
-	.globl lj_ff_string_reverse
-	.hidden lj_ff_string_reverse
-	.type lj_ff_string_reverse, @function
-	.size lj_ff_string_reverse, 110
-lj_ff_string_reverse:
+	.private_extern _lj_ff_string_reverse
+_lj_ff_string_reverse:
 	.byte 131,248,2,15,130,220,4,0,0,65,139,174,104,244,255,255
 	.byte 65,59,174,108,244,255,255,114,5,232,86,5,0,0,131,122
 	.byte 4,251,15,133,189,4,0,0,139,42,139,69,12,133,192,15
@@ -2049,11 +1446,8 @@ lj_ff_string_reverse:
 	.byte 160,244,255,255,15,182,77,0,131,197,1,131,232,1,136,12
 	.byte 3,117,241,137,216,139,92,36,4,233,60,254,255,255
 
-	.globl lj_ff_string_lower
-	.hidden lj_ff_string_lower
-	.type lj_ff_string_lower, @function
-	.size lj_ff_string_lower, 115
-lj_ff_string_lower:
+	.private_extern _lj_ff_string_lower
+_lj_ff_string_lower:
 	.byte 131,248,2,15,130,110,4,0,0,65,139,174,104,244,255,255
 	.byte 65,59,174,108,244,255,255,114,5,232,232,4,0,0,131,122
 	.byte 4,251,15,133,79,4,0,0,139,42,139,69,12,65,57,134
@@ -2063,11 +1457,8 @@ lj_ff_string_lower:
 	.byte 136,12,3,131,232,1,121,230,137,216,139,92,36,4,233,201
 	.byte 253,255,255
 
-	.globl lj_ff_string_upper
-	.hidden lj_ff_string_upper
-	.type lj_ff_string_upper, @function
-	.size lj_ff_string_upper, 115
-lj_ff_string_upper:
+	.private_extern _lj_ff_string_upper
+_lj_ff_string_upper:
 	.byte 131,248,2,15,130,251,3,0,0,65,139,174,104,244,255,255
 	.byte 65,59,174,108,244,255,255,114,5,232,117,4,0,0,131,122
 	.byte 4,251,15,133,220,3,0,0,139,42,139,69,12,65,57,134
@@ -2077,31 +1468,22 @@ lj_ff_string_upper:
 	.byte 136,12,3,131,232,1,121,230,137,216,139,92,36,4,233,86
 	.byte 253,255,255
 
-	.globl lj_ff_table_getn
-	.hidden lj_ff_table_getn
-	.type lj_ff_table_getn, @function
-	.size lj_ff_table_getn, 39
-lj_ff_table_getn:
+	.private_extern _lj_ff_table_getn
+_lj_ff_table_getn:
 	.byte 131,248,2,15,130,136,3,0,0,131,122,4,244,15,133,126
-	.byte 3,0,0,137,213,139,58,232
-	.long lj_tab_len-.-4
+	.byte 3,0,0,137,213,139,58
+	call _lj_tab_len
 	.byte 137,234,242,15,42,192,233,221,247,255,255
 
-	.globl lj_ff_bit_tobit
-	.hidden lj_ff_bit_tobit
-	.type lj_ff_bit_tobit, @function
-	.size lj_ff_bit_tobit, 54
-lj_ff_bit_tobit:
+	.private_extern _lj_ff_bit_tobit
+_lj_ff_bit_tobit:
 	.byte 131,248,2,15,130,97,3,0,0,129,122,4,255,255,254,255
 	.byte 15,131,84,3,0,0,242,15,16,2,72,189,0,0,0,0
 	.byte 0,0,56,67,102,72,15,110,205,242,15,88,193,102,15,126
 	.byte 197,233,139,1,0,0
 
-	.globl lj_ff_bit_band
-	.hidden lj_ff_bit_band
-	.type lj_ff_bit_band, @function
-	.size lj_ff_bit_band, 97
-lj_ff_bit_band:
+	.private_extern _lj_ff_bit_band
+_lj_ff_bit_band:
 	.byte 131,248,2,15,130,43,3,0,0,72,189,0,0,0,0,0
 	.byte 0,56,67,102,72,15,110,205,129,122,4,255,255,254,255,15
 	.byte 131,15,3,0,0,242,15,16,2,242,15,88,193,102,15,126
@@ -2110,11 +1492,8 @@ lj_ff_bit_band:
 	.byte 16,0,242,15,88,193,102,15,126,193,33,205,131,232,8,235
 	.byte 216
 
-	.globl lj_ff_bit_bor
-	.hidden lj_ff_bit_bor
-	.type lj_ff_bit_bor, @function
-	.size lj_ff_bit_bor, 97
-lj_ff_bit_bor:
+	.private_extern _lj_ff_bit_bor
+_lj_ff_bit_bor:
 	.byte 131,248,2,15,130,202,2,0,0,72,189,0,0,0,0,0
 	.byte 0,56,67,102,72,15,110,205,129,122,4,255,255,254,255,15
 	.byte 131,174,2,0,0,242,15,16,2,242,15,88,193,102,15,126
@@ -2123,11 +1502,8 @@ lj_ff_bit_bor:
 	.byte 16,0,242,15,88,193,102,15,126,193,9,205,131,232,8,235
 	.byte 216
 
-	.globl lj_ff_bit_bxor
-	.hidden lj_ff_bit_bxor
-	.type lj_ff_bit_bxor, @function
-	.size lj_ff_bit_bxor, 97
-lj_ff_bit_bxor:
+	.private_extern _lj_ff_bit_bxor
+_lj_ff_bit_bxor:
 	.byte 131,248,2,15,130,105,2,0,0,72,189,0,0,0,0,0
 	.byte 0,56,67,102,72,15,110,205,129,122,4,255,255,254,255,15
 	.byte 131,77,2,0,0,242,15,16,2,242,15,88,193,102,15,126
@@ -2136,56 +1512,38 @@ lj_ff_bit_bxor:
 	.byte 16,0,242,15,88,193,102,15,126,193,49,205,131,232,8,235
 	.byte 216
 
-	.globl lj_ff_bit_bswap
-	.hidden lj_ff_bit_bswap
-	.type lj_ff_bit_bswap, @function
-	.size lj_ff_bit_bswap, 53
-lj_ff_bit_bswap:
+	.private_extern _lj_ff_bit_bswap
+_lj_ff_bit_bswap:
 	.byte 131,248,2,15,130,8,2,0,0,129,122,4,255,255,254,255
 	.byte 15,131,251,1,0,0,242,15,16,2,72,189,0,0,0,0
 	.byte 0,0,56,67,102,72,15,110,205,242,15,88,193,102,15,126
 	.byte 197,15,205,235,51
 
-	.globl lj_ff_bit_bnot
-	.hidden lj_ff_bit_bnot
-	.type lj_ff_bit_bnot, @function
-	.size lj_ff_bit_bnot, 51
-lj_ff_bit_bnot:
+	.private_extern _lj_ff_bit_bnot
+_lj_ff_bit_bnot:
 	.byte 131,248,2,15,130,211,1,0,0,129,122,4,255,255,254,255
 	.byte 15,131,198,1,0,0,242,15,16,2,72,189,0,0,0,0
 	.byte 0,0,56,67,102,72,15,110,205,242,15,88,193,102,15,126
 	.byte 197,247,213
 
-	.globl lj_fff_resbit
-	.hidden lj_fff_resbit
-	.type lj_fff_resbit, @function
-	.size lj_fff_resbit, 9
-lj_fff_resbit:
+	.private_extern _lj_fff_resbit
+_lj_fff_resbit:
 	.byte 242,15,42,197,233,19,246,255,255
 
-	.globl lj_fff_fallback_bit_op
-	.hidden lj_fff_fallback_bit_op
-	.type lj_fff_fallback_bit_op, @function
-	.size lj_fff_fallback_bit_op, 9
-lj_fff_fallback_bit_op:
+	.private_extern _lj_fff_fallback_bit_op
+_lj_fff_fallback_bit_op:
 	.byte 139,68,36,4,233,151,1,0,0
 
-	.globl lj_ff_bit_lshift
-	.hidden lj_ff_bit_lshift
-	.type lj_ff_bit_lshift, @function
-	.size lj_ff_bit_lshift, 79
-lj_ff_bit_lshift:
+	.private_extern _lj_ff_bit_lshift
+_lj_ff_bit_lshift:
 	.byte 131,248,3,15,130,142,1,0,0,129,122,4,255,255,254,255
 	.byte 15,131,129,1,0,0,129,122,12,255,255,254,255,15,131,116
 	.byte 1,0,0,242,15,16,2,242,15,16,74,8,72,189,0,0
 	.byte 0,0,0,0,56,67,102,72,15,110,213,242,15,88,194,242
 	.byte 15,88,202,102,15,126,197,102,15,126,201,211,229,235,159
 
-	.globl lj_ff_bit_rshift
-	.hidden lj_ff_bit_rshift
-	.type lj_ff_bit_rshift, @function
-	.size lj_ff_bit_rshift, 82
-lj_ff_bit_rshift:
+	.private_extern _lj_ff_bit_rshift
+_lj_ff_bit_rshift:
 	.byte 131,248,3,15,130,63,1,0,0,129,122,4,255,255,254,255
 	.byte 15,131,50,1,0,0,129,122,12,255,255,254,255,15,131,37
 	.byte 1,0,0,242,15,16,2,242,15,16,74,8,72,189,0,0
@@ -2193,11 +1551,8 @@ lj_ff_bit_rshift:
 	.byte 15,88,202,102,15,126,197,102,15,126,201,211,237,233,77,255
 	.byte 255,255
 
-	.globl lj_ff_bit_arshift
-	.hidden lj_ff_bit_arshift
-	.type lj_ff_bit_arshift, @function
-	.size lj_ff_bit_arshift, 82
-lj_ff_bit_arshift:
+	.private_extern _lj_ff_bit_arshift
+_lj_ff_bit_arshift:
 	.byte 131,248,3,15,130,237,0,0,0,129,122,4,255,255,254,255
 	.byte 15,131,224,0,0,0,129,122,12,255,255,254,255,15,131,211
 	.byte 0,0,0,242,15,16,2,242,15,16,74,8,72,189,0,0
@@ -2205,11 +1560,8 @@ lj_ff_bit_arshift:
 	.byte 15,88,202,102,15,126,197,102,15,126,201,211,253,233,251,254
 	.byte 255,255
 
-	.globl lj_ff_bit_rol
-	.hidden lj_ff_bit_rol
-	.type lj_ff_bit_rol, @function
-	.size lj_ff_bit_rol, 82
-lj_ff_bit_rol:
+	.private_extern _lj_ff_bit_rol
+_lj_ff_bit_rol:
 	.byte 131,248,3,15,130,155,0,0,0,129,122,4,255,255,254,255
 	.byte 15,131,142,0,0,0,129,122,12,255,255,254,255,15,131,129
 	.byte 0,0,0,242,15,16,2,242,15,16,74,8,72,189,0,0
@@ -2217,36 +1569,24 @@ lj_ff_bit_rol:
 	.byte 15,88,202,102,15,126,197,102,15,126,201,211,197,233,169,254
 	.byte 255,255
 
-	.globl lj_ff_bit_ror
-	.hidden lj_ff_bit_ror
-	.type lj_ff_bit_ror, @function
-	.size lj_ff_bit_ror, 70
-lj_ff_bit_ror:
+	.private_extern _lj_ff_bit_ror
+_lj_ff_bit_ror:
 	.byte 131,248,3,114,77,129,122,4,255,255,254,255,115,68,129,122
 	.byte 12,255,255,254,255,115,59,242,15,16,2,242,15,16,74,8
 	.byte 72,189,0,0,0,0,0,0,56,67,102,72,15,110,213,242
 	.byte 15,88,194,242,15,88,202,102,15,126,197,102,15,126,201,211
 	.byte 205,233,99,254,255,255
 
-	.globl lj_fff_fallback_2
-	.hidden lj_fff_fallback_2
-	.type lj_fff_fallback_2, @function
-	.size lj_fff_fallback_2, 7
-lj_fff_fallback_2:
+	.private_extern _lj_fff_fallback_2
+_lj_fff_fallback_2:
 	.byte 184,3,0,0,0,235,5
 
-	.globl lj_fff_fallback_1
-	.hidden lj_fff_fallback_1
-	.type lj_fff_fallback_1, @function
-	.size lj_fff_fallback_1, 5
-lj_fff_fallback_1:
+	.private_extern _lj_fff_fallback_1
+_lj_fff_fallback_1:
 	.byte 184,2,0,0,0
 
-	.globl lj_fff_fallback
-	.hidden lj_fff_fallback
-	.type lj_fff_fallback, @function
-	.size lj_fff_fallback, 87
-lj_fff_fallback:
+	.private_extern _lj_fff_fallback
+_lj_fff_fallback:
 	.byte 139,108,36,24,139,90,252,137,92,36,28,137,85,16,141,68
 	.byte 194,248,141,136,160,0,0,0,137,69,24,139,66,248,59,77
 	.byte 32,119,89,137,239,255,80,24,139,85,16,133,192,15,143,77
@@ -2254,97 +1594,67 @@ lj_fff_fallback:
 	.byte 139,106,248,117,18,139,93,16,139,11,15,182,233,15,182,205
 	.byte 131,195,4,65,255,36,238
 
-	.globl lj_vm_call_tail
-	.hidden lj_vm_call_tail
-	.type lj_vm_call_tail, @function
-	.size lj_vm_call_tail, 56
-lj_vm_call_tail:
+	.private_extern _lj_vm_call_tail
+_lj_vm_call_tail:
 	.byte 137,209,247,195,3,0,0,0,117,15,15,182,107,253,72,247
 	.byte 213,141,20,234,233,197,233,255,255,137,221,131,229,248,41,234
-	.byte 233,185,233,255,255,190,20,0,0,0,137,239,232
-	.long lj_state_growstack-.-4
+	.byte 233,185,233,255,255,190,20,0,0,0,137,239
+	call _lj_state_growstack
 	.byte 139,85,16,49,192,235,164
 
-	.globl lj_fff_gcstep
-	.hidden lj_fff_gcstep
-	.type lj_fff_gcstep, @function
-	.size lj_fff_gcstep, 52
-lj_fff_gcstep:
+	.private_extern _lj_fff_gcstep
+_lj_fff_gcstep:
 	.byte 93,72,137,108,36,8,139,108,36,24,137,92,36,28,137,85
-	.byte 16,141,68,194,248,137,239,137,69,24,232
-	.long lj_gc_step-.-4
+	.byte 16,141,68,194,248,137,239,137,69,24
+	call _lj_gc_step
 	.byte 139,85,16,139,69,24,41,208,193,232,3,131,192,1,72,139
 	.byte 108,36,8,85,195
 
-	.globl lj_vm_record
-	.hidden lj_vm_record
-	.type lj_vm_record, @function
-	.size lj_vm_record, 29
-lj_vm_record:
+	.private_extern _lj_vm_record
+_lj_vm_record:
 	.byte 65,15,182,134,217,244,255,255,168,32,117,83,168,16,117,56
 	.byte 168,12,116,52,65,255,142,16,245,255,255,235,43
 
-	.globl lj_vm_rethook
-	.hidden lj_vm_rethook
-	.type lj_vm_rethook, @function
-	.size lj_vm_rethook, 14
-lj_vm_rethook:
+	.private_extern _lj_vm_rethook
+_lj_vm_rethook:
 	.byte 65,15,182,134,217,244,255,255,168,16,117,54,235,29
 
-	.globl lj_vm_inshook
-	.hidden lj_vm_inshook
-	.type lj_vm_inshook, @function
-	.size lj_vm_inshook, 68
-lj_vm_inshook:
+	.private_extern _lj_vm_inshook
+_lj_vm_inshook:
 	.byte 65,15,182,134,217,244,255,255,168,16,117,40,168,12,116,36
 	.byte 65,255,142,16,245,255,255,116,4,168,4,116,23,139,108,36
-	.byte 24,137,85,16,137,222,137,239,232
-	.long lj_dispatch_ins-.-4
+	.byte 24,137,85,16,137,222,137,239
+	call _lj_dispatch_ins
 	.byte 139,85,16,15,182,75,253,15,182,107,252,15,183,67,254,65
 	.byte 255,164,238,216,4,0,0
 
-	.globl lj_cont_hook
-	.hidden lj_cont_hook
-	.type lj_cont_hook, @function
-	.size lj_cont_hook, 12
-lj_cont_hook:
+	.private_extern _lj_cont_hook
+_lj_cont_hook:
 	.byte 131,195,4,139,77,232,137,76,36,4,235,224
 
-	.globl lj_vm_hotloop
-	.hidden lj_vm_hotloop
-	.type lj_vm_hotloop, @function
-	.size lj_vm_hotloop, 50
-lj_vm_hotloop:
+	.private_extern _lj_vm_hotloop
+_lj_vm_hotloop:
 	.byte 139,106,248,139,109,16,15,182,69,199,141,4,194,139,108,36
 	.byte 24,137,85,16,137,69,24,137,222,65,141,190,224,245,255,255
-	.byte 73,137,174,64,246,255,255,137,92,36,28,232
-	.long lj_trace_hot-.-4
+	.byte 73,137,174,64,246,255,255,137,92,36,28
+	call _lj_trace_hot
 	.byte 235,171
 
-	.globl lj_vm_callhook
-	.hidden lj_vm_callhook
-	.type lj_vm_callhook, @function
-	.size lj_vm_callhook, 6
-lj_vm_callhook:
+	.private_extern _lj_vm_callhook
+_lj_vm_callhook:
 	.byte 137,92,36,28,235,7
 
-	.globl lj_vm_hotcall
-	.hidden lj_vm_hotcall
-	.type lj_vm_hotcall, @function
-	.size lj_vm_hotcall, 67
-lj_vm_hotcall:
+	.private_extern _lj_vm_hotcall
+_lj_vm_hotcall:
 	.byte 137,92,36,28,131,203,1,141,68,194,248,139,108,36,24,137
-	.byte 85,16,137,69,24,137,222,137,239,232
-	.long lj_dispatch_call-.-4
+	.byte 85,16,137,69,24,137,222,137,239
+	call _lj_dispatch_call
 	.byte 199,68,36,28,0,0,0,0,131,227,254,139,85,16,72,137
 	.byte 193,139,69,24,41,208,72,137,205,15,182,75,253,193,232,3
 	.byte 131,192,1,255,229
 
-	.globl lj_vm_exit_handler
-	.hidden lj_vm_exit_handler
-	.type lj_vm_exit_handler, @function
-	.size lj_vm_exit_handler, 247
-lj_vm_exit_handler:
+	.private_extern _lj_vm_exit_handler
+_lj_vm_exit_handler:
 	.byte 65,85,65,84,65,83,65,82,65,81,65,80,87,86,85,72
 	.byte 141,108,36,88,85,83,82,81,80,15,182,69,248,138,101,240
 	.byte 76,137,125,248,76,137,117,240,68,139,117,0,65,139,142,48
@@ -2358,35 +1668,26 @@ lj_vm_exit_handler:
 	.byte 242,15,17,85,144,242,15,17,77,136,242,15,17,69,128,65
 	.byte 139,174,60,245,255,255,65,139,150,64,245,255,255,73,137,174
 	.byte 64,246,255,255,65,199,134,60,245,255,255,0,0,0,0,137
-	.byte 85,16,72,137,230,65,141,190,224,245,255,255,232
-	.long lj_trace_exit-.-4
+	.byte 85,16,72,137,230,65,141,190,224,245,255,255
+	call _lj_trace_exit
 	.byte 72,139,77,48,72,131,225,252,72,137,204,137,105,24,139,85
 	.byte 16,139,89,28,235,4
 
-	.globl lj_vm_exit_interp
-	.hidden lj_vm_exit_interp
-	.type lj_vm_exit_interp, @function
-	.size lj_vm_exit_interp, 93
-lj_vm_exit_interp:
+	.private_extern _lj_vm_exit_interp
+_lj_vm_exit_interp:
 	.byte 72,131,196,16,76,139,108,36,8,76,139,36,36,133,192,120
 	.byte 65,137,68,36,4,68,139,122,248,69,139,127,16,69,139,127
 	.byte 208,65,199,134,60,245,255,255,0,0,0,0,65,199,134,48
 	.byte 245,255,255,255,255,255,255,139,3,15,182,204,15,182,232,131
 	.byte 195,4,193,232,16,131,253,85,114,4,139,68,36,4,65,255
-	.byte 36,238,247,216,137,239,137,198,232
-	.long lj_err_throw-.-4
+	.byte 36,238,247,216,137,239,137,198
+	call _lj_err_throw
 
-	.globl lj_vm_floor
-	.hidden lj_vm_floor
-	.type lj_vm_floor, @function
-	.size lj_vm_floor, 0
-lj_vm_floor:
+	.private_extern _lj_vm_floor
+_lj_vm_floor:
 
-	.globl lj_vm_floor_sse
-	.hidden lj_vm_floor_sse
-	.type lj_vm_floor_sse, @function
-	.size lj_vm_floor_sse, 91
-lj_vm_floor_sse:
+	.private_extern _lj_vm_floor_sse
+_lj_vm_floor_sse:
 	.byte 72,184,255,255,255,255,255,255,255,127,102,72,15,110,208,72
 	.byte 184,0,0,0,0,0,0,48,67,102,72,15,110,216,15,40
 	.byte 200,102,15,84,202,102,15,46,217,118,47,102,15,85,208,242
@@ -2394,17 +1695,11 @@ lj_vm_floor_sse:
 	.byte 0,0,0,240,63,102,72,15,110,208,242,15,194,193,1,102
 	.byte 15,84,194,242,15,92,200,15,40,193,195
 
-	.globl lj_vm_ceil
-	.hidden lj_vm_ceil
-	.type lj_vm_ceil, @function
-	.size lj_vm_ceil, 0
-lj_vm_ceil:
+	.private_extern _lj_vm_ceil
+_lj_vm_ceil:
 
-	.globl lj_vm_ceil_sse
-	.hidden lj_vm_ceil_sse
-	.type lj_vm_ceil_sse, @function
-	.size lj_vm_ceil_sse, 91
-lj_vm_ceil_sse:
+	.private_extern _lj_vm_ceil_sse
+_lj_vm_ceil_sse:
 	.byte 72,184,255,255,255,255,255,255,255,127,102,72,15,110,208,72
 	.byte 184,0,0,0,0,0,0,48,67,102,72,15,110,216,15,40
 	.byte 200,102,15,84,202,102,15,46,217,118,47,102,15,85,208,242
@@ -2412,17 +1707,11 @@ lj_vm_ceil_sse:
 	.byte 0,0,0,240,191,102,72,15,110,208,242,15,194,193,6,102
 	.byte 15,84,194,242,15,92,200,15,40,193,195
 
-	.globl lj_vm_trunc
-	.hidden lj_vm_trunc
-	.type lj_vm_trunc, @function
-	.size lj_vm_trunc, 0
-lj_vm_trunc:
+	.private_extern _lj_vm_trunc
+_lj_vm_trunc:
 
-	.globl lj_vm_trunc_sse
-	.hidden lj_vm_trunc_sse
-	.type lj_vm_trunc_sse, @function
-	.size lj_vm_trunc_sse, 94
-lj_vm_trunc_sse:
+	.private_extern _lj_vm_trunc_sse
+_lj_vm_trunc_sse:
 	.byte 72,184,255,255,255,255,255,255,255,127,102,72,15,110,208,72
 	.byte 184,0,0,0,0,0,0,48,67,102,72,15,110,216,15,40
 	.byte 200,102,15,84,202,102,15,46,217,118,50,102,15,85,208,15
@@ -2430,11 +1719,8 @@ lj_vm_trunc_sse:
 	.byte 0,0,240,63,102,72,15,110,216,242,15,194,193,1,102,15
 	.byte 84,195,242,15,92,200,102,15,86,202,15,40,193,195
 
-	.globl lj_vm_mod
-	.hidden lj_vm_mod
-	.type lj_vm_mod, @function
-	.size lj_vm_mod, 118
-lj_vm_mod:
+	.private_extern _lj_vm_mod
+_lj_vm_mod:
 	.byte 15,40,232,242,15,94,193,72,184,255,255,255,255,255,255,255
 	.byte 127,102,72,15,110,208,72,184,0,0,0,0,0,0,48,67
 	.byte 102,72,15,110,216,15,40,224,102,15,84,226,102,15,46,220
@@ -2444,56 +1730,35 @@ lj_vm_mod:
 	.byte 197,242,15,89,204,242,15,92,193,195,242,15,89,200,15,40
 	.byte 197,242,15,92,193,195
 
-	.globl lj_vm_log2
-	.hidden lj_vm_log2
-	.type lj_vm_log2, @function
-	.size lj_vm_log2, 25
-lj_vm_log2:
+	.private_extern _lj_vm_log2
+_lj_vm_log2:
 	.byte 242,15,17,68,36,248,217,232,221,68,36,248,217,241,221,92
 	.byte 36,248,242,15,16,68,36,248,195
 
-	.globl lj_vm_exp_x87
-	.hidden lj_vm_exp_x87
-	.type lj_vm_exp_x87, @function
-	.size lj_vm_exp_x87, 4
-lj_vm_exp_x87:
+	.private_extern _lj_vm_exp_x87
+_lj_vm_exp_x87:
 	.byte 217,234,222,201
 
-	.globl lj_vm_exp2_x87
-	.hidden lj_vm_exp2_x87
-	.type lj_vm_exp2_x87, @function
-	.size lj_vm_exp2_x87, 24
-lj_vm_exp2_x87:
+	.private_extern _lj_vm_exp2_x87
+_lj_vm_exp2_x87:
 	.byte 217,84,36,248,129,124,36,248,0,0,128,127,116,28,129,124
 	.byte 36,248,0,0,128,255,116,19
 
-	.globl lj_vm_exp2raw
-	.hidden lj_vm_exp2raw
-	.type lj_vm_exp2raw, @function
-	.size lj_vm_exp2raw, 24
-lj_vm_exp2raw:
+	.private_extern _lj_vm_exp2raw
+_lj_vm_exp2raw:
 	.byte 217,192,217,252,220,233,217,201,217,240,217,232,222,193,217,253
 	.byte 221,217,195,221,216,217,238,195
 
-	.globl lj_vm_pow
-	.hidden lj_vm_pow
-	.type lj_vm_pow, @function
-	.size lj_vm_pow, 0
-lj_vm_pow:
+	.private_extern _lj_vm_pow
+_lj_vm_pow:
 
-	.globl lj_vm_pow_sse
-	.hidden lj_vm_pow_sse
-	.type lj_vm_pow_sse, @function
-	.size lj_vm_pow_sse, 24
-lj_vm_pow_sse:
+	.private_extern _lj_vm_pow_sse
+_lj_vm_pow_sse:
 	.byte 242,15,45,193,242,15,42,208,102,15,46,202,15,133,104,0
 	.byte 0,0,15,138,199,0,0,0
 
-	.globl lj_vm_powi_sse
-	.hidden lj_vm_powi_sse
-	.type lj_vm_powi_sse, @function
-	.size lj_vm_powi_sse, 320
-lj_vm_powi_sse:
+	.private_extern _lj_vm_powi_sse
+_lj_vm_powi_sse:
 	.byte 131,248,1,126,43,169,1,0,0,0,117,8,242,15,89,192
 	.byte 209,232,235,241,209,232,116,23,15,40,200,242,15,89,192,209
 	.byte 232,116,8,115,246,242,15,89,200,235,240,242,15,89,193,195
@@ -2515,11 +1780,8 @@ lj_vm_powi_sse:
 	.byte 240,127,102,72,15,110,192,195,102,15,80,193,133,192,117,232
 	.byte 15,87,192,195,102,15,80,193,133,192,116,220,15,87,192,195
 
-	.globl lj_vm_foldfpm
-	.hidden lj_vm_foldfpm
-	.type lj_vm_foldfpm, @function
-	.size lj_vm_foldfpm, 131
-lj_vm_foldfpm:
+	.private_extern _lj_vm_foldfpm
+_lj_vm_foldfpm:
 	.byte 131,255,1,15,130,200,252,255,255,15,132,29,253,255,255,131
 	.byte 255,3,15,130,111,253,255,255,119,5,242,15,81,192,195,242
 	.byte 15,17,68,36,248,221,68,36,248,131,255,5,119,16,116,7
@@ -2530,11 +1792,8 @@ lj_vm_foldfpm:
 	.byte 255,235,4,217,242,221,216,221,92,36,248,242,15,16,68,36
 	.byte 248,195,204
 
-	.globl lj_vm_foldarith
-	.hidden lj_vm_foldarith
-	.type lj_vm_foldarith, @function
-	.size lj_vm_foldarith, 160
-lj_vm_foldarith:
+	.private_extern _lj_vm_foldarith
+_lj_vm_foldarith:
 	.byte 131,255,1,116,7,119,10,242,15,88,193,195,242,15,92,193
 	.byte 195,131,255,3,116,7,119,10,242,15,89,193,195,242,15,94
 	.byte 193,195,131,255,5,15,130,55,253,255,255,15,132,244,253,255
@@ -2546,26 +1805,17 @@ lj_vm_foldarith:
 	.byte 15,16,68,36,248,195,217,201,217,253,221,217,235,237,131,255
 	.byte 11,116,7,119,10,242,15,93,193,195,242,15,95,193,195,204
 
-	.globl lj_vm_cpuid
-	.hidden lj_vm_cpuid
-	.type lj_vm_cpuid, @function
-	.size lj_vm_cpuid, 18
-lj_vm_cpuid:
+	.private_extern _lj_vm_cpuid
+_lj_vm_cpuid:
 	.byte 137,248,83,15,162,137,6,137,94,4,137,78,8,137,86,12
 	.byte 91,195
 
-	.globl lj_assert_bad_for_arg_type
-	.hidden lj_assert_bad_for_arg_type
-	.type lj_assert_bad_for_arg_type, @function
-	.size lj_assert_bad_for_arg_type, 1
-lj_assert_bad_for_arg_type:
+	.private_extern _lj_assert_bad_for_arg_type
+_lj_assert_bad_for_arg_type:
 	.byte 204
 
-	.globl lj_vm_ffi_callback
-	.hidden lj_vm_ffi_callback
-	.type lj_vm_ffi_callback, @function
-	.size lj_vm_ffi_callback, 179
-lj_vm_ffi_callback:
+	.private_extern _lj_vm_ffi_callback
+_lj_vm_ffi_callback:
 	.byte 83,65,87,65,86,72,131,236,40,68,141,181,184,11,0,0
 	.byte 139,157,252,0,0,0,15,183,192,137,131,208,0,0,0,72
 	.byte 137,123,112,72,137,115,120,72,137,147,128,0,0,0,72,137
@@ -2574,27 +1824,20 @@ lj_vm_ffi_callback:
 	.byte 131,144,0,0,0,76,137,139,152,0,0,0,242,15,17,99
 	.byte 80,242,15,17,107,88,242,15,17,115,96,242,15,17,123,104
 	.byte 72,137,131,176,0,0,0,72,137,230,137,92,36,28,137,223
-	.byte 232
-	.long lj_ccallback_enter-.-4
+	call _lj_ccallback_enter
 	.byte 65,199,134,48,245,255,255,255,255,255,255,139,80,16,139,64
 	.byte 24,41,208,139,106,248,193,232,3,131,192,1,139,93,16,139
 	.byte 11,15,182,233,15,182,205,131,195,4,65,255,36,238
 
-	.globl lj_cont_ffi_callback
-	.hidden lj_cont_ffi_callback
-	.type lj_cont_ffi_callback, @function
-	.size lj_cont_ffi_callback, 44
-lj_cont_ffi_callback:
+	.private_extern _lj_cont_ffi_callback
+_lj_cont_ffi_callback:
 	.byte 139,76,36,24,65,139,158,68,245,255,255,72,137,75,16,137
-	.byte 81,16,137,105,24,137,223,137,198,232
-	.long lj_ccallback_leave-.-4
+	.byte 81,16,137,105,24,137,223,137,198
+	call _lj_ccallback_leave
 	.byte 72,139,67,112,242,15,16,67,48,233,0,224,255,255
 
-	.globl lj_vm_ffi_call
-	.hidden lj_vm_ffi_call
-	.type lj_vm_ffi_call, @function
-	.size lj_vm_ffi_call, 160
-lj_vm_ffi_call:
+	.private_extern _lj_vm_ffi_call
+_lj_vm_ffi_call:
 	.byte 85,72,137,229,83,72,137,251,139,67,8,72,41,196,15,182
 	.byte 75,12,131,233,1,120,17,72,139,132,203,192,0,0,0,72
 	.byte 137,4,204,131,233,1,121,239,15,182,67,15,72,139,187,144
@@ -2606,139 +1849,5306 @@ lj_vm_ffi_call:
 	.byte 0,0,255,19,72,137,131,144,0,0,0,15,41,67,16,72
 	.byte 137,147,152,0,0,0,15,41,75,32,72,139,93,248,201,195
 
-	.section .note.GNU-stack,"",@progbits
-	.ident "DynASM 1.3.0"
+	.cstring
+	.ascii "DynASM 1.3.0\0"
 
-	.section .debug_frame,"",@progbits
-.Lframe0:
-	.long .LECIE0-.LSCIE0
-.LSCIE0:
-	.long 0xffffffff
-	.byte 0x1
-	.string ""
-	.uleb128 0x1
-	.sleb128 -8
-	.byte 0x10
-	.byte 0xc
-	.uleb128 0x7
-	.uleb128 8
-	.byte 0x80+0x10
-	.uleb128 0x1
-	.align 8
-.LECIE0:
-
-.LSFDE0:
-	.long .LEFDE0-.LASFDE0
-.LASFDE0:
-	.long .Lframe0
-	.quad .Lbegin
-	.quad 14599
-	.byte 0xe
-	.uleb128 80
-	.byte 0x86
-	.uleb128 0x2
-	.byte 0x83
-	.uleb128 0x3
-	.byte 0x8f
-	.uleb128 0x4
-	.byte 0x8e
-	.uleb128 0x5
-	.align 8
-.LEFDE0:
-
-.LSFDE1:
-	.long .LEFDE1-.LASFDE1
-.LASFDE1:
-	.long .Lframe0
-	.quad lj_vm_ffi_call
-	.quad 160
-	.byte 0xe
-	.uleb128 16
-	.byte 0x86
-	.uleb128 0x2
-	.byte 0xd
-	.uleb128 0x6
-	.byte 0x83
-	.uleb128 0x3
-	.align 8
-.LEFDE1:
-
-	.section .eh_frame,"a",@progbits
-.Lframe1:
-	.long .LECIE1-.LSCIE1
-.LSCIE1:
+	.section __TEXT,__eh_frame,coalesced,no_toc+strip_static_syms+live_support
+EH_frame1:
+	.set L$set$x,LECIEX-LSCIEX
+	.long L$set$x
+LSCIEX:
 	.long 0
 	.byte 0x1
-	.string "zPR"
-	.uleb128 0x1
-	.sleb128 -8
-	.byte 0x10
-	.uleb128 6
-	.byte 0x1b
-	.long lj_err_unwind_dwarf-.
-	.byte 0x1b
-	.byte 0xc
-	.uleb128 0x7
-	.uleb128 8
-	.byte 0x80+0x10
-	.uleb128 0x1
-	.align 8
-.LECIE1:
-
-.LSFDE2:
-	.long .LEFDE2-.LASFDE2
-.LASFDE2:
-	.long .LASFDE2-.Lframe1
-	.long .Lbegin-.
-	.long 14599
-	.uleb128 0
-	.byte 0xe
-	.uleb128 80
-	.byte 0x86
-	.uleb128 0x2
-	.byte 0x83
-	.uleb128 0x3
-	.byte 0x8f
-	.uleb128 0x4
-	.byte 0x8e
-	.uleb128 0x5
-	.align 8
-.LEFDE2:
-
-.Lframe2:
-	.long .LECIE2-.LSCIE2
-.LSCIE2:
-	.long 0
+	.ascii "zPR\0"
 	.byte 0x1
-	.string "zR"
-	.uleb128 0x1
-	.sleb128 -8
+	.byte 128-8
 	.byte 0x10
-	.uleb128 1
+	.byte 6
+	.byte 0x9b
+	.long _lj_err_unwind_dwarf+4@GOTPCREL
 	.byte 0x1b
 	.byte 0xc
-	.uleb128 0x7
-	.uleb128 8
+	.byte 0x7
+	.byte 8
 	.byte 0x80+0x10
-	.uleb128 0x1
-	.align 8
-.LECIE2:
+	.byte 0x1
+	.align 3
+LECIEX:
 
-.LSFDE3:
-	.long .LEFDE3-.LASFDE3
-.LASFDE3:
-	.long .LASFDE3-.Lframe2
-	.long lj_vm_ffi_call-.
+_lj_BC_ISLT.eh:
+LSFDE0:
+	.set L$set$0,LEFDE0-LASFDE0
+	.long L$set$0
+LASFDE0:
+	.long LASFDE0-EH_frame1
+	.long _lj_BC_ISLT-.
+	.long 72
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE0:
+
+_lj_BC_ISGE.eh:
+LSFDE1:
+	.set L$set$1,LEFDE1-LASFDE1
+	.long L$set$1
+LASFDE1:
+	.long LASFDE1-EH_frame1
+	.long _lj_BC_ISGE-.
+	.long 72
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE1:
+
+_lj_BC_ISLE.eh:
+LSFDE2:
+	.set L$set$2,LEFDE2-LASFDE2
+	.long L$set$2
+LASFDE2:
+	.long LASFDE2-EH_frame1
+	.long _lj_BC_ISLE-.
+	.long 72
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE2:
+
+_lj_BC_ISGT.eh:
+LSFDE3:
+	.set L$set$3,LEFDE3-LASFDE3
+	.long L$set$3
+LASFDE3:
+	.long LASFDE3-EH_frame1
+	.long _lj_BC_ISGT-.
+	.long 72
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE3:
+
+_lj_BC_ISEQV.eh:
+LSFDE4:
+	.set L$set$4,LEFDE4-LASFDE4
+	.long L$set$4
+LASFDE4:
+	.long LASFDE4-EH_frame1
+	.long _lj_BC_ISEQV-.
+	.long 139
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE4:
+
+_lj_BC_ISNEV.eh:
+LSFDE5:
+	.set L$set$5,LEFDE5-LASFDE5
+	.long L$set$5
+LASFDE5:
+	.long LASFDE5-EH_frame1
+	.long _lj_BC_ISNEV-.
+	.long 142
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE5:
+
+_lj_BC_ISEQS.eh:
+LSFDE6:
+	.set L$set$6,LEFDE6-LASFDE6
+	.long L$set$6
+LASFDE6:
+	.long LASFDE6-EH_frame1
+	.long _lj_BC_ISEQS-.
+	.long 63
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE6:
+
+_lj_BC_ISNES.eh:
+LSFDE7:
+	.set L$set$7,LEFDE7-LASFDE7
+	.long L$set$7
+LASFDE7:
+	.long LASFDE7-EH_frame1
+	.long _lj_BC_ISNES-.
+	.long 63
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE7:
+
+_lj_BC_ISEQN.eh:
+LSFDE8:
+	.set L$set$8,LEFDE8-LASFDE8
+	.long L$set$8
+LASFDE8:
+	.long LASFDE8-EH_frame1
+	.long _lj_BC_ISEQN-.
+	.long 69
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE8:
+
+_lj_BC_ISNEN.eh:
+LSFDE9:
+	.set L$set$9,LEFDE9-LASFDE9
+	.long L$set$9
+LASFDE9:
+	.long LASFDE9-EH_frame1
+	.long _lj_BC_ISNEN-.
+	.long 69
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE9:
+
+_lj_BC_ISEQP.eh:
+LSFDE10:
+	.set L$set$10,LEFDE10-LASFDE10
+	.long L$set$10
+LASFDE10:
+	.long LASFDE10-EH_frame1
+	.long _lj_BC_ISEQP-.
+	.long 53
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE10:
+
+_lj_BC_ISNEP.eh:
+LSFDE11:
+	.set L$set$11,LEFDE11-LASFDE11
+	.long L$set$11
+LASFDE11:
+	.long LASFDE11-EH_frame1
+	.long _lj_BC_ISNEP-.
+	.long 52
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE11:
+
+_lj_BC_ISTC.eh:
+LSFDE12:
+	.set L$set$12,LEFDE12-LASFDE12
+	.long L$set$12
+LASFDE12:
+	.long LASFDE12-EH_frame1
+	.long _lj_BC_ISTC-.
+	.long 51
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE12:
+
+_lj_BC_ISFC.eh:
+LSFDE13:
+	.set L$set$13,LEFDE13-LASFDE13
+	.long L$set$13
+LASFDE13:
+	.long LASFDE13-EH_frame1
+	.long _lj_BC_ISFC-.
+	.long 51
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE13:
+
+_lj_BC_IST.eh:
+LSFDE14:
+	.set L$set$14,LEFDE14-LASFDE14
+	.long L$set$14
+LASFDE14:
+	.long LASFDE14-EH_frame1
+	.long _lj_BC_IST-.
+	.long 41
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE14:
+
+_lj_BC_ISF.eh:
+LSFDE15:
+	.set L$set$15,LEFDE15-LASFDE15
+	.long L$set$15
+LASFDE15:
+	.long LASFDE15-EH_frame1
+	.long _lj_BC_ISF-.
+	.long 41
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE15:
+
+_lj_BC_MOV.eh:
+LSFDE16:
+	.set L$set$16,LEFDE16-LASFDE16
+	.long L$set$16
+LASFDE16:
+	.long LASFDE16-EH_frame1
+	.long _lj_BC_MOV-.
+	.long 26
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE16:
+
+_lj_BC_NOT.eh:
+LSFDE17:
+	.set L$set$17,LEFDE17-LASFDE17
+	.long L$set$17
+LASFDE17:
+	.long LASFDE17-EH_frame1
+	.long _lj_BC_NOT-.
+	.long 32
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE17:
+
+_lj_BC_UNM.eh:
+LSFDE18:
+	.set L$set$18,LEFDE18-LASFDE18
+	.long L$set$18
+LASFDE18:
+	.long LASFDE18-EH_frame1
+	.long _lj_BC_UNM-.
+	.long 60
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE18:
+
+_lj_BC_LEN.eh:
+LSFDE19:
+	.set L$set$19,LEFDE19-LASFDE19
+	.long L$set$19
+LASFDE19:
+	.long LASFDE19-EH_frame1
+	.long _lj_BC_LEN-.
+	.long 74
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE19:
+
+_lj_BC_ADDVN.eh:
+LSFDE20:
+	.set L$set$20,LEFDE20-LASFDE20
+	.long L$set$20
+LASFDE20:
+	.long LASFDE20-EH_frame1
+	.long _lj_BC_ADDVN-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE20:
+
+_lj_BC_SUBVN.eh:
+LSFDE21:
+	.set L$set$21,LEFDE21-LASFDE21
+	.long L$set$21
+LASFDE21:
+	.long LASFDE21-EH_frame1
+	.long _lj_BC_SUBVN-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE21:
+
+_lj_BC_MULVN.eh:
+LSFDE22:
+	.set L$set$22,LEFDE22-LASFDE22
+	.long L$set$22
+LASFDE22:
+	.long LASFDE22-EH_frame1
+	.long _lj_BC_MULVN-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE22:
+
+_lj_BC_DIVVN.eh:
+LSFDE23:
+	.set L$set$23,LEFDE23-LASFDE23
+	.long L$set$23
+LASFDE23:
+	.long LASFDE23-EH_frame1
+	.long _lj_BC_DIVVN-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE23:
+
+_lj_BC_MODVN.eh:
+LSFDE24:
+	.set L$set$24,LEFDE24-LASFDE24
+	.long L$set$24
+LASFDE24:
+	.long LASFDE24-EH_frame1
+	.long _lj_BC_MODVN-.
+	.long 59
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE24:
+
+_lj_BC_ADDNV.eh:
+LSFDE25:
+	.set L$set$25,LEFDE25-LASFDE25
+	.long L$set$25
+LASFDE25:
+	.long LASFDE25-EH_frame1
+	.long _lj_BC_ADDNV-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE25:
+
+_lj_BC_SUBNV.eh:
+LSFDE26:
+	.set L$set$26,LEFDE26-LASFDE26
+	.long L$set$26
+LASFDE26:
+	.long LASFDE26-EH_frame1
+	.long _lj_BC_SUBNV-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE26:
+
+_lj_BC_MULNV.eh:
+LSFDE27:
+	.set L$set$27,LEFDE27-LASFDE27
+	.long L$set$27
+LASFDE27:
+	.long LASFDE27-EH_frame1
+	.long _lj_BC_MULNV-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE27:
+
+_lj_BC_DIVNV.eh:
+LSFDE28:
+	.set L$set$28,LEFDE28-LASFDE28
+	.long L$set$28
+LASFDE28:
+	.long LASFDE28-EH_frame1
+	.long _lj_BC_DIVNV-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE28:
+
+_lj_BC_MODNV.eh:
+LSFDE29:
+	.set L$set$29,LEFDE29-LASFDE29
+	.long L$set$29
+LASFDE29:
+	.long LASFDE29-EH_frame1
+	.long _lj_BC_MODNV-.
+	.long 36
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE29:
+
+_lj_BC_ADDVV.eh:
+LSFDE30:
+	.set L$set$30,LEFDE30-LASFDE30
+	.long L$set$30
+LASFDE30:
+	.long LASFDE30-EH_frame1
+	.long _lj_BC_ADDVV-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE30:
+
+_lj_BC_SUBVV.eh:
+LSFDE31:
+	.set L$set$31,LEFDE31-LASFDE31
+	.long L$set$31
+LASFDE31:
+	.long LASFDE31-EH_frame1
+	.long _lj_BC_SUBVV-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE31:
+
+_lj_BC_MULVV.eh:
+LSFDE32:
+	.set L$set$32,LEFDE32-LASFDE32
+	.long L$set$32
+LASFDE32:
+	.long LASFDE32-EH_frame1
+	.long _lj_BC_MULVV-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE32:
+
+_lj_BC_DIVVV.eh:
+LSFDE33:
+	.set L$set$33,LEFDE33-LASFDE33
+	.long L$set$33
+LASFDE33:
+	.long LASFDE33-EH_frame1
+	.long _lj_BC_DIVVV-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE33:
+
+_lj_BC_MODVV.eh:
+LSFDE34:
+	.set L$set$34,LEFDE34-LASFDE34
+	.long L$set$34
+LASFDE34:
+	.long LASFDE34-EH_frame1
+	.long _lj_BC_MODVV-.
+	.long 49
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE34:
+
+_lj_BC_POW.eh:
+LSFDE35:
+	.set L$set$35,LEFDE35-LASFDE35
+	.long L$set$35
+LASFDE35:
+	.long LASFDE35-EH_frame1
+	.long _lj_BC_POW-.
+	.long 72
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE35:
+
+_lj_BC_CAT.eh:
+LSFDE36:
+	.set L$set$36,LEFDE36-LASFDE36
+	.long L$set$36
+LASFDE36:
+	.long LASFDE36-EH_frame1
+	.long _lj_BC_CAT-.
+	.long 76
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE36:
+
+_lj_BC_KSTR.eh:
+LSFDE37:
+	.set L$set$37,LEFDE37-LASFDE37
+	.long L$set$37
+LASFDE37:
+	.long LASFDE37-EH_frame1
+	.long _lj_BC_KSTR-.
+	.long 36
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE37:
+
+_lj_BC_KCDATA.eh:
+LSFDE38:
+	.set L$set$38,LEFDE38-LASFDE38
+	.long L$set$38
+LASFDE38:
+	.long LASFDE38-EH_frame1
+	.long _lj_BC_KCDATA-.
+	.long 36
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE38:
+
+_lj_BC_KSHORT.eh:
+LSFDE39:
+	.set L$set$39,LEFDE39-LASFDE39
+	.long L$set$39
+LASFDE39:
+	.long LASFDE39-EH_frame1
+	.long _lj_BC_KSHORT-.
+	.long 30
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE39:
+
+_lj_BC_KNUM.eh:
+LSFDE40:
+	.set L$set$40,LEFDE40-LASFDE40
+	.long L$set$40
+LASFDE40:
+	.long LASFDE40-EH_frame1
+	.long _lj_BC_KNUM-.
+	.long 29
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE40:
+
+_lj_BC_KPRI.eh:
+LSFDE41:
+	.set L$set$41,LEFDE41-LASFDE41
+	.long L$set$41
+LASFDE41:
+	.long LASFDE41-EH_frame1
+	.long _lj_BC_KPRI-.
+	.long 25
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE41:
+
+_lj_BC_KNIL.eh:
+LSFDE42:
+	.set L$set$42,LEFDE42-LASFDE42
+	.long L$set$42
+LASFDE42:
+	.long LASFDE42-EH_frame1
+	.long _lj_BC_KNIL-.
+	.long 43
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE42:
+
+_lj_BC_UGET.eh:
+LSFDE43:
+	.set L$set$43,LEFDE43-LASFDE43
+	.long L$set$43
+LASFDE43:
+	.long LASFDE43-EH_frame1
+	.long _lj_BC_UGET-.
+	.long 36
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE43:
+
+_lj_BC_USETV.eh:
+LSFDE44:
+	.set L$set$44,LEFDE44-LASFDE44
+	.long L$set$44
+LASFDE44:
+	.long LASFDE44-EH_frame1
+	.long _lj_BC_USETV-.
+	.long 87
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE44:
+
+_lj_BC_USETS.eh:
+LSFDE45:
+	.set L$set$45,LEFDE45-LASFDE45
+	.long L$set$45
+LASFDE45:
+	.long LASFDE45-EH_frame1
+	.long _lj_BC_USETS-.
+	.long 82
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE45:
+
+_lj_BC_USETN.eh:
+LSFDE46:
+	.set L$set$46,LEFDE46-LASFDE46
+	.long L$set$46
+LASFDE46:
+	.long LASFDE46-EH_frame1
+	.long _lj_BC_USETN-.
+	.long 38
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE46:
+
+_lj_BC_USETP.eh:
+LSFDE47:
+	.set L$set$47,LEFDE47-LASFDE47
+	.long L$set$47
+LASFDE47:
+	.long LASFDE47-EH_frame1
+	.long _lj_BC_USETP-.
+	.long 34
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE47:
+
+_lj_BC_UCLO.eh:
+LSFDE48:
+	.set L$set$48,LEFDE48-LASFDE48
+	.long L$set$48
+LASFDE48:
+	.long LASFDE48-EH_frame1
+	.long _lj_BC_UCLO-.
+	.long 51
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE48:
+
+_lj_BC_FNEW.eh:
+LSFDE49:
+	.set L$set$49,LEFDE49-LASFDE49
+	.long L$set$49
+LASFDE49:
+	.long LASFDE49-EH_frame1
+	.long _lj_BC_FNEW-.
+	.long 64
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE49:
+
+_lj_BC_TNEW.eh:
+LSFDE50:
+	.set L$set$50,LEFDE50-LASFDE50
+	.long L$set$50
+LASFDE50:
+	.long LASFDE50-EH_frame1
+	.long _lj_BC_TNEW-.
+	.long 109
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE50:
+
+_lj_BC_TDUP.eh:
+LSFDE51:
+	.set L$set$51,LEFDE51-LASFDE51
+	.long L$set$51
+LASFDE51:
+	.long LASFDE51-EH_frame1
+	.long _lj_BC_TDUP-.
+	.long 93
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE51:
+
+_lj_BC_GGET.eh:
+LSFDE52:
+	.set L$set$52,LEFDE52-LASFDE52
+	.long L$set$52
+LASFDE52:
+	.long LASFDE52-EH_frame1
+	.long _lj_BC_GGET-.
+	.long 18
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE52:
+
+_lj_BC_GSET.eh:
+LSFDE53:
+	.set L$set$53,LEFDE53-LASFDE53
+	.long L$set$53
+LASFDE53:
+	.long LASFDE53-EH_frame1
+	.long _lj_BC_GSET-.
+	.long 18
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE53:
+
+_lj_BC_TGETV.eh:
+LSFDE54:
+	.set L$set$54,LEFDE54-LASFDE54
+	.long L$set$54
+LASFDE54:
+	.long LASFDE54-EH_frame1
+	.long _lj_BC_TGETV-.
+	.long 148
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE54:
+
+_lj_BC_TGETS.eh:
+LSFDE55:
+	.set L$set$55,LEFDE55-LASFDE55
+	.long L$set$55
+LASFDE55:
+	.long LASFDE55-EH_frame1
+	.long _lj_BC_TGETS-.
+	.long 124
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE55:
+
+_lj_BC_TGETB.eh:
+LSFDE56:
+	.set L$set$56,LEFDE56-LASFDE56
+	.long L$set$56
+LASFDE56:
+	.long LASFDE56-EH_frame1
+	.long _lj_BC_TGETB-.
+	.long 99
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE56:
+
+_lj_BC_TSETV.eh:
+LSFDE57:
+	.set L$set$57,LEFDE57-LASFDE57
+	.long L$set$57
+LASFDE57:
+	.long LASFDE57-EH_frame1
+	.long _lj_BC_TSETV-.
+	.long 173
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE57:
+
+_lj_BC_TSETS.eh:
+LSFDE58:
+	.set L$set$58,LEFDE58-LASFDE58
+	.long L$set$58
+LASFDE58:
+	.long LASFDE58-EH_frame1
+	.long _lj_BC_TSETS-.
+	.long 229
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE58:
+
+_lj_BC_TSETB.eh:
+LSFDE59:
+	.set L$set$59,LEFDE59-LASFDE59
+	.long L$set$59
+LASFDE59:
+	.long LASFDE59-EH_frame1
+	.long _lj_BC_TSETB-.
+	.long 124
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE59:
+
+_lj_BC_TSETM.eh:
+LSFDE60:
+	.set L$set$60,LEFDE60-LASFDE60
+	.long L$set$60
+LASFDE60:
+	.long LASFDE60-EH_frame1
+	.long _lj_BC_TSETM-.
+	.long 142
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE60:
+
+_lj_BC_CALLM.eh:
+LSFDE61:
+	.set L$set$61,LEFDE61-LASFDE61
+	.long L$set$61
+LASFDE61:
+	.long LASFDE61-EH_frame1
+	.long _lj_BC_CALLM-.
+	.long 46
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE61:
+
+_lj_BC_CALL.eh:
+LSFDE62:
+	.set L$set$62,LEFDE62-LASFDE62
+	.long L$set$62
+LASFDE62:
+	.long LASFDE62-EH_frame1
+	.long _lj_BC_CALL-.
+	.long 42
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE62:
+
+_lj_BC_CALLMT.eh:
+LSFDE63:
+	.set L$set$63,LEFDE63-LASFDE63
+	.long L$set$63
+LASFDE63:
+	.long LASFDE63-EH_frame1
+	.long _lj_BC_CALLMT-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE63:
+
+_lj_BC_CALLT.eh:
+LSFDE64:
+	.set L$set$64,LEFDE64-LASFDE64
+	.long L$set$64
+LASFDE64:
+	.long LASFDE64-EH_frame1
+	.long _lj_BC_CALLT-.
+	.long 148
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE64:
+
+_lj_BC_ITERC.eh:
+LSFDE65:
+	.set L$set$65,LEFDE65-LASFDE65
+	.long L$set$65
+LASFDE65:
+	.long LASFDE65-EH_frame1
+	.long _lj_BC_ITERC-.
+	.long 68
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE65:
+
+_lj_BC_ITERN.eh:
+LSFDE66:
+	.set L$set$66,LEFDE66-LASFDE66
+	.long L$set$66
+LASFDE66:
+	.long LASFDE66-EH_frame1
+	.long _lj_BC_ITERN-.
+	.long 165
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE66:
+
+_lj_BC_VARG.eh:
+LSFDE67:
+	.set L$set$67,LEFDE67-LASFDE67
+	.long L$set$67
+LASFDE67:
+	.long LASFDE67-EH_frame1
+	.long _lj_BC_VARG-.
+	.long 191
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE67:
+
+_lj_BC_ISNEXT.eh:
+LSFDE68:
+	.set L$set$68,LEFDE68-LASFDE68
+	.long L$set$68
+LASFDE68:
+	.long LASFDE68-EH_frame1
+	.long _lj_BC_ISNEXT-.
+	.long 88
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE68:
+
+_lj_BC_RETM.eh:
+LSFDE69:
+	.set L$set$69,LEFDE69-LASFDE69
+	.long L$set$69
+LASFDE69:
+	.long LASFDE69-EH_frame1
+	.long _lj_BC_RETM-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE69:
+
+_lj_BC_RET.eh:
+LSFDE70:
+	.set L$set$70,LEFDE70-LASFDE70
+	.long L$set$70
+LASFDE70:
+	.long LASFDE70-EH_frame1
+	.long _lj_BC_RET-.
+	.long 136
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE70:
+
+_lj_BC_RET0.eh:
+LSFDE71:
+	.set L$set$71,LEFDE71-LASFDE71
+	.long L$set$71
+LASFDE71:
+	.long LASFDE71-EH_frame1
+	.long _lj_BC_RET0-.
+	.long 92
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE71:
+
+_lj_BC_RET1.eh:
+LSFDE72:
+	.set L$set$72,LEFDE72-LASFDE72
+	.long L$set$72
+LASFDE72:
+	.long LASFDE72-EH_frame1
+	.long _lj_BC_RET1-.
+	.long 105
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE72:
+
+_lj_BC_FORI.eh:
+LSFDE73:
+	.set L$set$73,LEFDE73-LASFDE73
+	.long L$set$73
+LASFDE73:
+	.long LASFDE73-EH_frame1
+	.long _lj_BC_FORI-.
+	.long 97
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE73:
+
+_lj_BC_JFORI.eh:
+LSFDE74:
+	.set L$set$74,LEFDE74-LASFDE74
+	.long L$set$74
+LASFDE74:
+	.long LASFDE74-EH_frame1
+	.long _lj_BC_JFORI-.
+	.long 105
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE74:
+
+_lj_BC_FORL.eh:
+LSFDE75:
+	.set L$set$75,LEFDE75-LASFDE75
+	.long L$set$75
+LASFDE75:
+	.long LASFDE75-EH_frame1
+	.long _lj_BC_FORL-.
+	.long 20
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE75:
+
+_lj_BC_IFORL.eh:
+LSFDE76:
+	.set L$set$76,LEFDE76-LASFDE76
+	.long L$set$76
+LASFDE76:
+	.long LASFDE76-EH_frame1
+	.long _lj_BC_IFORL-.
+	.long 70
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE76:
+
+_lj_BC_JFORL.eh:
+LSFDE77:
+	.set L$set$77,LEFDE77-LASFDE77
+	.long L$set$77
+LASFDE77:
+	.long LASFDE77-EH_frame1
+	.long _lj_BC_JFORL-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE77:
+
+_lj_BC_ITERL.eh:
+LSFDE78:
+	.set L$set$78,LEFDE78-LASFDE78
+	.long L$set$78
+LASFDE78:
+	.long LASFDE78-EH_frame1
+	.long _lj_BC_ITERL-.
+	.long 20
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE78:
+
+_lj_BC_IITERL.eh:
+LSFDE79:
+	.set L$set$79,LEFDE79-LASFDE79
+	.long L$set$79
+LASFDE79:
+	.long LASFDE79-EH_frame1
+	.long _lj_BC_IITERL-.
+	.long 44
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE79:
+
+_lj_BC_JITERL.eh:
+LSFDE80:
+	.set L$set$80,LEFDE80-LASFDE80
+	.long L$set$80
+LASFDE80:
+	.long LASFDE80-EH_frame1
+	.long _lj_BC_JITERL-.
+	.long 39
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE80:
+
+_lj_BC_LOOP.eh:
+LSFDE81:
+	.set L$set$81,LEFDE81-LASFDE81
+	.long L$set$81
+LASFDE81:
+	.long LASFDE81-EH_frame1
+	.long _lj_BC_LOOP-.
+	.long 20
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE81:
+
+_lj_BC_ILOOP.eh:
+LSFDE82:
+	.set L$set$82,LEFDE82-LASFDE82
+	.long L$set$82
+LASFDE82:
+	.long LASFDE82-EH_frame1
+	.long _lj_BC_ILOOP-.
+	.long 18
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE82:
+
+_lj_BC_JLOOP.eh:
+LSFDE83:
+	.set L$set$83,LEFDE83-LASFDE83
+	.long L$set$83
+LASFDE83:
+	.long LASFDE83-EH_frame1
+	.long _lj_BC_JLOOP-.
+	.long 47
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE83:
+
+_lj_BC_JMP.eh:
+LSFDE84:
+	.set L$set$84,LEFDE84-LASFDE84
+	.long L$set$84
+LASFDE84:
+	.long LASFDE84-EH_frame1
+	.long _lj_BC_JMP-.
+	.long 25
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE84:
+
+_lj_BC_FUNCF.eh:
+LSFDE85:
+	.set L$set$85,LEFDE85-LASFDE85
+	.long L$set$85
+LASFDE85:
+	.long LASFDE85-EH_frame1
+	.long _lj_BC_FUNCF-.
+	.long 20
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE85:
+
+_lj_BC_IFUNCF.eh:
+LSFDE86:
+	.set L$set$86,LEFDE86-LASFDE86
+	.long L$set$86
+LASFDE86:
+	.long LASFDE86-EH_frame1
+	.long _lj_BC_IFUNCF-.
+	.long 63
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE86:
+
+_lj_BC_JFUNCF.eh:
+LSFDE87:
+	.set L$set$87,LEFDE87-LASFDE87
+	.long L$set$87
+LASFDE87:
+	.long LASFDE87-EH_frame1
+	.long _lj_BC_JFUNCF-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE87:
+
+_lj_BC_IFUNCV.eh:
+LSFDE89:
+	.set L$set$89,LEFDE89-LASFDE89
+	.long L$set$89
+LASFDE89:
+	.long LASFDE89-EH_frame1
+	.long _lj_BC_IFUNCV-.
+	.long 125
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE89:
+
+_lj_BC_JFUNCV.eh:
+LSFDE90:
+	.set L$set$90,LEFDE90-LASFDE90
+	.long L$set$90
+LASFDE90:
+	.long LASFDE90-EH_frame1
+	.long _lj_BC_JFUNCV-.
+	.long 1
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE90:
+
+_lj_BC_FUNCC.eh:
+LSFDE91:
+	.set L$set$91,LEFDE91-LASFDE91
+	.long L$set$91
+LASFDE91:
+	.long LASFDE91-EH_frame1
+	.long _lj_BC_FUNCC-.
+	.long 79
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE91:
+
+_lj_BC_FUNCCW.eh:
+LSFDE92:
+	.set L$set$92,LEFDE92-LASFDE92
+	.long L$set$92
+LASFDE92:
+	.long LASFDE92-EH_frame1
+	.long _lj_BC_FUNCCW-.
+	.long 86
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE92:
+
+_lj_vm_returnp.eh:
+LSFDE93:
+	.set L$set$93,LEFDE93-LASFDE93
+	.long L$set$93
+LASFDE93:
+	.long LASFDE93-EH_frame1
+	.long _lj_vm_returnp-.
+	.long 33
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE93:
+
+_lj_vm_returnc.eh:
+LSFDE94:
+	.set L$set$94,LEFDE94-LASFDE94
+	.long L$set$94
+LASFDE94:
+	.long LASFDE94-EH_frame1
+	.long _lj_vm_returnc-.
+	.long 25
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE94:
+
+_lj_vm_return.eh:
+LSFDE95:
+	.set L$set$95,LEFDE95-LASFDE95
+	.long L$set$95
+LASFDE95:
+	.long LASFDE95-EH_frame1
+	.long _lj_vm_return-.
+	.long 75
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE95:
+
+_lj_vm_leave_cp.eh:
+LSFDE96:
+	.set L$set$96,LEFDE96-LASFDE96
+	.long L$set$96
+LASFDE96:
+	.long LASFDE96-EH_frame1
+	.long _lj_vm_leave_cp-.
+	.long 11
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE96:
+
+_lj_vm_leave_unw.eh:
+LSFDE97:
+	.set L$set$97,LEFDE97-LASFDE97
+	.long L$set$97
+LASFDE97:
+	.long LASFDE97-EH_frame1
+	.long _lj_vm_leave_unw-.
+	.long 65
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE97:
+
+_lj_vm_unwind_yield.eh:
+LSFDE98:
+	.set L$set$98,LEFDE98-LASFDE98
+	.long L$set$98
+LASFDE98:
+	.long LASFDE98-EH_frame1
+	.long _lj_vm_unwind_yield-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE98:
+
+_lj_vm_unwind_c.eh:
+LSFDE99:
+	.set L$set$99,LEFDE99-LASFDE99
+	.long L$set$99
+LASFDE99:
+	.long LASFDE99-EH_frame1
+	.long _lj_vm_unwind_c-.
+	.long 5
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE99:
+
+_lj_vm_unwind_c_eh.eh:
+LSFDE100:
+	.set L$set$100,LEFDE100-LASFDE100
+	.long L$set$100
+LASFDE100:
+	.long LASFDE100-EH_frame1
+	.long _lj_vm_unwind_c_eh-.
+	.long 19
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE100:
+
+_lj_vm_unwind_rethrow.eh:
+LSFDE101:
+	.set L$set$101,LEFDE101-LASFDE101
+	.long L$set$101
+LASFDE101:
+	.long LASFDE101-EH_frame1
+	.long _lj_vm_unwind_rethrow-.
+	.long 21
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE101:
+
+_lj_vm_unwind_ff.eh:
+LSFDE102:
+	.set L$set$102,LEFDE102-LASFDE102
+	.long L$set$102
+LASFDE102:
+	.long LASFDE102-EH_frame1
+	.long _lj_vm_unwind_ff-.
+	.long 7
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE102:
+
+_lj_vm_unwind_ff_eh.eh:
+LSFDE103:
+	.set L$set$103,LEFDE103-LASFDE103
+	.long L$set$103
+LASFDE103:
+	.long LASFDE103-EH_frame1
+	.long _lj_vm_unwind_ff_eh-.
+	.long 56
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE103:
+
+_lj_vm_growstack_c.eh:
+LSFDE104:
+	.set L$set$104,LEFDE104-LASFDE104
+	.long L$set$104
+LASFDE104:
+	.long LASFDE104-EH_frame1
+	.long _lj_vm_growstack_c-.
+	.long 7
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE104:
+
+_lj_vm_growstack_v.eh:
+LSFDE105:
+	.set L$set$105,LEFDE105-LASFDE105
+	.long L$set$105
+LASFDE105:
+	.long LASFDE105-EH_frame1
+	.long _lj_vm_growstack_v-.
+	.long 5
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE105:
+
+_lj_vm_growstack_f.eh:
+LSFDE106:
+	.set L$set$106,LEFDE106-LASFDE106
+	.long L$set$106
+LASFDE106:
+	.long LASFDE106-EH_frame1
+	.long _lj_vm_growstack_f-.
+	.long 65
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE106:
+
+_lj_vm_resume.eh:
+LSFDE107:
+	.set L$set$107,LEFDE107-LASFDE107
+	.long L$set$107
+LASFDE107:
+	.long LASFDE107-EH_frame1
+	.long _lj_vm_resume-.
+	.long 125
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE107:
+
+_lj_vm_pcall.eh:
+LSFDE108:
+	.set L$set$108,LEFDE108-LASFDE108
+	.long L$set$108
+LASFDE108:
+	.long LASFDE108-EH_frame1
+	.long _lj_vm_pcall-.
+	.long 21
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE108:
+
+_lj_vm_call.eh:
+LSFDE109:
+	.set L$set$109,LEFDE109-LASFDE109
+	.long L$set$109
+LASFDE109:
+	.long LASFDE109-EH_frame1
+	.long _lj_vm_call-.
+	.long 84
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE109:
+
+_lj_vm_call_dispatch.eh:
+LSFDE110:
+	.set L$set$110,LEFDE110-LASFDE110
+	.long L$set$110
+LASFDE110:
+	.long LASFDE110-EH_frame1
+	.long _lj_vm_call_dispatch-.
+	.long 13
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE110:
+
+_lj_vm_call_dispatch_f.eh:
+LSFDE111:
+	.set L$set$111,LEFDE111-LASFDE111
+	.long L$set$111
+LASFDE111:
+	.long LASFDE111-EH_frame1
+	.long _lj_vm_call_dispatch_f-.
+	.long 23
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE111:
+
+_lj_vm_cpcall.eh:
+LSFDE112:
+	.set L$set$112,LEFDE112-LASFDE112
+	.long L$set$112
+LASFDE112:
+	.long LASFDE112-EH_frame1
+	.long _lj_vm_cpcall-.
+	.long 76
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE112:
+
+_lj_cont_dispatch.eh:
+LSFDE113:
+	.set L$set$113,LEFDE113-LASFDE113
+	.long L$set$113
+LASFDE113:
+	.long LASFDE113-EH_frame1
+	.long _lj_cont_dispatch-.
+	.long 74
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE113:
+
+_lj_cont_cat.eh:
+LSFDE114:
+	.set L$set$114,LEFDE114-LASFDE114
+	.long L$set$114
+LASFDE114:
+	.long LASFDE114-EH_frame1
+	.long _lj_cont_cat-.
+	.long 46
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE114:
+
+_lj_vmeta_tgets.eh:
+LSFDE115:
+	.set L$set$115,LEFDE115-LASFDE115
+	.long L$set$115
+LASFDE115:
+	.long LASFDE115-EH_frame1
+	.long _lj_vmeta_tgets-.
+	.long 41
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE115:
+
+_lj_vmeta_tgetb.eh:
+LSFDE116:
+	.set L$set$116,LEFDE116-LASFDE116
+	.long L$set$116
+LASFDE116:
+	.long LASFDE116-EH_frame1
+	.long _lj_vmeta_tgetb-.
+	.long 19
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE116:
+
+_lj_vmeta_tgetv.eh:
+LSFDE117:
+	.set L$set$117,LEFDE117-LASFDE117
+	.long L$set$117
+LASFDE117:
+	.long LASFDE117-EH_frame1
+	.long _lj_vmeta_tgetv-.
+	.long 44
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE117:
+
+_lj_cont_ra.eh:
+LSFDE118:
+	.set L$set$118,LEFDE118-LASFDE118
+	.long L$set$118
+LASFDE118:
+	.long LASFDE118-EH_frame1
+	.long _lj_cont_ra-.
+	.long 53
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE118:
+
+_lj_vmeta_tsets.eh:
+LSFDE119:
+	.set L$set$119,LEFDE119-LASFDE119
+	.long L$set$119
+LASFDE119:
+	.long LASFDE119-EH_frame1
+	.long _lj_vmeta_tsets-.
+	.long 41
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE119:
+
+_lj_vmeta_tsetb.eh:
+LSFDE120:
+	.set L$set$120,LEFDE120-LASFDE120
+	.long L$set$120
+LASFDE120:
+	.long LASFDE120-EH_frame1
+	.long _lj_vmeta_tsetb-.
+	.long 19
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE120:
+
+_lj_vmeta_tsetv.eh:
+LSFDE121:
+	.set L$set$121,LEFDE121-LASFDE121
+	.long L$set$121
+LASFDE121:
+	.long LASFDE121-EH_frame1
+	.long _lj_vmeta_tsetv-.
+	.long 55
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE121:
+
+_lj_cont_nop.eh:
+LSFDE122:
+	.set L$set$122,LEFDE122-LASFDE122
+	.long L$set$122
+LASFDE122:
+	.long LASFDE122-EH_frame1
+	.long _lj_cont_nop-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE122:
+
+_lj_vmeta_comp.eh:
+LSFDE123:
+	.set L$set$123,LEFDE123-LASFDE123
+	.long L$set$123
+LASFDE123:
+	.long LASFDE123-EH_frame1
+	.long _lj_vmeta_comp-.
+	.long 74
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE123:
+
+_lj_cont_condt.eh:
+LSFDE124:
+	.set L$set$124,LEFDE124-LASFDE124
+	.long L$set$124
+LASFDE124:
+	.long LASFDE124-EH_frame1
+	.long _lj_cont_condt-.
+	.long 11
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE124:
+
+_lj_cont_condf.eh:
+LSFDE125:
+	.set L$set$125,LEFDE125-LASFDE125
+	.long L$set$125
+LASFDE125:
+	.long LASFDE125-EH_frame1
+	.long _lj_cont_condf-.
+	.long 6
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE125:
+
+_lj_vmeta_equal.eh:
+LSFDE126:
+	.set L$set$126,LEFDE126-LASFDE126
+	.long L$set$126
+LASFDE126:
+	.long LASFDE126-EH_frame1
+	.long _lj_vmeta_equal-.
+	.long 29
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE126:
+
+_lj_vmeta_equal_cd.eh:
+LSFDE127:
+	.set L$set$127,LEFDE127-LASFDE127
+	.long L$set$127
+LASFDE127:
+	.long LASFDE127-EH_frame1
+	.long _lj_vmeta_equal_cd-.
+	.long 26
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE127:
+
+_lj_vmeta_arith_vn.eh:
+LSFDE129:
+	.set L$set$129,LEFDE129-LASFDE129
+	.long L$set$129
+LASFDE129:
+	.long LASFDE129-EH_frame1
+	.long _lj_vmeta_arith_vn-.
+	.long 6
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE129:
+
+_lj_vmeta_arith_nv.eh:
+LSFDE131:
+	.set L$set$131,LEFDE131-LASFDE131
+	.long L$set$131
+LASFDE131:
+	.long LASFDE131-EH_frame1
+	.long _lj_vmeta_arith_nv-.
+	.long 10
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE131:
+
+_lj_vmeta_unm.eh:
+LSFDE132:
+	.set L$set$132,LEFDE132-LASFDE132
+	.long L$set$132
+LASFDE132:
+	.long LASFDE132-EH_frame1
+	.long _lj_vmeta_unm-.
+	.long 7
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE132:
+
+_lj_vmeta_arith_vv.eh:
+LSFDE134:
+	.set L$set$134,LEFDE134-LASFDE134
+	.long L$set$134
+LASFDE134:
+	.long LASFDE134-EH_frame1
+	.long _lj_vmeta_arith_vv-.
+	.long 49
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE134:
+
+_lj_vmeta_binop.eh:
+LSFDE135:
+	.set L$set$135,LEFDE135-LASFDE135
+	.long L$set$135
+LASFDE135:
+	.long LASFDE135-EH_frame1
+	.long _lj_vmeta_binop-.
+	.long 20
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE135:
+
+_lj_vmeta_len.eh:
+LSFDE136:
+	.set L$set$136,LEFDE136-LASFDE136
+	.long L$set$136
+LASFDE136:
+	.long LASFDE136-EH_frame1
+	.long _lj_vmeta_len-.
+	.long 26
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE136:
+
+_lj_vmeta_call_ra.eh:
+LSFDE137:
+	.set L$set$137,LEFDE137-LASFDE137
+	.long L$set$137
+LASFDE137:
+	.long LASFDE137-EH_frame1
+	.long _lj_vmeta_call_ra-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE137:
+
+_lj_vmeta_call.eh:
+LSFDE138:
+	.set L$set$138,LEFDE138-LASFDE138
+	.long L$set$138
+LASFDE138:
+	.long LASFDE138-EH_frame1
+	.long _lj_vmeta_call-.
+	.long 81
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE138:
+
+_lj_vmeta_for.eh:
+LSFDE139:
+	.set L$set$139,LEFDE139-LASFDE139
+	.long L$set$139
+LASFDE139:
+	.long LASFDE139-EH_frame1
+	.long _lj_vmeta_for-.
+	.long 43
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE139:
+
+_lj_ff_assert.eh:
+LSFDE140:
+	.set L$set$140,LEFDE140-LASFDE140
+	.long L$set$140
+LASFDE140:
+	.long LASFDE140-EH_frame1
+	.long _lj_ff_assert-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE140:
+
+_lj_ff_type.eh:
+LSFDE141:
+	.set L$set$141,LEFDE141-LASFDE141
+	.long L$set$141
+LASFDE141:
+	.long LASFDE141-EH_frame1
+	.long _lj_ff_type-.
+	.long 66
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE141:
+
+_lj_ff_getmetatable.eh:
+LSFDE142:
+	.set L$set$142,LEFDE142-LASFDE142
+	.long L$set$142
+LASFDE142:
+	.long LASFDE142-EH_frame1
+	.long _lj_ff_getmetatable-.
+	.long 162
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE142:
+
+_lj_ff_setmetatable.eh:
+LSFDE143:
+	.set L$set$143,LEFDE143-LASFDE143
+	.long L$set$143
+LASFDE143:
+	.long LASFDE143-EH_frame1
+	.long _lj_ff_setmetatable-.
+	.long 92
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE143:
+
+_lj_ff_rawget.eh:
+LSFDE144:
+	.set L$set$144,LEFDE144-LASFDE144
+	.long L$set$144
+LASFDE144:
+	.long LASFDE144-EH_frame1
+	.long _lj_ff_rawget-.
+	.long 52
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE144:
+
+_lj_ff_tonumber.eh:
+LSFDE145:
+	.set L$set$145,LEFDE145-LASFDE145
+	.long L$set$145
+LASFDE145:
+	.long LASFDE145-EH_frame1
+	.long _lj_ff_tonumber-.
+	.long 31
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE145:
+
+_lj_ff_tostring.eh:
+LSFDE146:
+	.set L$set$146,LEFDE146-LASFDE146
+	.long L$set$146
+LASFDE146:
+	.long LASFDE146-EH_frame1
+	.long _lj_ff_tostring-.
+	.long 108
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE146:
+
+_lj_ff_next.eh:
+LSFDE147:
+	.set L$set$147,LEFDE147-LASFDE147
+	.long L$set$147
+LASFDE147:
+	.long LASFDE147-EH_frame1
+	.long _lj_ff_next-.
+	.long 72
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE147:
+
+_lj_fff_res2.eh:
+LSFDE148:
+	.set L$set$148,LEFDE148-LASFDE148
+	.long L$set$148
+LASFDE148:
+	.long LASFDE148-EH_frame1
+	.long _lj_fff_res2-.
+	.long 31
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE148:
+
+_lj_ff_pairs.eh:
+LSFDE149:
+	.set L$set$149,LEFDE149-LASFDE149
+	.long L$set$149
+LASFDE149:
+	.long LASFDE149-EH_frame1
+	.long _lj_ff_pairs-.
+	.long 57
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE149:
+
+_lj_ff_ipairs_aux.eh:
+LSFDE150:
+	.set L$set$150,LEFDE150-LASFDE150
+	.long L$set$150
+LASFDE150:
+	.long LASFDE150-EH_frame1
+	.long _lj_ff_ipairs_aux-.
+	.long 121
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE150:
+
+_lj_fff_res0.eh:
+LSFDE151:
+	.set L$set$151,LEFDE151-LASFDE151
+	.long L$set$151
+LASFDE151:
+	.long LASFDE151-EH_frame1
+	.long _lj_fff_res0-.
+	.long 10
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE151:
+
+_lj_ff_ipairs.eh:
+LSFDE152:
+	.set L$set$152,LEFDE152-LASFDE152
+	.long L$set$152
+LASFDE152:
+	.long LASFDE152-EH_frame1
+	.long _lj_ff_ipairs-.
+	.long 58
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE152:
+
+_lj_ff_pcall.eh:
+LSFDE153:
+	.set L$set$153,LEFDE153-LASFDE153
+	.long L$set$153
+LASFDE153:
+	.long LASFDE153-EH_frame1
+	.long _lj_ff_pcall-.
+	.long 41
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE153:
+
+_lj_ff_xpcall.eh:
+LSFDE154:
+	.set L$set$154,LEFDE154-LASFDE154
+	.long L$set$154
+LASFDE154:
+	.long LASFDE154-EH_frame1
+	.long _lj_ff_xpcall-.
+	.long 55
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE154:
+
+_lj_ff_coroutine_resume.eh:
+LSFDE155:
+	.set L$set$155,LEFDE155-LASFDE155
+	.long L$set$155
+LASFDE155:
+	.long LASFDE155-EH_frame1
+	.long _lj_ff_coroutine_resume-.
+	.long 303
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE155:
+
+_lj_ff_coroutine_wrap_aux.eh:
+LSFDE156:
+	.set L$set$156,LEFDE156-LASFDE156
+	.long L$set$156
+LASFDE156:
+	.long LASFDE156-EH_frame1
+	.long _lj_ff_coroutine_wrap_aux-.
+	.long 250
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE156:
+
+_lj_ff_coroutine_yield.eh:
+LSFDE157:
+	.set L$set$157,LEFDE157-LASFDE157
+	.long L$set$157
+LASFDE157:
+	.long LASFDE157-EH_frame1
+	.long _lj_ff_coroutine_yield-.
+	.long 44
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE157:
+
+_lj_fff_resn.eh:
+LSFDE159:
+	.set L$set$159,LEFDE159-LASFDE159
+	.long L$set$159
+LASFDE159:
+	.long LASFDE159-EH_frame1
+	.long _lj_fff_resn-.
+	.long 8
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE159:
+
+_lj_ff_math_abs.eh:
+LSFDE160:
+	.set L$set$160,LEFDE160-LASFDE160
+	.long L$set$160
+LASFDE160:
+	.long LASFDE160-EH_frame1
+	.long _lj_ff_math_abs-.
+	.long 44
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE160:
+
+_lj_fff_resxmm0.eh:
+LSFDE161:
+	.set L$set$161,LEFDE161-LASFDE161
+	.long L$set$161
+LASFDE161:
+	.long LASFDE161-EH_frame1
+	.long _lj_fff_resxmm0-.
+	.long 8
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE161:
+
+_lj_fff_res1.eh:
+LSFDE162:
+	.set L$set$162,LEFDE162-LASFDE162
+	.long L$set$162
+LASFDE162:
+	.long LASFDE162-EH_frame1
+	.long _lj_fff_res1-.
+	.long 5
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE162:
+
+_lj_fff_res.eh:
+LSFDE163:
+	.set L$set$163,LEFDE163-LASFDE163
+	.long L$set$163
+LASFDE163:
+	.long LASFDE163-EH_frame1
+	.long _lj_fff_res-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE163:
+
+_lj_fff_res_.eh:
+LSFDE164:
+	.set L$set$164,LEFDE164-LASFDE164
+	.long L$set$164
+LASFDE164:
+	.long LASFDE164-EH_frame1
+	.long _lj_fff_res_-.
+	.long 66
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE164:
+
+_lj_ff_math_floor.eh:
+LSFDE165:
+	.set L$set$165,LEFDE165-LASFDE165
+	.long L$set$165
+LASFDE165:
+	.long LASFDE165-EH_frame1
+	.long _lj_ff_math_floor-.
+	.long 24
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE165:
+
+_lj_ff_math_ceil.eh:
+LSFDE166:
+	.set L$set$166,LEFDE166-LASFDE166
+	.long L$set$166
+LASFDE166:
+	.long LASFDE166-EH_frame1
+	.long _lj_ff_math_ceil-.
+	.long 27
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE166:
+
+_lj_ff_math_sqrt.eh:
+LSFDE167:
+	.set L$set$167,LEFDE167-LASFDE167
+	.long L$set$167
+LASFDE167:
+	.long LASFDE167-EH_frame1
+	.long _lj_ff_math_sqrt-.
+	.long 31
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE167:
+
+_lj_ff_math_log.eh:
+LSFDE168:
+	.set L$set$168,LEFDE168-LASFDE168
+	.long L$set$168
+LASFDE168:
+	.long LASFDE168-EH_frame1
+	.long _lj_ff_math_log-.
+	.long 33
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE168:
+
+_lj_ff_math_log10.eh:
+LSFDE169:
+	.set L$set$169,LEFDE169-LASFDE169
+	.long L$set$169
+LASFDE169:
+	.long LASFDE169-EH_frame1
+	.long _lj_ff_math_log10-.
+	.long 33
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE169:
+
+_lj_ff_math_exp.eh:
+LSFDE170:
+	.set L$set$170,LEFDE170-LASFDE170
+	.long L$set$170
+LASFDE170:
+	.long LASFDE170-EH_frame1
+	.long _lj_ff_math_exp-.
+	.long 34
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE170:
+
+_lj_ff_math_sin.eh:
+LSFDE171:
+	.set L$set$171,LEFDE171-LASFDE171
+	.long L$set$171
+LASFDE171:
+	.long LASFDE171-EH_frame1
+	.long _lj_ff_math_sin-.
+	.long 31
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE171:
+
+_lj_ff_math_cos.eh:
+LSFDE172:
+	.set L$set$172,LEFDE172-LASFDE172
+	.long L$set$172
+LASFDE172:
+	.long LASFDE172-EH_frame1
+	.long _lj_ff_math_cos-.
+	.long 31
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE172:
+
+_lj_ff_math_tan.eh:
+LSFDE173:
+	.set L$set$173,LEFDE173-LASFDE173
+	.long L$set$173
+LASFDE173:
+	.long LASFDE173-EH_frame1
+	.long _lj_ff_math_tan-.
+	.long 33
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE173:
+
+_lj_ff_math_asin.eh:
+LSFDE174:
+	.set L$set$174,LEFDE174-LASFDE174
+	.long L$set$174
+LASFDE174:
+	.long LASFDE174-EH_frame1
+	.long _lj_ff_math_asin-.
+	.long 41
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE174:
+
+_lj_ff_math_acos.eh:
+LSFDE175:
+	.set L$set$175,LEFDE175-LASFDE175
+	.long L$set$175
+LASFDE175:
+	.long LASFDE175-EH_frame1
+	.long _lj_ff_math_acos-.
+	.long 43
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE175:
+
+_lj_ff_math_atan.eh:
+LSFDE176:
+	.set L$set$176,LEFDE176-LASFDE176
+	.long L$set$176
+LASFDE176:
+	.long LASFDE176-EH_frame1
+	.long _lj_ff_math_atan-.
+	.long 33
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE176:
+
+_lj_ff_math_sinh.eh:
+LSFDE177:
+	.set L$set$177,LEFDE177-LASFDE177
+	.long L$set$177
+LASFDE177:
+	.long LASFDE177-EH_frame1
+	.long _lj_ff_math_sinh-.
+	.long 40
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE177:
+
+_lj_ff_math_cosh.eh:
+LSFDE178:
+	.set L$set$178,LEFDE178-LASFDE178
+	.long L$set$178
+LASFDE178:
+	.long LASFDE178-EH_frame1
+	.long _lj_ff_math_cosh-.
+	.long 40
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE178:
+
+_lj_ff_math_tanh.eh:
+LSFDE179:
+	.set L$set$179,LEFDE179-LASFDE179
+	.long L$set$179
+LASFDE179:
+	.long LASFDE179-EH_frame1
+	.long _lj_ff_math_tanh-.
+	.long 40
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE179:
+
+_lj_ff_math_rad.eh:
+LSFDE181:
+	.set L$set$181,LEFDE181-LASFDE181
+	.long L$set$181
+LASFDE181:
+	.long LASFDE181-EH_frame1
+	.long _lj_ff_math_rad-.
+	.long 39
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE181:
+
+_lj_ff_math_atan2.eh:
+LSFDE182:
+	.set L$set$182,LEFDE182-LASFDE182
+	.long L$set$182
+LASFDE182:
+	.long LASFDE182-EH_frame1
+	.long _lj_ff_math_atan2-.
+	.long 47
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE182:
+
+_lj_ff_math_ldexp.eh:
+LSFDE183:
+	.set L$set$183,LEFDE183-LASFDE183
+	.long L$set$183
+LASFDE183:
+	.long LASFDE183-EH_frame1
+	.long _lj_ff_math_ldexp-.
+	.long 49
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE183:
+
+_lj_ff_math_frexp.eh:
+LSFDE184:
+	.set L$set$184,LEFDE184-LASFDE184
+	.long L$set$184
+LASFDE184:
+	.long LASFDE184-EH_frame1
+	.long _lj_ff_math_frexp-.
+	.long 148
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE184:
+
+_lj_ff_math_modf.eh:
+LSFDE185:
+	.set L$set$185,LEFDE185-LASFDE185
+	.long L$set$185
+LASFDE185:
+	.long LASFDE185-EH_frame1
+	.long _lj_ff_math_modf-.
+	.long 99
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE185:
+
+_lj_ff_math_fmod.eh:
+LSFDE186:
+	.set L$set$186,LEFDE186-LASFDE186
+	.long L$set$186
+LASFDE186:
+	.long LASFDE186-EH_frame1
+	.long _lj_ff_math_fmod-.
+	.long 57
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE186:
+
+_lj_ff_math_pow.eh:
+LSFDE187:
+	.set L$set$187,LEFDE187-LASFDE187
+	.long L$set$187
+LASFDE187:
+	.long LASFDE187-EH_frame1
+	.long _lj_ff_math_pow-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE187:
+
+_lj_ff_math_min.eh:
+LSFDE188:
+	.set L$set$188,LEFDE188-LASFDE188
+	.long L$set$188
+LASFDE188:
+	.long LASFDE188-EH_frame1
+	.long _lj_ff_math_min-.
+	.long 59
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE188:
+
+_lj_ff_math_max.eh:
+LSFDE189:
+	.set L$set$189,LEFDE189-LASFDE189
+	.long L$set$189
+LASFDE189:
+	.long LASFDE189-EH_frame1
+	.long _lj_ff_math_max-.
+	.long 59
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE189:
+
+_lj_ff_string_len.eh:
+LSFDE190:
+	.set L$set$190,LEFDE190-LASFDE190
+	.long L$set$190
+LASFDE190:
+	.long LASFDE190-EH_frame1
+	.long _lj_ff_string_len-.
+	.long 31
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE190:
+
+_lj_ff_string_byte.eh:
+LSFDE191:
+	.set L$set$191,LEFDE191-LASFDE191
+	.long L$set$191
+LASFDE191:
+	.long LASFDE191-EH_frame1
+	.long _lj_ff_string_byte-.
+	.long 47
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE191:
+
+_lj_ff_string_char.eh:
+LSFDE192:
+	.set L$set$192,LEFDE192-LASFDE192
+	.long L$set$192
+LASFDE192:
+	.long LASFDE192-EH_frame1
+	.long _lj_ff_string_char-.
+	.long 76
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE192:
+
+_lj_fff_newstr.eh:
+LSFDE193:
+	.set L$set$193,LEFDE193-LASFDE193
+	.long L$set$193
+LASFDE193:
+	.long LASFDE193-EH_frame1
+	.long _lj_fff_newstr-.
+	.long 46
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE193:
+
+_lj_ff_string_sub.eh:
+LSFDE194:
+	.set L$set$194,LEFDE194-LASFDE194
+	.long L$set$194
+LASFDE194:
+	.long LASFDE194-EH_frame1
+	.long _lj_ff_string_sub-.
+	.long 165
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE194:
+
+_lj_fff_emptystr.eh:
+LSFDE195:
+	.set L$set$195,LEFDE195-LASFDE195
+	.long L$set$195
+LASFDE195:
+	.long LASFDE195-EH_frame1
+	.long _lj_fff_emptystr-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE195:
+
+_lj_ff_string_rep.eh:
+LSFDE196:
+	.set L$set$196,LEFDE196-LASFDE196
+	.long L$set$196
+LASFDE196:
+	.long LASFDE196-EH_frame1
+	.long _lj_ff_string_rep-.
+	.long 127
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE196:
+
+_lj_ff_string_reverse.eh:
+LSFDE197:
+	.set L$set$197,LEFDE197-LASFDE197
+	.long L$set$197
+LASFDE197:
+	.long LASFDE197-EH_frame1
+	.long _lj_ff_string_reverse-.
+	.long 110
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE197:
+
+_lj_ff_string_lower.eh:
+LSFDE198:
+	.set L$set$198,LEFDE198-LASFDE198
+	.long L$set$198
+LASFDE198:
+	.long LASFDE198-EH_frame1
+	.long _lj_ff_string_lower-.
+	.long 115
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE198:
+
+_lj_ff_string_upper.eh:
+LSFDE199:
+	.set L$set$199,LEFDE199-LASFDE199
+	.long L$set$199
+LASFDE199:
+	.long LASFDE199-EH_frame1
+	.long _lj_ff_string_upper-.
+	.long 115
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE199:
+
+_lj_ff_table_getn.eh:
+LSFDE200:
+	.set L$set$200,LEFDE200-LASFDE200
+	.long L$set$200
+LASFDE200:
+	.long LASFDE200-EH_frame1
+	.long _lj_ff_table_getn-.
+	.long 39
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE200:
+
+_lj_ff_bit_tobit.eh:
+LSFDE201:
+	.set L$set$201,LEFDE201-LASFDE201
+	.long L$set$201
+LASFDE201:
+	.long LASFDE201-EH_frame1
+	.long _lj_ff_bit_tobit-.
+	.long 54
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE201:
+
+_lj_ff_bit_band.eh:
+LSFDE202:
+	.set L$set$202,LEFDE202-LASFDE202
+	.long L$set$202
+LASFDE202:
+	.long LASFDE202-EH_frame1
+	.long _lj_ff_bit_band-.
+	.long 97
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE202:
+
+_lj_ff_bit_bor.eh:
+LSFDE203:
+	.set L$set$203,LEFDE203-LASFDE203
+	.long L$set$203
+LASFDE203:
+	.long LASFDE203-EH_frame1
+	.long _lj_ff_bit_bor-.
+	.long 97
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE203:
+
+_lj_ff_bit_bxor.eh:
+LSFDE204:
+	.set L$set$204,LEFDE204-LASFDE204
+	.long L$set$204
+LASFDE204:
+	.long LASFDE204-EH_frame1
+	.long _lj_ff_bit_bxor-.
+	.long 97
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE204:
+
+_lj_ff_bit_bswap.eh:
+LSFDE205:
+	.set L$set$205,LEFDE205-LASFDE205
+	.long L$set$205
+LASFDE205:
+	.long LASFDE205-EH_frame1
+	.long _lj_ff_bit_bswap-.
+	.long 53
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE205:
+
+_lj_ff_bit_bnot.eh:
+LSFDE206:
+	.set L$set$206,LEFDE206-LASFDE206
+	.long L$set$206
+LASFDE206:
+	.long LASFDE206-EH_frame1
+	.long _lj_ff_bit_bnot-.
+	.long 51
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE206:
+
+_lj_fff_resbit.eh:
+LSFDE207:
+	.set L$set$207,LEFDE207-LASFDE207
+	.long L$set$207
+LASFDE207:
+	.long LASFDE207-EH_frame1
+	.long _lj_fff_resbit-.
+	.long 9
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE207:
+
+_lj_fff_fallback_bit_op.eh:
+LSFDE208:
+	.set L$set$208,LEFDE208-LASFDE208
+	.long L$set$208
+LASFDE208:
+	.long LASFDE208-EH_frame1
+	.long _lj_fff_fallback_bit_op-.
+	.long 9
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE208:
+
+_lj_ff_bit_lshift.eh:
+LSFDE209:
+	.set L$set$209,LEFDE209-LASFDE209
+	.long L$set$209
+LASFDE209:
+	.long LASFDE209-EH_frame1
+	.long _lj_ff_bit_lshift-.
+	.long 79
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE209:
+
+_lj_ff_bit_rshift.eh:
+LSFDE210:
+	.set L$set$210,LEFDE210-LASFDE210
+	.long L$set$210
+LASFDE210:
+	.long LASFDE210-EH_frame1
+	.long _lj_ff_bit_rshift-.
+	.long 82
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE210:
+
+_lj_ff_bit_arshift.eh:
+LSFDE211:
+	.set L$set$211,LEFDE211-LASFDE211
+	.long L$set$211
+LASFDE211:
+	.long LASFDE211-EH_frame1
+	.long _lj_ff_bit_arshift-.
+	.long 82
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE211:
+
+_lj_ff_bit_rol.eh:
+LSFDE212:
+	.set L$set$212,LEFDE212-LASFDE212
+	.long L$set$212
+LASFDE212:
+	.long LASFDE212-EH_frame1
+	.long _lj_ff_bit_rol-.
+	.long 82
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE212:
+
+_lj_ff_bit_ror.eh:
+LSFDE213:
+	.set L$set$213,LEFDE213-LASFDE213
+	.long L$set$213
+LASFDE213:
+	.long LASFDE213-EH_frame1
+	.long _lj_ff_bit_ror-.
+	.long 70
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE213:
+
+_lj_fff_fallback_2.eh:
+LSFDE214:
+	.set L$set$214,LEFDE214-LASFDE214
+	.long L$set$214
+LASFDE214:
+	.long LASFDE214-EH_frame1
+	.long _lj_fff_fallback_2-.
+	.long 7
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE214:
+
+_lj_fff_fallback_1.eh:
+LSFDE215:
+	.set L$set$215,LEFDE215-LASFDE215
+	.long L$set$215
+LASFDE215:
+	.long LASFDE215-EH_frame1
+	.long _lj_fff_fallback_1-.
+	.long 5
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE215:
+
+_lj_fff_fallback.eh:
+LSFDE216:
+	.set L$set$216,LEFDE216-LASFDE216
+	.long L$set$216
+LASFDE216:
+	.long LASFDE216-EH_frame1
+	.long _lj_fff_fallback-.
+	.long 87
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE216:
+
+_lj_vm_call_tail.eh:
+LSFDE217:
+	.set L$set$217,LEFDE217-LASFDE217
+	.long L$set$217
+LASFDE217:
+	.long LASFDE217-EH_frame1
+	.long _lj_vm_call_tail-.
+	.long 56
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE217:
+
+_lj_fff_gcstep.eh:
+LSFDE218:
+	.set L$set$218,LEFDE218-LASFDE218
+	.long L$set$218
+LASFDE218:
+	.long LASFDE218-EH_frame1
+	.long _lj_fff_gcstep-.
+	.long 52
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE218:
+
+_lj_vm_record.eh:
+LSFDE219:
+	.set L$set$219,LEFDE219-LASFDE219
+	.long L$set$219
+LASFDE219:
+	.long LASFDE219-EH_frame1
+	.long _lj_vm_record-.
+	.long 29
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE219:
+
+_lj_vm_rethook.eh:
+LSFDE220:
+	.set L$set$220,LEFDE220-LASFDE220
+	.long L$set$220
+LASFDE220:
+	.long LASFDE220-EH_frame1
+	.long _lj_vm_rethook-.
+	.long 14
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE220:
+
+_lj_vm_inshook.eh:
+LSFDE221:
+	.set L$set$221,LEFDE221-LASFDE221
+	.long L$set$221
+LASFDE221:
+	.long LASFDE221-EH_frame1
+	.long _lj_vm_inshook-.
+	.long 68
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE221:
+
+_lj_cont_hook.eh:
+LSFDE222:
+	.set L$set$222,LEFDE222-LASFDE222
+	.long L$set$222
+LASFDE222:
+	.long LASFDE222-EH_frame1
+	.long _lj_cont_hook-.
+	.long 12
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE222:
+
+_lj_vm_hotloop.eh:
+LSFDE223:
+	.set L$set$223,LEFDE223-LASFDE223
+	.long L$set$223
+LASFDE223:
+	.long LASFDE223-EH_frame1
+	.long _lj_vm_hotloop-.
+	.long 50
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE223:
+
+_lj_vm_callhook.eh:
+LSFDE224:
+	.set L$set$224,LEFDE224-LASFDE224
+	.long L$set$224
+LASFDE224:
+	.long LASFDE224-EH_frame1
+	.long _lj_vm_callhook-.
+	.long 6
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE224:
+
+_lj_vm_hotcall.eh:
+LSFDE225:
+	.set L$set$225,LEFDE225-LASFDE225
+	.long L$set$225
+LASFDE225:
+	.long LASFDE225-EH_frame1
+	.long _lj_vm_hotcall-.
+	.long 67
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE225:
+
+_lj_vm_exit_handler.eh:
+LSFDE226:
+	.set L$set$226,LEFDE226-LASFDE226
+	.long L$set$226
+LASFDE226:
+	.long LASFDE226-EH_frame1
+	.long _lj_vm_exit_handler-.
+	.long 247
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE226:
+
+_lj_vm_exit_interp.eh:
+LSFDE227:
+	.set L$set$227,LEFDE227-LASFDE227
+	.long L$set$227
+LASFDE227:
+	.long LASFDE227-EH_frame1
+	.long _lj_vm_exit_interp-.
+	.long 93
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE227:
+
+_lj_vm_floor_sse.eh:
+LSFDE229:
+	.set L$set$229,LEFDE229-LASFDE229
+	.long L$set$229
+LASFDE229:
+	.long LASFDE229-EH_frame1
+	.long _lj_vm_floor_sse-.
+	.long 91
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE229:
+
+_lj_vm_ceil_sse.eh:
+LSFDE231:
+	.set L$set$231,LEFDE231-LASFDE231
+	.long L$set$231
+LASFDE231:
+	.long LASFDE231-EH_frame1
+	.long _lj_vm_ceil_sse-.
+	.long 91
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE231:
+
+_lj_vm_trunc_sse.eh:
+LSFDE233:
+	.set L$set$233,LEFDE233-LASFDE233
+	.long L$set$233
+LASFDE233:
+	.long LASFDE233-EH_frame1
+	.long _lj_vm_trunc_sse-.
+	.long 94
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE233:
+
+_lj_vm_mod.eh:
+LSFDE234:
+	.set L$set$234,LEFDE234-LASFDE234
+	.long L$set$234
+LASFDE234:
+	.long LASFDE234-EH_frame1
+	.long _lj_vm_mod-.
+	.long 118
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE234:
+
+_lj_vm_log2.eh:
+LSFDE235:
+	.set L$set$235,LEFDE235-LASFDE235
+	.long L$set$235
+LASFDE235:
+	.long LASFDE235-EH_frame1
+	.long _lj_vm_log2-.
+	.long 25
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE235:
+
+_lj_vm_exp_x87.eh:
+LSFDE236:
+	.set L$set$236,LEFDE236-LASFDE236
+	.long L$set$236
+LASFDE236:
+	.long LASFDE236-EH_frame1
+	.long _lj_vm_exp_x87-.
+	.long 4
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE236:
+
+_lj_vm_exp2_x87.eh:
+LSFDE237:
+	.set L$set$237,LEFDE237-LASFDE237
+	.long L$set$237
+LASFDE237:
+	.long LASFDE237-EH_frame1
+	.long _lj_vm_exp2_x87-.
+	.long 24
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE237:
+
+_lj_vm_exp2raw.eh:
+LSFDE238:
+	.set L$set$238,LEFDE238-LASFDE238
+	.long L$set$238
+LASFDE238:
+	.long LASFDE238-EH_frame1
+	.long _lj_vm_exp2raw-.
+	.long 24
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE238:
+
+_lj_vm_pow_sse.eh:
+LSFDE240:
+	.set L$set$240,LEFDE240-LASFDE240
+	.long L$set$240
+LASFDE240:
+	.long LASFDE240-EH_frame1
+	.long _lj_vm_pow_sse-.
+	.long 24
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE240:
+
+_lj_vm_powi_sse.eh:
+LSFDE241:
+	.set L$set$241,LEFDE241-LASFDE241
+	.long L$set$241
+LASFDE241:
+	.long LASFDE241-EH_frame1
+	.long _lj_vm_powi_sse-.
+	.long 320
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE241:
+
+_lj_vm_foldfpm.eh:
+LSFDE242:
+	.set L$set$242,LEFDE242-LASFDE242
+	.long L$set$242
+LASFDE242:
+	.long LASFDE242-EH_frame1
+	.long _lj_vm_foldfpm-.
+	.long 131
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE242:
+
+_lj_vm_foldarith.eh:
+LSFDE243:
+	.set L$set$243,LEFDE243-LASFDE243
+	.long L$set$243
+LASFDE243:
+	.long LASFDE243-EH_frame1
+	.long _lj_vm_foldarith-.
 	.long 160
-	.uleb128 0
+	.byte 0
 	.byte 0xe
-	.uleb128 16
+	.byte 80
 	.byte 0x86
-	.uleb128 0x2
-	.byte 0xd
-	.uleb128 0x6
+	.byte 0x2
 	.byte 0x83
-	.uleb128 0x3
-	.align 8
-.LEFDE3:
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE243:
 
+_lj_vm_cpuid.eh:
+LSFDE244:
+	.set L$set$244,LEFDE244-LASFDE244
+	.long L$set$244
+LASFDE244:
+	.long LASFDE244-EH_frame1
+	.long _lj_vm_cpuid-.
+	.long 18
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE244:
+
+_lj_assert_bad_for_arg_type.eh:
+LSFDE245:
+	.set L$set$245,LEFDE245-LASFDE245
+	.long L$set$245
+LASFDE245:
+	.long LASFDE245-EH_frame1
+	.long _lj_assert_bad_for_arg_type-.
+	.long 1
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE245:
+
+_lj_vm_ffi_callback.eh:
+LSFDE246:
+	.set L$set$246,LEFDE246-LASFDE246
+	.long L$set$246
+LASFDE246:
+	.long LASFDE246-EH_frame1
+	.long _lj_vm_ffi_callback-.
+	.long 179
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE246:
+
+_lj_cont_ffi_callback.eh:
+LSFDE247:
+	.set L$set$247,LEFDE247-LASFDE247
+	.long L$set$247
+LASFDE247:
+	.long LASFDE247-EH_frame1
+	.long _lj_cont_ffi_callback-.
+	.long 44
+	.byte 0
+	.byte 0xe
+	.byte 80
+	.byte 0x86
+	.byte 0x2
+	.byte 0x83
+	.byte 0x3
+	.byte 0x8f
+	.byte 0x4
+	.byte 0x8e
+	.byte 0x5
+	.align 3
+LEFDE247:
+
+EH_frame2:
+	.set L$set$y,LECIEY-LSCIEY
+	.long L$set$y
+LSCIEY:
+	.long 0
+	.byte 0x1
+	.ascii "zR\0"
+	.byte 0x1
+	.byte 128-8
+	.byte 0x10
+	.byte 1
+	.byte 0x1b
+	.byte 0xc
+	.byte 0x7
+	.byte 8
+	.byte 0x80+0x10
+	.byte 0x1
+	.align 3
+LECIEY:
+
+_lj_vm_ffi_call.eh:
+LSFDEY:
+	.set L$set$yy,LEFDEY-LASFDEY
+	.long L$set$yy
+LASFDEY:
+	.long LASFDEY-EH_frame2
+	.long _lj_vm_ffi_call-.
+	.long 160
+	.byte 0
+	.byte 0xe
+	.byte 16
+	.byte 0x86
+	.byte 0x2
+	.byte 0xd
+	.byte 0x6
+	.byte 0x83
+	.byte 0x3
+	.align 3
+LEFDEY:
+
+	.subsections_via_symbols
