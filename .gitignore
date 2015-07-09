@@ -13,6 +13,7 @@
 #*.a
 #*.la
 #*.lo
+#*.lai
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -31,9 +32,13 @@
 # Debug files
 *.dSYM/
 
+# misc production directories
 /bin/*
 /lib/*
 /attic/*
 /testing/*
 /src/build/*
+
+# premake cruft
+/*.make
 
