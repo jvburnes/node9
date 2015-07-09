@@ -24,7 +24,7 @@ project "node9"
                   _WORKING_DIR .. "/libuv/include", _WORKING_DIR .. "/libuv/src", _WORKING_DIR .. "/luajit/src", 
                   "styx/hosting/libuv/include" })
 
-    links {"9", "bio", "sec", "pthread", "luajit", "uv" }
+    links {"9", "bio", "sec", "pthread" }
     
     -- PLATFORM SPECIFICS --
     filter "system:macosx"
@@ -35,6 +35,11 @@ project "node9"
               }
         
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework"}
+
+        -- brain damage because you can't force osx linker to prefer statics
+        -- without including them explicitly on the build line
+        prelinkcommands { "cd libuv/.libs; ln -sf libuv.a libuv_s.a; cd ../..; cd luajit/src; ln -sf libluajit.a libluajit_s.a; cd ../.." }
+        links { "luajit_s", "uv_s" }
             
         linkoptions { "-pagezero_size 10000", "-image_base 100000000"}
         
@@ -53,6 +58,9 @@ project "node9"
 
     -- reset filters
     filter {} 
+
+    filter "not system:macosx"
+        links {"luajit", "uv"}
 
 project "libnode9"
     -- is this kind of app
