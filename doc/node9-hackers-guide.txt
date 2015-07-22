@@ -508,12 +508,24 @@ port install autoconf
 
 For other package managers on OSX, Linux and Windows "Your Mileage May Vary"
 
-Once 'autoconf' is installed you can build Node9 by executing the following 
-command from Node9's main directory.
+After 'autoconf' is installed...
+
+Select the node9 build type and host OS target to bulid for.  Build types are 
+'debug', 'development' and 'release'. OS target types are: "macosx", "freebsd", 
+"netbsd", "openbsd", "dragonfly", "solaris", "windows" and "android".  All of
+these are currently assumed to be X86_64 architecture.
+
+(Check the status page to see which build types and host OS targets are
+currently supported.)
+
+Edit the 'rebuild.sh' script and enter the build type and target OS on the
+make line, like this: make config=debug_macosx
+
+Execute the following command to build the system:
 
 sh rebuild.sh
 
-After the build is finished the 'node9' executable will be in the 'bin'
+After the build is finished, the 'node9' executable will be in the 'bin'
 subdirectory of the Node9 distribution.  The runtime shared library
 will be generated in the "lib" subdirectory.
 
