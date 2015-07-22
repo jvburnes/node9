@@ -5,8 +5,10 @@ cd ../luajit; make
 rm src/lib*.so*
 rm src/lib*.dylib
 cd ..
-make clean
-premake5 clean
+#premake5 clean
+rm -rf src/build
+rm *.make
+rm Makefile
 premake5 gmake
-make
+make config=debug_macosx
 

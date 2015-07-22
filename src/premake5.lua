@@ -4,8 +4,8 @@ project "node9"
     kind "ConsoleApp"
     targetdir(_WORKING_DIR .. "/bin")
     
-    -- NODE9 DEFINITIONS --
-    defines { "EMU" }
+    -- NODE9 PROJECT DEFINITIONS --
+    defines {"EMU"}
     
     -- Initialize build
     -- Snapshot the kernel build / time
@@ -16,18 +16,30 @@ project "node9"
       "styx/hosting/libuv/os-uv.c", "styx/hosting/libuv/emu.c"
     }
 
-    --buildoptions {"-v"}    
+    -- files we are not building yet  
     removefiles {"styx/svcs/devprog.c", "styx/svcs/devprof.c", "styx/svcs/devdynld*.c", 
               "styx/svcs/dynld*.c",  "styx/svcs/ipif6-posix.c","styx/svcs/srv.c", 
               "styx/svcs/devsrv.c", "styx/svcs/devfs-posix.c" } 
-    includedirs ({ _WORKING_DIR .. "/fs/module", "include", "styx/include", "styx/svcs", 
-                  _WORKING_DIR .. "/libuv/include", _WORKING_DIR .. "/libuv/src", _WORKING_DIR .. "/luajit/src", 
-                  "styx/hosting/libuv/include" })
-
-    links {"9", "bio", "sec", "pthread" }
     
+    
+    includedirs ({ "include", "styx/svcs" })
+    
+    links {"9", "bio", "sec"}
+        
     -- PLATFORM SPECIFICS --
-    filter "system:macosx"
+    filter "platforms:linux"
+        files { "styx/platform/Linux/os.c",
+                "styx/platform/Linux/segflush-386.c",
+                "styx/platform/Linux/cmd.c",
+                "styx/platform/Linux/devfs.c",
+                "styx/libs/lib9/getcallerpc-Linux-X86_64.s"
+              }
+
+        -- MAKE SURE THIS IS EXECUTED --
+        links {"dl", "m"}
+        linkoptions {"-Wl,--export-dynamic"}
+
+    filter "platforms:macosx"
         files { "styx/platform/MacOSX/os.c",
                 "styx/platform/MacOSX/cmd.c",
                 "styx/platform/MacOSX/devfs.c",
@@ -37,30 +49,44 @@ project "node9"
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework"}
 
         -- brain damage because you can't force osx linker to prefer statics
-        -- without including them explicitly on the build line
+        -- without including them explicitly on the build line or preventing every possible
+        -- sharable lib with the same name being findable
         prelinkcommands { "cd libuv/.libs; ln -sf libuv.a libuv_s.a; cd ../..; cd luajit/src; ln -sf libluajit.a libluajit_s.a; cd ../.." }
         links { "luajit_s", "uv_s" }
             
         linkoptions { "-pagezero_size 10000", "-image_base 100000000"}
         
-    
-    filter "system:linux"
-        files { "styx/platform/Linux/os.c",
-                "styx/platform/Linux/segflush-386.c",
-                "styx/platform/Linux/cmd.c",
-                "styx/platform/Linux/devfs.c",
-                "styx/libs/lib9/getcallerpc-Linux-X86_64.s"
+    -- PLATFORM SPECIFICS --
+    filter "platforms:freebsd"
+        files { "styx/platform/FreeBSD/os.c",
+                "styx/platform/FreeBSD/asm-386.S",
+                "styx/platform/FreeBSD/cmd.c",
+                "styx/platform/FreeBSD/devfs.c",
               }
 
         -- MAKE SURE THIS IS EXECUTED --
-	links {"dl", "m"}
-        linkoptions {"-Wl,--export-dynamic"}
+        links {"m"}
+    
+    filter "platforms:windows"
+        files { "styx/platform/Nt/os.c",
+                "styx/platform/Nt/cmd.c",
+                "styx/platform/Nt/devfs.c",
+                "styx/platform/Nt/r16.c",
+              }
+              
+        includedirs "styx/platform/Nt"
+        
+        links {"m", "netapi32", "wsock32", "user32", "gdi32", "advapi32", "winmm", "mpr"}
+
+    filter "not platforms:macosx"
+        links {"luajit", "uv"}
+
+    filter "not platforms:windows"
+        links {"pthread"}
 
     -- reset filters
     filter {} 
 
-    filter "not system:macosx"
-        links {"luajit", "uv"}
 
 project "libnode9"
     -- is this kind of app
@@ -68,22 +94,19 @@ project "libnode9"
     targetname "node9"
     targetdir(_WORKING_DIR .. "/lib")
     
-    -- LOCAL EMULATOR DEFINES
-    defines { "EMU" }
-
+    defines {"EMU"}
     files {"styx/svcs/node9.c", "styx/svcs/error.c" }
-    links {"9", "bio", "sec", "pthread" }
+    links {"9", "bio", "sec"}
+    filter "not platforms:windows"
+        links {"pthread"}
 
-    includedirs ({ _WORKING_DIR .. "/fs/module", "include",  "styx/include", "styx/svcs", 
-         _WORKING_DIR .. "/libuv/include", _WORKING_DIR .. "/libuv/src", _WORKING_DIR .. "/luajit/src",
-         "styx/hosting/libuv/include"})
-
+    includedirs ({"include", "styx/svcs" })
     
     -- PLATFORM SPECIFICS --
-    filter "system:macosx"      
+    filter "platforms:macosx"      
         links { "Carbon.framework", "CoreFoundation.framework", "IOKit.framework" }
-        postbuildcommands {"rebase lib/libnode9.dylib"}
         linkoptions {"-undefined dynamic_lookup"}
+        postbuildcommands {"rebase lib/libnode9.dylib"}
         
     -- reset filters
     filter {}
