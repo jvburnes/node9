@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 199 tasks, 978 threads, 4 processors
-Load average: 2.03, Mach factor: 1.95
+Default processor set: 209 tasks, 1102 threads, 4 processors
+Load average: 2.85, Mach factor: 1.96
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -269,7 +269,7 @@ gcc -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused
 configure:7669: result: yes
 configure:7672: checking for -exported_symbols_list linker flag
 configure:7692: gcc -o conftest -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter   -Wl,-exported_symbols_list,conftest.sym conftest.c  >&5
-ld: warning: cannot export hidden symbol _main from /var/folders/rb/637b1_751fl4gvwgr9z6l28w0000gn/T/conftest-ff827e.o
+ld: warning: cannot export hidden symbol _main from /var/folders/rb/637b1_751fl4gvwgr9z6l28w0000gn/T/conftest-7ac3c3.o
 configure:7692: $? = 0
 configure:7702: result: yes
 configure:7705: checking for -force_load linker flag
