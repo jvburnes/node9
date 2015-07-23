@@ -16,7 +16,7 @@ project "node9"
       "styx/hosting/libuv/os-uv.c", "styx/hosting/libuv/emu.c"
     }
 
-    -- files we are not building yet  
+    -- files we're not building yet  
     removefiles {"styx/svcs/devprog.c", "styx/svcs/devprof.c", "styx/svcs/devdynld*.c", 
               "styx/svcs/dynld*.c",  "styx/svcs/ipif6-posix.c","styx/svcs/srv.c", 
               "styx/svcs/devsrv.c", "styx/svcs/devfs-posix.c" } 
@@ -25,6 +25,10 @@ project "node9"
     includedirs ({ "include", "styx/svcs" })
     
     links {"9", "bio", "sec"}
+    -- currently it's important to group all statics together for gcc chain
+    filter "not platforms:macosx"
+        links {"luajit", "uv"}
+
         
     -- PLATFORM SPECIFICS --
     filter "platforms:linux"
@@ -35,7 +39,6 @@ project "node9"
                 "styx/libs/lib9/getcallerpc-Linux-X86_64.s"
               }
 
-        -- MAKE SURE THIS IS EXECUTED --
         links {"dl", "m"}
         linkoptions {"-Wl,--export-dynamic"}
 
@@ -56,7 +59,6 @@ project "node9"
             
         linkoptions { "-pagezero_size 10000", "-image_base 100000000"}
         
-    -- PLATFORM SPECIFICS --
     filter "platforms:freebsd"
         files { "styx/platform/FreeBSD/os.c",
                 "styx/platform/FreeBSD/asm-386.S",
@@ -64,7 +66,6 @@ project "node9"
                 "styx/platform/FreeBSD/devfs.c",
               }
 
-        -- MAKE SURE THIS IS EXECUTED --
         links {"m"}
     
     filter "platforms:windows"
@@ -76,10 +77,8 @@ project "node9"
               
         includedirs "styx/platform/Nt"
         
-        links {"m", "netapi32", "wsock32", "user32", "gdi32", "advapi32", "winmm", "mpr"}
-
-    filter "not platforms:macosx"
-        links {"luajit", "uv"}
+        links {"m"} -- i think
+        links {"netapi32", "wsock32", "user32", "gdi32", "advapi32", "winmm", "mpr"} -- orobably not current for win64
 
     filter "not platforms:windows"
         links {"pthread"}
