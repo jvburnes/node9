@@ -5,9 +5,7 @@
 #include	<sys/wait.h>
 #include	<fcntl.h>
 
-#include	"dat.h"
-#include	"fns.h"
-#include	"error.h"
+#include    "nine.h"
 
 enum
 {

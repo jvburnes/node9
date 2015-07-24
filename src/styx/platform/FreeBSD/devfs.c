@@ -1,6 +1,8 @@
+#include "nine.h"
+
 #include "devfs-posix.c"
 
-static vlong
+vlong
 osdisksize(int fd)
 {
 	return 0;

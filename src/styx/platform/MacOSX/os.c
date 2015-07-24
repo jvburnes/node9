@@ -150,33 +150,9 @@ restore()
     if(dflag == 0) {
     	trace(TRACE_INFO, "node9/kernel: restoring terminal");
         termrestore();
-    }
-    
+    } 
 }
 
-/*int
-readkbd(void)
-{
-	int	n;
-	char	buf[1];
-
-	n = read(0, buf, sizeof(buf));
-	if(n < 0)
-		print("keyboard close (n=%d, %s)\n", n, strerror(errno));
-	if(n <= 0)
-		pexit("keyboard thread", 0);
-
-	switch(buf[0]) {
-	case '\r':
-		buf[0] = '\n';
-		break;
-	case DELETE:
-		buf[0] = '\b';
-		break;
-	}
-	return buf[0];
-}
-*/
 
 /*
  * Return an abitrary millisecond clock time
@@ -217,20 +193,16 @@ osusectime(void)
 	gettimeofday(&t, nil);
 	return (vlong)t.tv_sec * 1000000 + t.tv_usec;
 }
+
 int
 osmillisleep(ulong milsec)
 {
 	struct timespec time;
+    
 	time.tv_sec = milsec / 1000;
 	time.tv_nsec = (milsec % 1000) * 1000000;
 	nanosleep(&time, nil);
 	return 0;
-}
-
-int
-limbosleep(ulong milsec)
-{
-	return osmillisleep(milsec);
 }
 
 void
