@@ -39,6 +39,3 @@
 /testing/*
 /src/build/*
 
-# premake cruft
-/*.make
-/Makefile

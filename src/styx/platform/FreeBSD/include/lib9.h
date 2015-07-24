@@ -25,7 +25,7 @@
 #define	log2	inflog2
 
 #ifndef EMU
-typedef struct Proc Proc;
+typedef struct Proc proc_t;
 #endif
 
 /*
@@ -312,8 +312,8 @@ typedef struct QLock QLock;
 struct QLock
 {
 	Lock	use;			/* to access Qlock structure */
-	Proc	*head;			/* next process waiting for object */
-	Proc	*tail;			/* last process waiting for object */
+	proc_t	*head;			/* next process waiting for object */
+	proc_t	*tail;			/* last process waiting for object */
 	int	locked;			/* flag */
 };
 

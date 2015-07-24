@@ -61,9 +61,9 @@ project "node9"
         
     filter "platforms:freebsd"
         files { "styx/platform/FreeBSD/os.c",
-                "styx/platform/FreeBSD/asm-386.S",
                 "styx/platform/FreeBSD/cmd.c",
                 "styx/platform/FreeBSD/devfs.c",
+                "styx/libs/lib9/getcallerpc-FreeBSD-X86_64.s"
               }
 
         links {"m"}
