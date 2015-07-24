@@ -18,6 +18,7 @@ enum
 	DELETE  = 0x7F,
 };
 char *hosttype = "FreeBSD";
+char *cputype = OBJTYPE;
 
 extern void unlockandexit(int*);
 extern void executeonnewstack(void*, void (*f)(void*), void*);

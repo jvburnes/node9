@@ -66,7 +66,8 @@ project "node9"
                 "styx/libs/lib9/getcallerpc-FreeBSD-X86_64.s"
               }
 
-        links {"m"}
+        links {"m", "kvm"}
+        linkoptions {"-Wl,--export-dynamic"}
     
     filter "platforms:windows"
         files { "styx/platform/Nt/os.c",
