@@ -7,8 +7,8 @@ rm src/lib*.dylib
 cd ..
 #premake5 clean
 rm -rf src/build
-rm *.make
-rm Makefile
-premake5 gmake
+#rm *.make
+#rm Makefile
+#premake5 gmake
 make config=debug_macosx
 

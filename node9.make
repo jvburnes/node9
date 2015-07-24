@@ -82,9 +82,9 @@ ifeq ($(config),debug_freebsd)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lpthread
+  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lkvm -lpthread
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64
+  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -Wl,--export-dynamic
   LINKCMD = $(CC) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
 	@echo Running prebuild commands
@@ -345,9 +345,9 @@ ifeq ($(config),devel_freebsd)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lpthread
+  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lkvm -lpthread
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s -Wl,--export-dynamic
   LINKCMD = $(CC) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
 	@echo Running prebuild commands
@@ -608,9 +608,9 @@ ifeq ($(config),release_freebsd)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lpthread
+  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lkvm -lpthread
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s -Wl,--export-dynamic
   LINKCMD = $(CC) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
 	@echo Running prebuild commands

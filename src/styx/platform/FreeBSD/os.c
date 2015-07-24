@@ -20,11 +20,6 @@ enum
 char *hosttype = "FreeBSD";
 char *cputype = OBJTYPE;
 
-extern void unlockandexit(int*);
-extern void executeonnewstack(void*, void (*f)(void*), void*);
-static void *stackalloc(Proc *p, void **tos);
-static void stackfreeandexit(void *stack);
-
 extern int dflag;
 
 
