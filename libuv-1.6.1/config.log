@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 209 tasks, 1102 threads, 4 processors
-Load average: 2.85, Mach factor: 1.96
+Default processor set: 202 tasks, 977 threads, 4 processors
+Load average: 1.73, Mach factor: 2.26
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -193,7 +193,7 @@ configure:5235: checking the name lister (/opt/local/bin/nm) interface
 configure:5242: gcc -c -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter  conftest.c >&5
 configure:5245: /opt/local/bin/nm "conftest.o"
 configure:5248: output
-0000000000000228 S _some_variable
+000000000000021c S _some_variable
 configure:5255: result: BSD nm
 configure:5258: checking whether ln -s works
 configure:5262: result: yes
@@ -269,7 +269,7 @@ gcc -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused
 configure:7669: result: yes
 configure:7672: checking for -exported_symbols_list linker flag
 configure:7692: gcc -o conftest -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter   -Wl,-exported_symbols_list,conftest.sym conftest.c  >&5
-ld: warning: cannot export hidden symbol _main from /var/folders/rb/637b1_751fl4gvwgr9z6l28w0000gn/T/conftest-7ac3c3.o
+ld: warning: cannot export hidden symbol _main from /var/folders/rb/637b1_751fl4gvwgr9z6l28w0000gn/T/conftest-5a4ac3.o
 configure:7692: $? = 0
 configure:7702: result: yes
 configure:7705: checking for -force_load linker flag
@@ -977,7 +977,7 @@ lt_cv_to_tool_file_cmd=func_convert_file_noop
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /Users/jburnes/dev/node9-build/node9/libuv/missing aclocal-1.14'
+ACLOCAL='${SHELL} /Users/jburnes/dev/node9/libuv/missing aclocal-1.14'
 AIX_FALSE=''
 AIX_TRUE='#'
 AMDEPBACKSLASH='\'
@@ -991,9 +991,9 @@ AM_V='$(V)'
 ANDROID_FALSE=''
 ANDROID_TRUE='#'
 AR='ar'
-AUTOCONF='${SHELL} /Users/jburnes/dev/node9-build/node9/libuv/missing autoconf'
-AUTOHEADER='${SHELL} /Users/jburnes/dev/node9-build/node9/libuv/missing autoheader'
-AUTOMAKE='${SHELL} /Users/jburnes/dev/node9-build/node9/libuv/missing automake-1.14'
+AUTOCONF='${SHELL} /Users/jburnes/dev/node9/libuv/missing autoconf'
+AUTOHEADER='${SHELL} /Users/jburnes/dev/node9/libuv/missing autoheader'
+AUTOMAKE='${SHELL} /Users/jburnes/dev/node9/libuv/missing automake-1.14'
 AWK='gawk'
 CC='gcc'
 CCDEPMODE='depmode=gcc3'
@@ -1035,7 +1035,7 @@ LINUX_TRUE='#'
 LIPO='lipo'
 LN_S='ln -s'
 LTLIBOBJS=''
-MAKEINFO='${SHELL} /Users/jburnes/dev/node9-build/node9/libuv/missing makeinfo'
+MAKEINFO='${SHELL} /Users/jburnes/dev/node9/libuv/missing makeinfo'
 MANIFEST_TOOL=':'
 MKDIR_P='./install-sh -c -d'
 NETBSD_FALSE=''
@@ -1100,7 +1100,7 @@ host_vendor='apple'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /Users/jburnes/dev/node9-build/node9/libuv/install-sh'
+install_sh='${SHELL} /Users/jburnes/dev/node9/libuv/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'

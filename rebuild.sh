@@ -9,6 +9,6 @@ cd ..
 rm -rf src/build
 #rm *.make
 #rm Makefile
-#premake5 gmake
+premake5 gmake
 make config=debug_macosx
 

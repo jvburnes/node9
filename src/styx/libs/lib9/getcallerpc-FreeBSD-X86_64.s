@@ -53,10 +53,10 @@
 #
 #    We're passing 0 back until we're sure
 #
-	.file	"getcallerpc-Linux-X86_64.s"
-        .type   getcallerpc,@function
-        .global getcallerpc
-getcallerpc:
+	.file	"getcallerpc-FreeBSD-X86_64.s"
+    .text
+.globl _getcallerpc
+_getcallerpc:
 	movq	$0, %rax
 	ret
 
