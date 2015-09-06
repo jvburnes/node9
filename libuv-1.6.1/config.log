@@ -30,14 +30,12 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 202 tasks, 977 threads, 4 processors
-Load average: 1.73, Mach factor: 2.26
+Default processor set: 206 tasks, 1158 threads, 4 processors
+Load average: 3.05, Mach factor: 1.21
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /Users/jburnes/dev/inferno-os/MacOSX/386/bin
-PATH: MacOSX/386/bin
 PATH: /opt/local/bin
 PATH: /opt/bin
 PATH: /usr/bin
@@ -269,7 +267,7 @@ gcc -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused
 configure:7669: result: yes
 configure:7672: checking for -exported_symbols_list linker flag
 configure:7692: gcc -o conftest -g -O2 -fvisibility=hidden -g -std=gnu89 -pedantic -Wall -Wextra -Wno-unused-parameter   -Wl,-exported_symbols_list,conftest.sym conftest.c  >&5
-ld: warning: cannot export hidden symbol _main from /var/folders/rb/637b1_751fl4gvwgr9z6l28w0000gn/T/conftest-5a4ac3.o
+ld: warning: cannot export hidden symbol _main from /var/folders/rb/637b1_751fl4gvwgr9z6l28w0000gn/T/conftest-4ae9e7.o
 configure:7692: $? = 0
 configure:7702: result: yes
 configure:7705: checking for -force_load linker flag

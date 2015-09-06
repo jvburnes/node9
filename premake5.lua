@@ -9,6 +9,9 @@
     (on gcc-native systems like Linux and NetBSD, gmake is just 'make')
 ]]--
 
+    solution "node9-hosted"
+    language "C"
+
     -- get a stable build OS type
     -- "server" can change
     -- "platform" is the user selected target type
@@ -30,10 +33,7 @@
     defines ({"SYSHOST=" .. syshost})
     
     print(">>> Building Node9 solutions on host OS '" .. syshost .. "' <<<")
-   
-    solution "node9-hosted"
-    language "C"
-    
+       
     -- deployment configurations
     configurations { "debug", "devel", "release"}
     
@@ -68,9 +68,9 @@
     
     -- GLOBAL SOURCE AND TARGET OBJECT LOCATIONS --
     objdir("src/build/obj")
-    libdirs("luajit/src")  -- the luajit libraries
-    libdirs("libuv/.libs")       -- the libuv libraries
-    libdirs("src/build")       -- location of the statics that we build
+    libdirs("luajit/src")           -- the luajit libraries
+    libdirs("libuv/.libs")          -- the libuv libraries
+    libdirs("src/build")            -- location of the statics that we build
     targetdir("src/build")
 
     -- GLOBAL INCLUDE SOURCES --
@@ -87,7 +87,8 @@
       
     -- TARGET BUILDS
     -- also specifies target stable build toolchain
-    -- (platform-specific include dirs might not be needed)
+    -- (platform-specific include dirs might not be needed here)
+    
     filter "platforms:linux" 
         defines {"SYSTARG=Linux"}
         system "linux"
@@ -104,33 +105,33 @@
 
     filter { "platforms:freebsd" }
         defines { "SYSTARG=FreeBSD" }
-        system "bsd" -- does this work for clang vs gcc targets chains?
+        system "bsd"    -- does this work for clang vs gcc targets chains?
         -- important because luajit, libuv often choose conflicting compilers here
         toolset "gcc"  
         includedirs { "src/styx/platform/FreeBSD/include" }
     
     filter { "platforms:netbsd" }
         defines { "SYSTARG=NetBSD" }
-        system "bsd" -- does this work for clang vs gcc targets chains?
-        toolset "gcc"  -- at least gcc 2.9.5 (last portable version)
+        system "bsd"    -- does this work for clang vs gcc targets chains?
+        toolset "gcc"   -- at least gcc 2.9.5 (last portable version)
         includedirs { "src/styx/platform/NetBSD/include" }
         
     filter { "platforms:openbsd" }
         defines { "SYSTARG=OpenBSD" }
-        system "bsd" -- does this work for clang vs gcc targets chains?
+        system "bsd"    -- does this work for clang vs gcc targets chains?
         toolset "gcc"   -- probably at least gcc 4.2.1
         includedirs { "src/styx/platform/OpenBSD/include" }
         
     filter  { "platforms:dragonfly" }
         defines { "SYSTARG=DragonFly" }
-        system "bsd" -- does this work for clang vs gcc targets chains?
-        toolset "gcc"  -- probably gcc 5 or later
+        system "bsd"    -- does this work for clang vs gcc targets chains?
+        toolset "gcc"   -- probably gcc 5 or later
         includedirs { "src/styx/platform/Dragonfly/include" }
         
     filter "platforms:macosx"
         defines { "SYSTARG=MacOSX"}
         system "macosx"
-        -- but were taking default because luajit, libuv and we all map to clang
+        -- by default gcc maps to clang on OSX
         --toolset "clang"   
         includedirs { "src/styx/platform/MacOSX/include" }
         

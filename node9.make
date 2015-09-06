@@ -216,20 +216,19 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),debug_windows)
-  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/node9.exe
   OBJDIR = src/build/obj/windows/debug/node9
-  DEFINES += -DSYSHOST=MacOSX -DOBJTYPE='"386"' -DSYSTARG=Nt -DEMU
+  DEFINES += /D"SYSHOST=MacOSX" /D"OBJTYPE='"386"'" /D"SYSTARG=Nt" /D"EMU"
   INCLUDES += -Ilibuv/src -Ilibuv/include -Iluajit/src -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/Nt/include -Isrc/include -Isrc/styx/svcs -Isrc/styx/platform/Nt
   FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
+  ALL_CPPFLAGS += $(CPPFLAGS) $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) /Z7 /MDd
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) /EHsc
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lnetapi32 -lwsock32 -luser32 -lgdi32 -ladvapi32 -lwinmm -lmpr
+  LIBS += 9.lib bio.lib sec.lib luajit.lib uv.lib m.lib netapi32.lib wsock32.lib user32.lib gdi32.lib advapi32.lib winmm.lib mpr.lib
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64
+  ALL_LDFLAGS += $(LDFLAGS) /LIBPATH:"luajit/src" /LIBPATH:"libuv/.libs" /LIBPATH:"src/build" /NOLOGO /DEBUG
   LINKCMD = $(CC) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
 	@echo Running prebuild commands
@@ -241,7 +240,6 @@ ifeq ($(config),debug_windows)
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
-
 endif
 
 ifeq ($(config),debug_android)
@@ -479,20 +477,19 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),devel_windows)
-  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/node9.exe
   OBJDIR = src/build/obj/windows/devel/node9
-  DEFINES += -DSYSHOST=MacOSX -DOBJTYPE='"386"' -DSYSTARG=Nt -DEMU
+  DEFINES += /D"SYSHOST=MacOSX" /D"OBJTYPE='"386"'" /D"SYSTARG=Nt" /D"EMU"
   INCLUDES += -Ilibuv/src -Ilibuv/include -Iluajit/src -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/Nt/include -Isrc/include -Isrc/styx/svcs -Isrc/styx/platform/Nt
   FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
+  ALL_CPPFLAGS += $(CPPFLAGS) $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) /MD
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) /EHsc
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lnetapi32 -lwsock32 -luser32 -lgdi32 -ladvapi32 -lwinmm -lmpr
+  LIBS += 9.lib bio.lib sec.lib luajit.lib uv.lib m.lib netapi32.lib wsock32.lib user32.lib gdi32.lib advapi32.lib winmm.lib mpr.lib
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) /LIBPATH:"luajit/src" /LIBPATH:"libuv/.libs" /LIBPATH:"src/build" /NOLOGO
   LINKCMD = $(CC) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
 	@echo Running prebuild commands
@@ -504,7 +501,6 @@ ifeq ($(config),devel_windows)
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
-
 endif
 
 ifeq ($(config),devel_android)
@@ -742,20 +738,19 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),release_windows)
-  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/node9.exe
   OBJDIR = src/build/obj/windows/release/node9
-  DEFINES += -DSYSHOST=MacOSX -DOBJTYPE='"386"' -DSYSTARG=Nt -DEMU
+  DEFINES += /D"SYSHOST=MacOSX" /D"OBJTYPE='"386"'" /D"SYSTARG=Nt" /D"EMU"
   INCLUDES += -Ilibuv/src -Ilibuv/include -Iluajit/src -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/Nt/include -Isrc/include -Isrc/styx/svcs -Isrc/styx/platform/Nt
   FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
+  ALL_CPPFLAGS += $(CPPFLAGS) $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) /MD
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) /EHsc
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -l9 -lbio -lsec -lluajit -luv -lm -lnetapi32 -lwsock32 -luser32 -lgdi32 -ladvapi32 -lwinmm -lmpr
+  LIBS += 9.lib bio.lib sec.lib luajit.lib uv.lib m.lib netapi32.lib wsock32.lib user32.lib gdi32.lib advapi32.lib winmm.lib mpr.lib
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) /LIBPATH:"luajit/src" /LIBPATH:"libuv/.libs" /LIBPATH:"src/build" /NOLOGO
   LINKCMD = $(CC) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
 	@echo Running prebuild commands
@@ -767,7 +762,6 @@ ifeq ($(config),release_windows)
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
-
 endif
 
 ifeq ($(config),release_android)

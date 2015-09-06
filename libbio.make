@@ -200,20 +200,19 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),debug_windows)
-  RESCOMP = windres
   TARGETDIR = src/build
   TARGET = $(TARGETDIR)/bio.lib
   OBJDIR = src/build/obj/windows/debug/libbio
-  DEFINES += -DSYSHOST=MacOSX -DOBJTYPE='"386"' -DSYSTARG=Nt
+  DEFINES += /D"SYSHOST=MacOSX" /D"OBJTYPE='"386"'" /D"SYSTARG=Nt"
   INCLUDES += -Ilibuv/src -Ilibuv/include -Iluajit/src -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/Nt/include
   FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g -fPIC
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
+  ALL_CPPFLAGS += $(CPPFLAGS) $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) /Z7 /MDd -fPIC
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) /EHsc
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64
+  ALL_LDFLAGS += $(LDFLAGS) /LIBPATH:"luajit/src" /LIBPATH:"libuv/.libs" /LIBPATH:"src/build" /NOLOGO
   LINKCMD = $(AR) -rcs $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
@@ -223,7 +222,6 @@ ifeq ($(config),debug_windows)
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
-
 endif
 
 ifeq ($(config),debug_android)
@@ -443,20 +441,19 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),devel_windows)
-  RESCOMP = windres
   TARGETDIR = src/build
   TARGET = $(TARGETDIR)/bio.lib
   OBJDIR = src/build/obj/windows/devel/libbio
-  DEFINES += -DSYSHOST=MacOSX -DOBJTYPE='"386"' -DSYSTARG=Nt
+  DEFINES += /D"SYSHOST=MacOSX" /D"OBJTYPE='"386"'" /D"SYSTARG=Nt"
   INCLUDES += -Ilibuv/src -Ilibuv/include -Iluajit/src -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/Nt/include
   FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
+  ALL_CPPFLAGS += $(CPPFLAGS) $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) /MD -fPIC
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) /EHsc
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) /LIBPATH:"luajit/src" /LIBPATH:"libuv/.libs" /LIBPATH:"src/build" /NOLOGO
   LINKCMD = $(AR) -rcs $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
@@ -466,7 +463,6 @@ ifeq ($(config),devel_windows)
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
-
 endif
 
 ifeq ($(config),devel_android)
@@ -686,20 +682,19 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),release_windows)
-  RESCOMP = windres
   TARGETDIR = src/build
   TARGET = $(TARGETDIR)/bio.lib
   OBJDIR = src/build/obj/windows/release/libbio
-  DEFINES += -DSYSHOST=MacOSX -DOBJTYPE='"386"' -DSYSTARG=Nt
+  DEFINES += /D"SYSHOST=MacOSX" /D"OBJTYPE='"386"'" /D"SYSTARG=Nt"
   INCLUDES += -Ilibuv/src -Ilibuv/include -Iluajit/src -Isrc/styx/hosting/libuv/include -Isrc/styx/include -Ifs/module -Isrc/styx/platform/Nt/include
   FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
+  ALL_CPPFLAGS += $(CPPFLAGS) $(DEFINES) $(INCLUDES)
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) /MD -fPIC
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) /EHsc
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L/usr/lib64 -Lluajit/src -Llibuv/.libs -Lsrc/build -m64 -s
+  ALL_LDFLAGS += $(LDFLAGS) /LIBPATH:"luajit/src" /LIBPATH:"libuv/.libs" /LIBPATH:"src/build" /NOLOGO
   LINKCMD = $(AR) -rcs $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
@@ -709,7 +704,6 @@ ifeq ($(config),release_windows)
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
-
 endif
 
 ifeq ($(config),release_android)
