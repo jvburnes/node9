@@ -10,5 +10,5 @@ rm -rf src/build
 #rm *.make
 #rm Makefile
 premake5 gmake
-make config=debug_macosx
+make config=debug_linux
 

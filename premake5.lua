@@ -61,7 +61,7 @@
     -- default global cpu types.  can be overridden by platform architecture
     
     -- OBJTYPE is just for low-level 9lib
-    defines {"OBJTYPE='\"386\"'"}
+    defines {"OBJTYPE=\"386\""}
     
     -- only for windows right now
     architecture "x86_64"
