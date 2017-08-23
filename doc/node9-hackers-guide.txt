@@ -19,8 +19,8 @@ CONTENTS
 INTRODUCTION AND OVERVIEW
 
 Node9 is a hosted 64-bit operating system based on Bell Lab's Inferno OS that
-uses the Lua scripting language instead of Limbo and the LuaJIT high-peformance
-virtual machine instead of the Dis virtual machine.  It also uses the libuv
+uses the Lua scripting language instead of Limbo and the LuaJIT just-in-time
+compiler instead of the Dis virtual machine.  It also uses the libuv
 I/O library to maintain maximum portability, efficient event processing and thread
 management on POSIX and Windows platforms.
 
