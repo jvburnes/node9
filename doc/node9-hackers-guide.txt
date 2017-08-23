@@ -53,10 +53,10 @@ pipes.
 
 Node9 boots into a shell which supports both immediate mode Lua expression
 evaluation as well as Lua applications and library modules.  Node9
-applications are Lua scripts which can be simple standalone command files (as
+applications are Lua scripts which can be simple standalone command files as
 well as "application directories" containing all application code, support
 libraries, resources and configuration settings.  This allows applications to
-be easily installed and removed.)
+be easily installed and removed.
 
 (While the primary user console of Node9 is a powerful scripting shell, it also
 comes with a small web-based management GUI for cloud environments.  Node9 also
