@@ -48,7 +48,7 @@ limitations.
 Since Lua has no built-in threading limitations, Node9 also supports full
 multithreading.  Node9 Lua threads can communicate with Node9 tasks via message
 channels.  In fact, in Node9's each user session is allocated its own 
-OS thread. Node9 threads can communicate via applicaton channels and OS
+OS thread. Node9 threads can communicate via application channels and OS
 pipes.
 
 Node9 boots into a shell which supports both immediate mode Lua expression
@@ -116,13 +116,13 @@ end
 MAJOR CHANGES FROM INFERNO
 
 Node9 required extensive modification of the original Inferno source
-distribution to refocus the design towards an interactive Lua virtual machine
+distribution to refocus the design towards an interactive Lua JIT
 and cloud-optimized kernel.
 
 The primary kernel change was to remove Limbo and the Dis virtual machine
 structure and replace it with the LuaJIT virtual machine.  This required a
 complete refactor of the VM process architecture in order to interface with the
-original Plan9 kernel components.  To maintain performance and JIT stability
+original Plan9 kernel components.  To maintain performance and JIT stability,
 scheduler duties were segregated between the Lua coroutine system and the 
 hosted kernel C threads.
 
@@ -131,11 +131,11 @@ Lua tasks into the C kernel -- adopting a "shadow" process concept.
 
 Currently the legacy Inferno kernel manages memory and resources for kernel
 objects and LuaJIT manages memory for Lua apps.  The legacy memory manager was
-patched to allow 64-bit operation.
+patched to support 64-bit operation.  LuaJIT apps are still limited to 2GB.
 
 Since Node9 is a portable, hosted OS it requires multi-platform support for its
 underlying kernel I/O and eventing functions.  Because of this and the desire
-to create a portable, cloud-optimized kernel we used the hardware abstraction
+to create a portable, reactor-based kernel we used the hardware abstraction
 layer provided by 'libuv' to obviate the need for Inferno's legacy
 multi-platform support.
 
@@ -148,7 +148,7 @@ code and makes system calls into a slightly modified Plan9 kernel.  The full
 Dis threading and syscall structure is somewhat unconventional and outside the
 scope of this document.
 
-The legacy kernel is small with a round-robin scheduler and includes numerous
+The legacy kernel is small, uses a round-robin scheduler and includes numerous
 "servers" which are kernel devices that expose their services via mountable
 "namespaces".  Once mounted, you can interact with a device simply by
 opening its control and I/O channels as if you are opening files. Once opened
@@ -193,7 +193,7 @@ ssl                 #D           SSL stream filter         (can't be mounted)
 pipe                #|           interprocess pipes        arbitrary
 srv                 #s           lua namespace services    doesn't apply
 cmd                 #C           host OS command execution /cmd
-cap                 #¤           process privileges        <dir>/caphash
+cap                 #¤           process privileges        /dev/caphash
 dynld(x)            #L           shared library loader     /dev/dynldc
 indir               #*           device name aliasing      #*<long name>
 
@@ -271,30 +271,30 @@ It starts, manages and services the VM's system calls.  The VM runs inside the
 hosting proc's thread until a system call needs to be executed.
 
 Tasks: Tasks are Lua "userspace" coroutines that perform work and communicate
-with each other via event channels (more on that later).  Multiple tasks make
-up an application.
+with each other via event channels (more on that later).  An application can
+have multiple cooperating tasks.
 
 Virtual Procs: A virtual proc is the kernel's shadow image of the Lua task.  It
 contains the process ID, process structures and system request buffers for the
-task.  When VM system calls actually execute, the kernel dispatches the request  
-into an async thread pool.  The "worker" thread allocated to the system 
-request temporarily becomes an actual kernel process and subsumes the thread
-local state of the process for the duration of the request.
+task.  When Lua issues system requests, the kernel dispatches the sys request  
+as into an async thread pool.  A worker thread eventually services the system 
+request by subsuming the thread local state of the virtual process
+for the duration of the request.
  
 Libuv Event Loop
 
-The libuv eventing system controls the synchronization of incoming events, I/O
-and the dispatching of their respective handlers.  Each kernel proc has it's
+Libuv is a reactor model eventing system that controls the synchronization of events,
+timers, and the dispatching of I/O handlers.  Each kernel proc has it's
 own event loop.
 
-Each iteration of the libuv event loop looks basically like this:
+Each iteration of the libuv event loop looks like this:
 
    - gather all ready I/O, timer and other events
    - execute the callbacks for all ready events
 
 In a normal libuv application the event loop runs continously until the
 application finishes.  Node9 is slightly different in that the Lua kernel runs
-each iteration of the libuv event loop. In between event loop iterations it
+each iteration of the libuv event loop. After each iteration it
 runs all ready Lua tasks.
 
 Lua Scheduler Sweep
@@ -317,9 +317,9 @@ system request responses constructed.
 
 Wait Mode
 
-If there are no ready events and no system responses the event loop waits for
+If there are no ready events and no syscall responses the event loop waits for
 I/O, otherwise it returns to the Lua scheduler.  This is handled by enabling
-a background monitor in the event loop.  This is a somewhat arcane 
+a background monitor in the event loop.  It's an somewhat arcane 
 subject area not covered very well even in the libuv documentation. More 
 information is available in the documentation for 'libev', the predecessor
 to libuv.
@@ -355,11 +355,12 @@ This is the seek call to set the current position within an open file.
 
 The call accepts a file descriptor, the offset and the relative start
 setting.  The first thing the call does is to retrieve the context
-of the callling task.  Each task (here called c_proc), has a sysrequest
+of the calling task.  Each task (here called c_proc), has a sys request
 buffer which conforms to the selected call.
 
-The interface between the Lua system call and the C kernel call is handled by a
-feature unique to the LuaJIT VM called the Foreign Function Interface (FFI).
+The interface between the Lua system call and the C kernel call is handled by
+the LuaJIT Foreign Function Interface (FFI).
+
 All kernel calls are described as a set of C structures and handlers passed to
 a common C kernel call interface.  The FFI dynamically constructs an interface
 at kernel startup to marshall and demarshall the arguments from Lua to C and
@@ -390,7 +391,7 @@ Starting A New Application
 Applications are contained in a module similar to library modules.  They 
 start execution in their "init" function.
 
-New applications are normally started by /appl/sh.lua, but here are a few
+New applications are normally started by /appl/sh.lua and here are a few
 details of how this works.  The new application is forked from the current
 process using the sys.spawn function and specifying command line arguments,
 start function and other misc arguments.  
@@ -426,7 +427,7 @@ return error strings instead of error "codes" creates a rather unique
 exception handling environment.
 
 Normally lua runtime errors are caught via the pcall mechanism.  This is still
-the case within Node9, although this can get a little bit tricky since the 
+the case within Node9, although this can get a complicated since the 
 coroutine.resume function that resumes execution of task also acts as a 
 pcall.  If a task performs a pcall and a Lua exception occurs before the task
 yields, the task's own recovery takes place.   If an intervening system
@@ -442,7 +443,7 @@ The canonical way to return error status to the shell in Node9 is the following:
 (1) If no error has occurred then don't do anything.  The scheduler will return 
 an empty error string to the waiting shell process.
 
-(2) If an application error has occurred, but it's not a fatal execution error
+(2) If an application error has occurred, but it's not a fatal program abort
 then execute error("fail:<messsage>").  This will stop the application and 
 return <message> in the shell's "lasterr" variable.
 
@@ -655,13 +656,13 @@ Several kernel services and devices remain to be ported because they require
 fine-grained interaction between the Inferno "process" model and the Lua
 scheduler.   These are:
 
-  - devprog: allows fine-grain interaction with processs
+  - devprog: allows fine-grain interaction with processes
   - devprof: allows profiling of programs
   - devdynld: allows dynamic loading of libraries (external lang support)
   - devsrv: allows lua-based services
   - devpipe: inter-process, inter-application pipes
 
-Of these devprog (/proc), devsrv and devpipe are the highest priority.
+Of these devprog (/prog), devsrv and devpipe are the highest priority.
 
 - Libuv portability
 
