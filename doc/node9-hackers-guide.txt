@@ -214,22 +214,6 @@ LuaJIT is a Just-In-Time Compiler (JIT) for the Lua programming language.
 LuaJIT has a powerful Foreign Funtion Interface which allows developers to 
 dynamically bind into C structures and function calls.
 
-- System Request Queue -
-
-... process sys request records and request queue ...
-
-- Backend Request Dispatcher -
-
-... dispatch priority ...
-
-- Request Handlers -
-
-.. and how they execute in kernel proces context (shadow) ...
-
-- System Response Queue -
-
-... asynchronous queueing ...
-
 THEORY OF OPERATION
 
 - Bootstrap -
