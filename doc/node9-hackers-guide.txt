@@ -199,9 +199,9 @@ indir               #*           device name aliasing      #*<long name>
 
 Lua is a powerful, dynamic and light-weight programming language. It excels 
 at functional and OO tasks without forcing the developer into a paradigm
-straight jacket.  It has a very readable syntax similar to Python, but in operation
-the underlying achitecture is very similar to the Scheme dialect of LISP, but rather
-than the list as the basic data structure, Lua uses hashes.
+straight jacket.  It has a very readable syntax similar to Python.  The semantics
+are very similar to the Scheme dialect of LISP, but using hashes rather than lists
+as the basic data structure.
 
 It's rare to find such a combination of power and simplicity.
 
@@ -212,7 +212,7 @@ Lua may be embedded in applications or used as a standalone language.
 LuaJIT is a Just-In-Time Compiler (JIT) for the Lua programming language.
 
 LuaJIT has a powerful Foreign Funtion Interface which allows developers to 
-dynamically bind into C structures and function calls.
+dynamically bind with C structures and function calls.
 
 - Penlight - 
 
