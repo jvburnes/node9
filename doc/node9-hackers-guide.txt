@@ -47,24 +47,24 @@ limitations.
 
 Since Lua has no built-in threading limitations, Node9 also supports full
 multithreading.  Node9 Lua threads can communicate with Node9 tasks via message
-channels.  In fact, in Node9's each user session is allocated its own 
+channels.  In fact, in Node9 each user session is allocated its own 
 OS thread. Node9 threads can communicate via application channels and OS
 pipes.
 
 Node9 boots into a shell which supports both immediate mode Lua expression
-evaluation as well as Lua applications and library modules.  Node9
-applications are Lua scripts which can be simple standalone command files as
-well as "application directories" containing all application code, support
-libraries, resources and configuration settings.  This allows applications to
-be easily installed and removed.
+evaluation as well as loading Lua applications and library modules.  
 
-(While the primary user console of Node9 is a powerful scripting shell, it also
-comes with a small web-based management GUI for cloud environments.  Node9 also
-has extensive graphics capabilities when installed on a host supporting the
-OpenGL/Vulcan shader interface.)
+Node9 applications are Lua scripts which can be simple standalone command 
+files as well as "application directories" containing all application code, 
+support libraries, resources and configuration settings.  This allows 
+applications to be easily installed and removed.
 
-Node9 distributed networks communicate via 9p resource sharing, optionally using
-SSL/TLS connections.
+Like Plan9 and Inferno, Node9 distributed networks communicate via 9p resource
+sharing, optionally using SSL/TLS connections.  (See the Inferno installation
+manual for details).
+
+Future Node9 development will include a fully functional shell and web-based
+management GUI for cloud environments.
 
 A SIMPLE EXAMPLE
 
@@ -116,8 +116,8 @@ end
 MAJOR CHANGES FROM INFERNO
 
 Node9 required extensive modification of the original Inferno source
-distribution to refocus the design towards an interactive Lua JIT
-and cloud-optimized kernel.
+distribution to refocus the design towards an interactive Lua just-in-time
+compiler and cloud-optimized kernel.
 
 The primary kernel change was to remove Limbo and the Dis virtual machine
 structure and replace it with the LuaJIT virtual machine.  This required a
@@ -201,10 +201,13 @@ indir               #*           device name aliasing      #*<long name>
 
 Lua is a powerful, dynamic and light-weight programming language. It excels 
 at functional and OO tasks without forcing the developer into a paradigm
-straight jacket.  It's syntax is non-whitespace sensitive and similar
-to Python or Pascal.
+straight jacket.  It has a very readable syntax similar to Python, but in operation
+the underlying achitecture is very similar to the LISP variant "Scheme". Rather
+than the list as the basic data structure, it uses hashes.
 
-It may be embedded or used as a standalone language.
+It's rare to find such a combination of power and simplicity.
+
+Lua may be embedded in applications or used as a standalone language.
 
 - LuaJIT Virtual Machine and the FFI -
 
@@ -260,8 +263,8 @@ Before moving on we need to carefully define some terms which have a very specif
 meaning in Node9.
 
 Thread: In Node9 a thread is a host OS thread.  OS threads are scheduled by the
-host operating system.   Node9 uses libuv to portably support both POSIX threads
-and Windows threads.
+host operating system.   Node9 uses libuv to portably support both POSIX and
+Windows threads.
 
 Kernel Proc: A kernel proc in Node9 is a C kernel process which lives inside a
 host thread.  Like all processes it has it's own namespace, file handles etc.
@@ -274,18 +277,25 @@ Tasks: Tasks are Lua "userspace" coroutines that perform work and communicate
 with each other via event channels (more on that later).  An application can
 have multiple cooperating tasks.
 
-Virtual Procs: A virtual proc is the kernel's shadow image of the Lua task.  It
-contains the process ID, process structures and system request buffers for the
-task.  When Lua issues system requests, the kernel dispatches the sys request  
-as into an async thread pool.  A worker thread eventually services the system 
+Virtual Procs: A virtual proc is the kernel's shadow image of the Lua task while
+processing system requests.  It contains the process ID, process structures and
+system request buffers for the task.  
+
+When Lua issues system requests, the kernel dispatches the request into an 
+asynchronous thread pool.  A worker thread eventually services the system 
 request by subsuming the thread local state of the virtual process
 for the duration of the request.
  
 Libuv Event Loop
 
-Libuv is a reactor model eventing system that controls the synchronization of events,
-timers, and the dispatching of I/O handlers.  Each kernel proc has it's
-own event loop.
+Libuv is a portable I/O and eventing library which is used primarily by NodeJS.  
+It uses the "proactor" pattern that blends synchronous POSIX reactor
+events with the Windows asynchronous I/O completion model.  This allows the same
+code base to support high-performance on POSIX and Windows hosts.  It evolved 
+originally from the free libev system.
+
+The libuv event loop in node9 controls the synchronization of events, timers,
+and the dispatching of I/O handlers.  Each kernel proc has it's own event loop.
 
 Each iteration of the libuv event loop looks like this:
 
@@ -301,13 +311,15 @@ Lua Scheduler Sweep
 
 After the Lua bootstrap function constructs the first Lua task it starts the
 Lua kernel which calls the Lua task scheduler.  The scheduler examines the
-system call response queue and transfers control to each Lua task that is 
-now ready to run.  After this it runs any other Lua tasks that are ready 
+system call response queue and transfers control to each Lua task that's 
+ready to run.  After this it runs any other Lua tasks that are ready 
 (possibly because they voluntarily released the CPU).
 
 When all of the ready Lua tasks have run the Lua scheduler calls a single
 iteration of the libuv event loop.  When the libuv event loop is complete
-the process starts again.
+the process starts again.  A slight variation on this model might run the 
+libuv event loop continuously and dispatch the Lua scheduler when a lua task
+is ready.
 
 Libuv Event Sweep
 
@@ -332,6 +344,8 @@ background keyboard process. The keyboard process simply monitors the console
 keyboard for new characters and special sequences.  When it detects these it
 generates a keyboard event and sends it to the main console driver as an
 asynchronous interprocess message.
+
+In the future this may be converted to a simple libuv keyboard handler.
 
 Anatomy of A System Call
 
@@ -393,7 +407,7 @@ start execution in their "init" function.
 
 New applications are normally started by /appl/sh.lua and here are a few
 details of how this works.  The new application is forked from the current
-process using the sys.spawn function and specifying command line arguments,
+task using the sys.spawn function and specifying command line arguments,
 start function and other misc arguments.  
 
 The app start function creates a new stdio environment and imports the 
@@ -416,18 +430,17 @@ When any process completes, the scheduler returns it's PID, name and error
 status to any process waiting to read a line from /prog/<pid>/wait.  In the
 case of applications, the return value will be the application's root 'pid'.
 
-(Early in Node9's development the shell bypassed this technique and read the
-same values from a sync channel shared between the parent and child
-processes.)
+(The first version of Node9 version bypassed this technique and read the same values
+from a sync channel shared between the parent and child processes.)
 
 Exception Handling
 
 The way that Lua handles exceptions as well as the fact that Plan9 and Inferno
-return error strings instead of error "codes" creates a rather unique 
-exception handling environment.
+return error strings instead of error "codes" creates a unique exception
+handling environment.
 
 Normally lua runtime errors are caught via the pcall mechanism.  This is still
-the case within Node9, although this can get a complicated since the 
+the case within Node9, though it's complicated by the fact that the 
 coroutine.resume function that resumes execution of task also acts as a 
 pcall.  If a task performs a pcall and a Lua exception occurs before the task
 yields, the task's own recovery takes place.   If an intervening system
@@ -440,7 +453,7 @@ This is just how task exceptions are caught, not necessarily reported.
 
 The canonical way to return error status to the shell in Node9 is the following:
 
-(1) If no error has occurred then don't do anything.  The scheduler will return 
+(1) If no error has occurred, then don't do anything.  The scheduler will return 
 an empty error string to the waiting shell process.
 
 (2) If an application error has occurred, but it's not a fatal program abort
@@ -499,7 +512,7 @@ porting modifications aren't fully complete.
 It may take a few iterations on the source code with the help of other users to
 make it fully portable "out of the box".
 
-Node9 contains relatively recent copies of it's dependent libraries "libuv" and
+Node9 contains embedded copies of it's dependent libraries "libuv" and
 "luajit".   Node9's build process tries to build them before it builds
 itself.  LuaJIT can easily build itself, but libuv requires 'autotools' on 
 POSIX platforms.  Autotools are usually available via various OS package
@@ -539,8 +552,7 @@ To test Node9 simply edit the 'run.sh' script to reflect your operating
 systems dynamic library load path environment variable and execute it.
 
 On POSIX platforms the "root" directory of Node9 (the 'fs' directory in
-the source distribution) is set by the following
-rules:
+the source distribution) is set by the following rules:
 
 (a) The NODE9ROOT environment variable will be used if set.
 (b) If NODE9ROOT isn't set, the root directory is <currentworkingdir>/fs
@@ -616,7 +628,7 @@ sys.pipe:
   creates a bidirectional stream for inter-process reading/writing
 
 sys.stream:
-  reads or writes from src to dest until the operation fails
+  reads or writes from src to dest until end of stream
   (unrelated to lua services, just not done yet)
 
 sys.fversion and fauth
@@ -668,9 +680,10 @@ Of these devprog (/prog), devsrv and devpipe are the highest priority.
 
 A number of system and kernel calls still use the old Inferno portability 
 layer for host system read, write etc.  A major focus of near-term development 
-is the conversion of I/O to libuv which should increase portability and
-performance significantly.  This also enables the full development of the
-cloud-oriented aspects of the kernel.
+is the conversion of all I/O drivers to libuv instead of the Inferno portability
+layer.  This should simplify portability and increase performance significantly.
+
+This also enables the full development of the cloud-oriented aspects of the kernel.
 
 - Cloud Management, Interaction and Apps
 
