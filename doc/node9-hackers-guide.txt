@@ -1,7 +1,5 @@
                                  NODE9 HACKERS GUIDE
 
-(NOTE: This is early documentation release.  All features may not yet be
-implemented. Features under development are enclosed in parens.)
 
 CONTENTS
 
