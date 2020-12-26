@@ -9,7 +9,7 @@ project "node9"
     
     -- Initialize build
     -- Snapshot the kernel build / time
-    prebuildcommands {"src/styx/utils/ndate >src/include/kerndate.h"}
+    prebuildcommands {"styx/utils/ndate >include/kerndate.h"}
    
     -- primary kernel files --
     files {"main.c", "misc9.c", "styx/svcs/*.c",
